@@ -13,13 +13,15 @@ struct ContentView: View{ //メイン画面
         Button(action: { self.show = true /*またはself.show.toggle() */ }) {
             ZStack{
                 Circle()
-                    .frame(width: 80.0)
+                    .frame(width: 75.0)
                     .foregroundColor(Color(red: 0.2, green: 0.85, blue: 0.721))
                 Image(systemName: "person.badge.plus")
                     .resizable()
                     .frame(width: 50.0, height: 50.0, alignment: .leading)
                     .foregroundColor(.white)
+                
             }
+            .position(x: 276, y: 425)
         }
         .sheet(isPresented: self.$show) {
             IDsearchView()
@@ -37,6 +39,7 @@ struct IDsearchView: View { //友達追加画面
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundColor(Color.gray)
                     .padding(.leading, 25.0)
+                    
                 
             }
             HStack(){
