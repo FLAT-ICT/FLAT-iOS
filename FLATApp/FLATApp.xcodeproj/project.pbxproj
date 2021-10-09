@@ -11,6 +11,7 @@
 		2BB69DEF2710A1C400275485 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB69DEE2710A1C400275485 /* ContentView.swift */; };
 		2BB69DF12710A1C800275485 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BB69DF02710A1C800275485 /* Assets.xcassets */; };
 		2BB69DF42710A1C800275485 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BB69DF32710A1C800275485 /* Preview Assets.xcassets */; };
+		2BB69E31271147A600275485 /* IDsearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB69E30271147A600275485 /* IDsearchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		2BB69DEE2710A1C400275485 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2BB69DF02710A1C800275485 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2BB69DF32710A1C800275485 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		2BB69E30271147A600275485 /* IDsearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDsearchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			children = (
 				2BB69DEC2710A1C400275485 /* FLATAppApp.swift */,
 				2BB69DEE2710A1C400275485 /* ContentView.swift */,
+				2BB69E30271147A600275485 /* IDsearchView.swift */,
 				2BB69DF02710A1C800275485 /* Assets.xcassets */,
 				2BB69DF22710A1C800275485 /* Preview Content */,
 			);
@@ -137,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BB69E31271147A600275485 /* IDsearchView.swift in Sources */,
 				2BB69DEF2710A1C400275485 /* ContentView.swift in Sources */,
 				2BB69DED2710A1C400275485 /* FLATAppApp.swift in Sources */,
 			);
