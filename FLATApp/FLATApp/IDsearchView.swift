@@ -9,9 +9,20 @@ import SwiftUI
 
 struct IDsearchView: View { //友達追加画面
     @State private var number = ""
+    @Binding var isActive: Bool
     var body: some View {
+        HStack(){
+            Button("キャンセル") {
+                isActive = false
+            }
+            Spacer()
+                .padding(.top, 44)
+                
+        }
+       
         VStack(){
             VStack(){
+              
                 Text("IDを入力してください")
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundColor(Color.gray)

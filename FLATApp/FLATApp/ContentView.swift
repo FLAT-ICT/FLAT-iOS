@@ -25,8 +25,8 @@ struct ContentView: View{ //メイン画面
                 }
                 .position(x: 276, y: 425)
             }
-            .sheet(isPresented: self.$show) {
-                IDsearchView()
+            .fullScreenCover(isPresented: self.$show) {
+                IDsearchView(isActive: $show)
             }
             .tabItem {
                 Image(systemName: "person")
