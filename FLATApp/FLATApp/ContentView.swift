@@ -14,7 +14,7 @@ struct ContentView: View{ //メイン画面
         TabView(selection: $selection){
             PlaceView()
                 .tabItem {
-                    Image(systemName: "person")
+                    Image("map-marker")
                 }
                 .tag(0)
             FriendListView()
@@ -24,7 +24,7 @@ struct ContentView: View{ //メイン画面
                 .tag(1)
             IconView()
                 .tabItem {
-                    Image(systemName: "person")
+                    Image(systemName: "face.smiling")
                 }
                 .tag(2)
         }

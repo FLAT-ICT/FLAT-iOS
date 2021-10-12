@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct IconView: View {
+struct IconView: View { //アイコン画面
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }

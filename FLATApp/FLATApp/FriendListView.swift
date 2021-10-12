@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FriendListView: View {
+struct FriendListView: View { //友達一覧画面
     @State private var show: Bool = false
     @State private var selection = 0
     var body: some View {
