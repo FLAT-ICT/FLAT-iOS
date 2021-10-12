@@ -17,7 +17,6 @@ struct IDsearchView: View { //友達追加画面
     @Binding var isActive: Bool
     var body: some View {
         VStack(){
-            
             HStack(){ //上のキャンセルボタン
                 Button("キャンセル") {
                     isActive = false
@@ -26,6 +25,7 @@ struct IDsearchView: View { //友達追加画面
                     .padding(.top, 44)
             }
             .padding(.leading, 25.0)
+            Divider()
         }
         VStack(){ //ID入力項目
             VStack(){

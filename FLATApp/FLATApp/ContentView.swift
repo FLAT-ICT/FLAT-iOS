@@ -10,6 +10,14 @@ import SwiftUI
 struct ContentView: View{ //メイン画面
     @State private var show: Bool = false
     var body: some View {
+        VStack{
+            HStack{
+                Text("友達が誰もいないようです。下のボタンから追加しましょう。")
+            }
+            .padding(.leading,24.0)
+            .padding(.trailing,24.0)
+        }
+        .padding(.top,107)
         TabView{
             
             Button(action: { self.show = true /*またはself.show.toggle() */ }) {
