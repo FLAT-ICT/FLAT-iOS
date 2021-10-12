@@ -13,17 +13,20 @@ struct ContentView: View{ //メイン画面
         TabView{
             
             Button(action: { self.show = true /*またはself.show.toggle() */ }) {
-                ZStack{
-                    Circle()
-                        .frame(width: 75.0)
-                        .foregroundColor(Color(red: 0.2, green: 0.85, blue: 0.721))
-                    Image(systemName: "person.badge.plus")
-                        .resizable()
-                        .frame(width: 50.0, height: 50.0, alignment: .leading)
-                        .foregroundColor(.white)
-                    
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        Image(systemName: "person.badge.plus")
+                            .foregroundColor(.white)
+                            .font(.system(size: 30))
+                            .frame(width: 60, height: 60)
+                            .background(Color(red: 0.2, green: 0.85, blue: 0.721))
+                            .cornerRadius(75.0)
+                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 107.0, trailing: 24.0))
+                    }
                 }
-                .position(x: 276, y: 425)
+                
             }
             .fullScreenCover(isPresented: self.$show) {
                 IDsearchView(isActive: $show)
