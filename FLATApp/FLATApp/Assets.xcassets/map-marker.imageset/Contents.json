@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "位置アイコン.png",
+      "filename" : "map-marker.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
