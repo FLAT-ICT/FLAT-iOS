@@ -15,6 +15,7 @@ struct IDsearchView: View { //友達追加画面
     @State private var icon_path = ""
     @State private var editting = false
     @Binding var isActive: Bool
+    
    
     var body: some View {
         VStack(){

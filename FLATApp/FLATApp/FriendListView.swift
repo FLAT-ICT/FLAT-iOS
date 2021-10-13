@@ -30,7 +30,7 @@ struct FriendListView: View { //友達一覧画面
                             .font(.system(size: 30))
                             .frame(width: 60, height: 60)
                             .background(Color(red: 0.2, green: 0.85, blue: 0.721))
-                            .cornerRadius(75.0)
+                            .cornerRadius(72.0)
                             .padding(EdgeInsets(top: 0, leading: 0, bottom: 107.0, trailing: 24.0))
                     }
                 }
