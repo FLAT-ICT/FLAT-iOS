@@ -31,7 +31,8 @@ struct FriendListView: View { //友達一覧画面
     User(id: "000006", name: "user06", status: "0", beacon: "595教室", icon_path: "Image_icon"),
     User(id: "000007", name: "user07", status: "0", beacon: "595教室", icon_path: "Image_icon"),
     User(id: "000008", name: "user08", status: "0", beacon: "595教室", icon_path: "Image_icon"),
-    User(id: "000009", name: "user09", status: "0", beacon: "595教室", icon_path: "Image_icon")
+    User(id: "000009", name: "user09", status: "0", beacon: "595教室", icon_path: "Image_icon"),
+    User(id: "000010", name: "user10", status: "0", beacon: "595教室", icon_path: "Image_icon")
     ]
     var body: some View {
         //VStack{
@@ -54,7 +55,25 @@ struct FriendListView: View { //友達一覧画面
                             .frame(width: 50, height: 50)
                         Text(nofriends.name)
                         Spacer()
-                        Text(nofriends.beacon)
+                        
+                        Button(action:{}){ //非承認ボタン
+                            Image(systemName: "multiply")
+                                .foregroundColor(.white)
+                                .font(.system(size: 30))
+                                .frame(width: 50, height: 50)
+                                .background(Color(red: 0.913, green: 0.286, blue: 0.286))
+                                .clipShape(Circle())
+                        }
+                        
+                        Button(action:{}){ //承認ボタン
+                            Image(systemName: "checkmark")
+                                .foregroundColor(.white)
+                                .font(.system(size: 30))
+                                .frame(width: 50, height: 50)
+                                .background(Color(red: 0.29, green: 0.91, blue: 0.27))
+                                .clipShape(Circle())
+                        }
+                       
                     }
                 }
             } header: {
@@ -78,7 +97,7 @@ struct FriendListView: View { //友達一覧画面
         }.listStyle(InsetListStyle())
         VStack{
             Spacer()
-                .frame(height: 633)
+                .frame(height: 600)
         HStack{
             Spacer()
                 .frame(width: 279)
@@ -94,7 +113,7 @@ struct FriendListView: View { //友達一覧画面
             
         }
         .fullScreenCover(isPresented: self.$show) {
-            //IDsearchView(isActive: $show)
+            IDsearchView(isActive: $show)
         }
         }
         }
