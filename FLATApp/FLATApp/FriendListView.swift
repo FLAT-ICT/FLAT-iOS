@@ -7,9 +7,32 @@
 
 import SwiftUI
 
+struct User: Identifiable {//ローカルデータ
+    var id: String //ID
+    var name: String //名前
+    var status: String //ステータス
+    var beacon: String //場所
+    var icon_path: String //アイコン
+}
+
 struct FriendListView: View { //友達一覧画面
     @State private var show: Bool = false
     @State private var selection = 0
+    
+    let Nofriends = [ //未承認友だちのデータ
+        User(id: "000001", name: "user01", status: "0", beacon: "595教室", icon_path: "Image_icon"),
+        User(id: "000002", name: "user02", status: "0", beacon: "595教室", icon_path: "Image_icon"),
+        User(id: "000003", name: "user03", status: "0", beacon: "595教室", icon_path: "Image_icon"),
+        User(id: "000004", name: "user04", status: "0", beacon: "595教室", icon_path: "Image_icon"),
+        User(id: "000005", name: "user05", status: "0", beacon: "595教室", icon_path: "Image_icon")
+       
+    ]
+    let Yesfriends = [ //承認済み友だちのデータ
+    User(id: "000006", name: "user06", status: "0", beacon: "595教室", icon_path: "Image_icon"),
+    User(id: "000007", name: "user07", status: "0", beacon: "595教室", icon_path: "Image_icon"),
+    User(id: "000008", name: "user08", status: "0", beacon: "595教室", icon_path: "Image_icon"),
+    User(id: "000009", name: "user09", status: "0", beacon: "595教室", icon_path: "Image_icon")
+    ]
     var body: some View {
         //VStack{
             //VStack{
