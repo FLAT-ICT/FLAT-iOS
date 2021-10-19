@@ -45,7 +45,7 @@ struct IDsearchView: View { //友達追加画面
             }
             VStack{
                 Button("検索"){//検索ボタン
-                    getData()
+                    searchID(target_id: user.id)
                     
                 }
                 .padding()

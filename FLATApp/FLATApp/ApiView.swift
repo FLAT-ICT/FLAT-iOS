@@ -25,8 +25,48 @@ func searchID(target_id: String){ //相手のIDを検索した時にそのIDをU
         return
     }
     
-    guard let req_url = URL(string: "http://34.68.157.198:8080/v1/user/check?my_id=000000&target_id=\(target_id_encode)") else {
-        return
+    let req_url = "http://34.68.157.198:8080/v1/user/check?my_id=000000&target_id=\(target_id_encode)"
+    requestAsyncJson(urlString: req_url, success: {(dictionary) in
+        print(dictionary)
+    }) {(error) in
+        print(error)
     }
-    print(req_url)
 }
+
+    func requestAsyncJson(
+        urlString: String,
+        success: @escaping (Dictionary<String, Any>) -> (),
+        failure: @escaping (Error) -> ()){
+            
+            guard let url = URL(string: urlString) else {
+                return failure(NetworkError.invalidURL)
+            }
+            let request = URLRequest(url: url)
+            URLSession.shared.dataTask(with: request, completionHandler: {data, response, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    failure(error)
+                    return
+                }
+                
+                guard let data = data,
+                      let response = response as? HTTPURLResponse else {
+                          print("データまたはレスポンスがnil")
+                          failure(NetworkError.unknown)
+                          return
+                      }
+                if response.statusCode == 200 {
+                    do {
+                        let object = try JSONSerialization.jsonObject(with: data, options: []) as! Dictionary<String, Any>
+                        print(object["id"])
+                        success(object)
+                    } catch let error {
+                        failure(error)
+                    }
+                } else {
+                    print("statusCode: \(response.statusCode)")
+                    failure(NetworkError.unknown)
+                }
+            }).resume()
+    }
+
