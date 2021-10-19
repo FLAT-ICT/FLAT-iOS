@@ -18,7 +18,7 @@ struct User: Identifiable {//ローカルデータ
 struct FriendListView: View { //友達一覧画面
     @State private var show: Bool = false
     @State private var selection = 0
-    
+    @State private var isError: Bool = false
     let Nofriends = [ //未承認友だちのデータ
         User(id: "000001", name: "user01", status: "0", beacon: "595教室", icon_path: "Image_icon"),
         User(id: "000002", name: "user02", status: "0", beacon: "595教室", icon_path: "Image_icon"),
@@ -56,13 +56,21 @@ struct FriendListView: View { //友達一覧画面
                         Text(nofriends.name)
                         Spacer()
                         
-                        Button(action:{}){ //非承認ボタン
+                        VStack{
+                        Button(action:{
+                            self.isError = true
+                        }){
                             Image(systemName: "multiply")
                                 .foregroundColor(.white)
                                 .font(.system(size: 30))
                                 .frame(width: 50, height: 50)
                                 .background(Color(red: 0.913, green: 0.286, blue: 0.286))
                                 .clipShape(Circle())
+                        }.alert(isPresented: $isError, content: {
+                            Alert(title: Text("本当に拒否しますか？"), message: Text("この操作は戻せません。"),
+                                  primaryButton: .destructive(Text("拒否"), action: {}),
+                                  secondaryButton: .cancel(Text("キャンセル"), action: {}))
+                        })
                         }
                         
                         Button(action:{}){ //承認ボタン
