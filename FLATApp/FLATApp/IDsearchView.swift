@@ -6,17 +6,15 @@
 //
 
 import SwiftUI
-
+import UIKit
 
 
 struct IDsearchView: View { //友達追加画面
-    @State private var id = ""
-    @State private var name = ""
-    @State private var icon_path = ""
     @State private var editting = false
     @Binding var isActive: Bool
+    @State private var user: UserData = UserData(id: "", name: "",  icon_path: "",applied: false, requested: false)//通信用
+//    @Binding var target_id: String
     
-   
     var body: some View {
         VStack(){
             HStack(){ //上のキャンセルボタン
@@ -38,7 +36,7 @@ struct IDsearchView: View { //友達追加画面
             }
             VStack(){
                 HStack(){
-                    TextField("000000", text: $id)
+                    TextField("000000", text: $user.id)
                         .padding(3.0)
                         .keyboardType(.numberPad)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -47,23 +45,38 @@ struct IDsearchView: View { //友達追加画面
                 .padding(.trailing,24.0)
             }
             VStack{
-                Button("検索"){ //検索ボタン
-                    if self.id == "111111"{ //一時的にIDを設定
-                        self.name = "名前"
-                        self.icon_path = "アイコン"
-                    } else { //IDではなかった場合
-                        self.name = "見つかりませんでした"
-                        self.icon_path = "もう一度検索してください。"
+                Button("検索"){//検索ボタン
+                    searchID(target_id: user.id,
+                             success: {(userData) in self.user = userData}) { (error) in
+                        print(error)
                     }
+                    
                 }
                 .padding()
-                Text(name)
-                Text(icon_path)
-                .padding()
+                Text(user.name)
+                Text(user.icon_path)
+                    .padding()
             }
         }
         .padding(.top,139)
         Spacer()
+    }
+    
+    
+    func getData() {
+        guard let url = URL(string: "http://34.68.157.198:8080/") else { return }
+        URLSession.shared.dataTask(with: url) {(data, response, error) in
+            do {
+                if let userdata = data {
+                    let decodedData = try JSONDecoder().decode(UserData.self, from: userdata)
+                    self.user = decodedData
+                } else {
+                    print("No data", data as Any)
+                }
+            } catch {
+                print("Error", error)
+            }
+        }.resume()
     }
 }
 
