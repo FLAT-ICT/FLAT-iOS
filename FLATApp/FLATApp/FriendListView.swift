@@ -86,6 +86,9 @@ struct FriendListView: View { //友達一覧画面
                 }
             } header: {
                 Text("未承認の友だち")
+                    .frame(width: UIScreen.main.bounds.width,height: 28, alignment: .leading)
+                    .background(Color(red: 0.2, green: 0.85, blue: 0.721))
+                    .foregroundColor(Color.white)
             }
             Section{
                 ForEach(Yesfriends) { yesfriends in
@@ -101,33 +104,31 @@ struct FriendListView: View { //友達一覧画面
                 }
             } header: {
                 Text("友だち一覧")
+                    .frame(width: UIScreen.main.bounds.width,height: 28, alignment: .leading)
+                    .background(Color(red: 0.2, green: 0.85, blue: 0.721))
+                    .foregroundColor(Color.white)
             }
         }.listStyle(InsetListStyle())
         VStack{
             Spacer()
-                .frame(height: 600)
         HStack{
             Spacer()
-                .frame(width: 279)
+                .frame(width: 320,height: 107)
         Button(action: { self.show = true /*またはself.show.toggle() */ }) {
            Image(systemName: "person.badge.plus")
                         .foregroundColor(.white)
-                        .font(.system(size: 30))
-                        .frame(width: 60, height: 60)
+                        .font(.system(size: 40))
+                        .frame(width: 72, height: 72)
                         .background(Color(red: 0.2, green: 0.85, blue: 0.721))
                         .cornerRadius(72.0)
-                        
-            
-            
         }
         .fullScreenCover(isPresented: self.$show) {
             IDsearchView(isActive: $show)
-        }
-        }
-        }
+                    }
+                }
+            }
         }
     }
-    
 }
 
 struct FriendListView_Previews: PreviewProvider {

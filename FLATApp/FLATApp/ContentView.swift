@@ -18,7 +18,7 @@ struct ContentView: View{ //メイン画面
         TabView(selection: $selection){
             PlaceView()
                 .tabItem {
-                    Image("map-marker")
+                    Image(systemName: "mappin.and.ellipse")
                 }
                 .tag(0)
             FriendListView()
