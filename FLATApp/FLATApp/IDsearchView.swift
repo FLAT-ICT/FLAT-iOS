@@ -14,7 +14,8 @@ struct IDsearchView: View { //友達追加画面
     @Binding var isActive: Bool
     @State private var user: UserData = UserData(id: "", name: "",  icon_path: "",applied: false, requested: false)//通信用
 //    @Binding var target_id: String
-    
+   @State private var buttonText = "申請"
+   @State private var buttonchange = false
     var body: some View {
         VStack(){
             HStack(){ //上のキャンセルボタン
@@ -38,7 +39,7 @@ struct IDsearchView: View { //友達追加画面
                 HStack(){
                     TextField("000000", text: $user.id)
                         .padding(3.0)
-                        .keyboardType(.numberPad)
+                        .keyboardType(.default)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                 }
                 .padding(.leading,24.0)
@@ -56,6 +57,15 @@ struct IDsearchView: View { //友達追加画面
                 Text(user.name)
                 Text(user.icon_path)
                     .padding()
+                Button(action: {
+                    buttonText = "承認待ち"
+                }){
+                    Text(buttonText)
+                        .frame(width: 100, height: 35)
+                        .foregroundColor(Color(.white))
+                        .background(Color(red: 0.2, green: 0.85, blue: 0.721))
+                        .cornerRadius(24)
+                }
             }
         }
         .padding(.top,139)
