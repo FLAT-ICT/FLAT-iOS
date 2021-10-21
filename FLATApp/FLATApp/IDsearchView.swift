@@ -15,6 +15,7 @@ struct IDsearchView: View { //友達追加画面
     @State private var user: UserData = UserData(id: "", name: "",  icon_path: "",applied: false, requested: false)//通信用
 //    @Binding var target_id: String
     
+    
     var body: some View {
         VStack(){
             HStack(){ //上のキャンセルボタン
