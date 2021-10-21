@@ -13,9 +13,9 @@ struct IDsearchView: View { //友達追加画面
     @State private var editting = false
     @Binding var isActive: Bool
     @State private var user: UserData = UserData(id: "", name: "",  icon_path: "",applied: false, requested: false)//通信用
-//    @Binding var target_id: String
-   @State private var buttonText = "申請"
-   @State private var buttonchange = false
+    //    @Binding var target_id: String
+    @State private var buttonText = "申請"
+    @State private var buttonchange = false
     var body: some View {
         VStack(){
             HStack(){ //上のキャンセルボタン
@@ -30,7 +30,7 @@ struct IDsearchView: View { //友達追加画面
         }
         VStack(){ //ID入力項目
             VStack(){
-                Text("IDを入力してください")
+                Text("名前を入力してください")
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundColor(Color.gray)
                     .padding(.leading, 25.0)
