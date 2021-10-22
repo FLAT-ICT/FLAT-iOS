@@ -44,8 +44,7 @@ struct FriendListView: View { //友達一覧画面
                // .padding(.trailing,24.0)
            // }
            // .padding(.top,107)
-       
-        ZStack{
+       ZStack{
         List{
             Section{
                 ForEach(Nofriends) { nofriends in
@@ -110,11 +109,11 @@ struct FriendListView: View { //友達一覧画面
                     .foregroundColor(Color.white)
             }
         }.listStyle(InsetListStyle())
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         VStack{
             Spacer()
         HStack{
             Spacer()
-                .frame(width: 320,height: 107)
         Button(action: { self.show = true /*またはself.show.toggle() */ }) {
            Image(systemName: "person.badge.plus")
                         .foregroundColor(.white)
@@ -126,8 +125,9 @@ struct FriendListView: View { //友達一覧画面
         .fullScreenCover(isPresented: self.$show) {
             IDsearchView(isActive: $show)
                     }
-                }
+        }.padding(.trailing,16)
             }
+        .padding(.bottom, 16)
         }
     }
 }
