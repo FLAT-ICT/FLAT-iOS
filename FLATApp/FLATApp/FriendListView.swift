@@ -44,7 +44,11 @@ struct FriendListView: View { //友達一覧画面
                // .padding(.trailing,24.0)
            // }
            // .padding(.top,107)
+        VStack{
+       
+            
        ZStack{
+           
         List{
             Section{
                 ForEach(Nofriends) { nofriends in
@@ -84,7 +88,8 @@ struct FriendListView: View { //友達一覧画面
                     }
                     }
                 }
-            } header: {
+                
+            }header: {
                 Text("未承認の友だち")
                     .frame(width: UIScreen.main.bounds.width,height: 28, alignment: .leading)
                     .background(Color(red: 0.2, green: 0.85, blue: 0.721))
@@ -108,7 +113,7 @@ struct FriendListView: View { //友達一覧画面
                     .background(Color(red: 0.2, green: 0.85, blue: 0.721))
                     .foregroundColor(Color.white)
             }
-        }.listStyle(InsetListStyle())
+        }.listStyle(GroupedListStyle())
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         VStack{
             Spacer()
@@ -131,7 +136,7 @@ struct FriendListView: View { //友達一覧画面
         }
     }
 }
-
+}
 struct FriendListView_Previews: PreviewProvider {
     static var previews: some View {
         FriendListView()
