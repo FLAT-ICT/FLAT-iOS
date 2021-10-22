@@ -8,7 +8,6 @@
 import SwiftUI
 import UIKit
 
-
 struct IDsearchView: View { //友達追加画面
     @State private var editting = false
     @Binding var isActive: Bool
