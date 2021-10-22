@@ -73,6 +73,7 @@ struct FriendListView: View { //友達一覧画面
                         })
                         }
                         
+                        VStack{
                         Button(action:{}){ //承認ボタン
                             Image(systemName: "checkmark")
                                 .foregroundColor(.white)
@@ -81,7 +82,7 @@ struct FriendListView: View { //友達一覧画面
                                 .background(Color(red: 0.29, green: 0.91, blue: 0.27))
                                 .clipShape(Circle())
                         }
-                       
+                    }
                     }
                 }
             } header: {
