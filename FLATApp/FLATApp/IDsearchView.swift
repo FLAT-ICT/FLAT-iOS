@@ -40,6 +40,10 @@ struct IDsearchView: View { //友達追加画面
                 HStack(){
                     TextField("000000", text: $user.name,onCommit: {
                         self.validateName() //バリデーションチェック
+                        searchID(target_id: user.id,
+                                 success: {(userData) in self.user = userData}) { (error) in
+                            print(error)
+                        }
                     })
                         .padding(3.0)
                         .keyboardType(.default)
@@ -48,18 +52,12 @@ struct IDsearchView: View { //友達追加画面
                 .padding(.leading,24.0)
                 .padding(.trailing,24.0)
                 Text(self.errorMessage)
-                    .foregroundColor(Color.red)
+                .foregroundColor(Color.red)
             }
             VStack{
-                Button("検索"){//検索ボタン
-                    searchID(target_id: user.id,
-                             success: {(userData) in self.user = userData}) { (error) in
-                        print(error)
-                    }
-                    
-                }
-                .padding()
-                Text(user.name)
+               
+              
+               
                 Text(user.icon_path)
                     .padding()
                 Button(action: {
@@ -94,7 +92,7 @@ struct IDsearchView: View { //友達追加画面
         }.resume()
     }
     
-    private func validateName() {
+    private func validateName() {//バリデーションチェック
         if self.user.name.count == 0 {
             self.errorMessage = "名前を入力してください。"
             self.showError = true
