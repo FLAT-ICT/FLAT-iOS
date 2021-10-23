@@ -44,15 +44,18 @@ struct FriendListView: View { //友達一覧画面
                // .padding(.trailing,24.0)
            // }
            // .padding(.top,107)
+        VStack{
        
-        ZStack{
+            
+       ZStack{
+           
         List{
             Section{
                 ForEach(Nofriends) { nofriends in
                     HStack{
                         Image(nofriends.icon_path)
                             .resizable()
-                            .frame(width: 50, height: 50)
+                            .frame(width: 40, height: 40)
                         Text(nofriends.name)
                         Spacer()
                         
@@ -62,8 +65,8 @@ struct FriendListView: View { //友達一覧画面
                         }){
                             Image(systemName: "multiply")
                                 .foregroundColor(.white)
-                                .font(.system(size: 30))
-                                .frame(width: 50, height: 50)
+                                .font(.system(size: 20))
+                                .frame(width: 40, height: 40)
                                 .background(Color(red: 0.913, green: 0.286, blue: 0.286))
                                 .clipShape(Circle())
                         }.alert(isPresented: $isError, content: {
@@ -77,26 +80,29 @@ struct FriendListView: View { //友達一覧画面
                         Button(action:{}){ //承認ボタン
                             Image(systemName: "checkmark")
                                 .foregroundColor(.white)
-                                .font(.system(size: 30))
-                                .frame(width: 50, height: 50)
+                                .font(.system(size: 20))
+                                .frame(width: 40, height: 40)
                                 .background(Color(red: 0.29, green: 0.91, blue: 0.27))
                                 .clipShape(Circle())
                         }
                     }
                     }
                 }
-            } header: {
+                
+            }header: {
                 Text("未承認の友だち")
                     .frame(width: UIScreen.main.bounds.width,height: 28, alignment: .leading)
                     .background(Color(red: 0.2, green: 0.85, blue: 0.721))
                     .foregroundColor(Color.white)
+                    .listRowInsets(EdgeInsets(top: 0,leading: 0,bottom: 0,trailing: 0))
+                                   
             }
             Section{
                 ForEach(Yesfriends) { yesfriends in
                     HStack{
                     Image(yesfriends.icon_path)
                         .resizable()
-                        .frame(width: 50, height: 50)
+                        .frame(width: 40, height: 40)
                     Text(yesfriends.name)
                     Spacer()
                     Text(yesfriends.beacon)
@@ -108,13 +114,14 @@ struct FriendListView: View { //友達一覧画面
                     .frame(width: UIScreen.main.bounds.width,height: 28, alignment: .leading)
                     .background(Color(red: 0.2, green: 0.85, blue: 0.721))
                     .foregroundColor(Color.white)
+                    .listRowInsets(EdgeInsets(top: 0,leading: 0,bottom: 0,trailing: 0))
             }
-        }.listStyle(InsetListStyle())
+        }.listStyle(GroupedListStyle())
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         VStack{
             Spacer()
         HStack{
             Spacer()
-                .frame(width: 320,height: 107)
         Button(action: { self.show = true /*またはself.show.toggle() */ }) {
            Image(systemName: "person.badge.plus")
                         .foregroundColor(.white)
@@ -126,12 +133,13 @@ struct FriendListView: View { //友達一覧画面
         .fullScreenCover(isPresented: self.$show) {
             IDsearchView(isActive: $show)
                     }
-                }
+        }.padding(.trailing,16)
             }
+        .padding(.bottom, 16)
         }
     }
 }
-
+}
 struct FriendListView_Previews: PreviewProvider {
     static var previews: some View {
         FriendListView()
