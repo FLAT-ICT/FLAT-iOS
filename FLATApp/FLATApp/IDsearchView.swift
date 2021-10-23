@@ -15,6 +15,8 @@ struct IDsearchView: View { //友達追加画面
     //    @Binding var target_id: String
     @State private var buttonText = "申請"
     @State private var buttonchange = false
+    @State private var showError = false //バリデーションチェック
+    @State private var errorMessage = "" //バリデーションチェックのためのエラーメッセージ
     var body: some View {
         VStack(){
             HStack(){ //上のキャンセルボタン
@@ -36,13 +38,17 @@ struct IDsearchView: View { //友達追加画面
             }
             VStack(){
                 HStack(){
-                    TextField("000000", text: $user.id)
+                    TextField("000000", text: $user.name,onCommit: {
+                        self.validateName() //バリデーションチェック
+                    })
                         .padding(3.0)
                         .keyboardType(.default)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                 }
                 .padding(.leading,24.0)
                 .padding(.trailing,24.0)
+                Text(self.errorMessage)
+                    .foregroundColor(Color.red)
             }
             VStack{
                 Button("検索"){//検索ボタン
@@ -87,6 +93,17 @@ struct IDsearchView: View { //友達追加画面
             }
         }.resume()
     }
+    
+    private func validateName() {
+        if self.user.name.count == 0 {
+            self.errorMessage = "名前を入力してください。"
+            self.showError = true
+        }
+        if   self.user.name.count < 0 || self.user.name.count >= 10 {
+            self.errorMessage = "１０文字以内の名前を入力してください"
+            self.showError = true
+        }
+}
 }
 
 struct IDsearchView_Previews: PreviewProvider {
