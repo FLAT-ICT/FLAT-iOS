@@ -93,11 +93,7 @@ struct IDsearchView: View { //友達追加画面
     }
     
     private func validateName() {//バリデーションチェック
-        if self.user.name.count == 0 {
-            self.errorMessage = "名前を入力してください。"
-            self.showError = true
-        }
-        if   self.user.name.count < 0 || self.user.name.count >= 10 {
+        if self.user.name.isEmpty || self.user.name.count > 10 {
             self.errorMessage = "１０文字以内の名前を入力してください"
             self.showError = true
         }
