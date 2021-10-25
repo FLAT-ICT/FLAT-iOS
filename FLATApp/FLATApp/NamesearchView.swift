@@ -11,12 +11,13 @@ import UIKit
 struct NamesearchView: View { //友達追加画面
     @State private var editting = false
     @Binding var isActive: Bool
-    @State private var user: UserData = UserData(id: 0, name: "",  icon_path: "",applied: false, requested: false)//通信用
-    //    @Binding var target_id: String
+    @State private var users: [UserData] = []//通信用
+    @State var target_name: String = ""
     @State private var buttonText = "申請"
     @State private var buttonchange = false
     @State private var showError = false//バリデーションチェック
-        @State private var errorMessage = "" //バリデーションチェックのためのエラーメッセージ
+    @State private var errorMessage = "" //バリデーションチェックのためのエラーメッセージ
+
     var body: some View {
         VStack(){
             HStack(){ //上のキャンセルボタン
@@ -36,13 +37,14 @@ struct NamesearchView: View { //友達追加画面
                     .foregroundColor(Color.gray)
                     .padding(.leading, 25.0)
             }
-            VStack(){
+            VStack{
                 HStack(){
-                    TextField("000000", text: $user.name,onCommit: {
+                    TextField("000000", text: $target_name, onCommit: {
                                           self.validateName() //バリデーションチェック
                         
-                                          searchName(target_name: user.name,
-                                                   success: {(userData) in self.user = userData}
+                                          searchName(target_name: target_name,
+                                                   success: {(userData) in self.users = userData
+                                          }
                                           ) { (error) in
                                               print(error)
                                           }
@@ -58,9 +60,10 @@ struct NamesearchView: View { //友達追加画面
             }
             VStack{
                
-                
-                Text(user.name)
-                Text(user.icon_path)
+                ForEach(users){ user in
+                    Text(user.name)
+                    Text(user.icon_path)
+                }
                     .padding()
                 Button(action: {
                     buttonText = "承認待ち"
@@ -83,8 +86,8 @@ struct NamesearchView: View { //友達追加画面
         URLSession.shared.dataTask(with: url) {(data, response, error) in
             do {
                 if let userdata = data {
-                    let decodedData = try JSONDecoder().decode(UserData.self, from: userdata)
-                    self.user = decodedData
+                    let decodedData = try JSONDecoder().decode([UserData].self, from: userdata)
+                    self.users = decodedData
                 } else {
                     print("No data", data as Any)
                 }
@@ -96,7 +99,7 @@ struct NamesearchView: View { //友達追加画面
         
     }
     private func validateName() {//バリデーションチェック
-            if   self.user.name.isEmpty || self.user.name.count > 10 {
+            if   self.target_name.isEmpty || self.target_name.count > 10 {
                 self.errorMessage = "１０文字以内の名前を入力してください"
                           self.showError = true
                       }
