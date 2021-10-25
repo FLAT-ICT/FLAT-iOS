@@ -15,7 +15,7 @@
 		2BB69DEF2710A1C400275485 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB69DEE2710A1C400275485 /* ContentView.swift */; };
 		2BB69DF12710A1C800275485 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BB69DF02710A1C800275485 /* Assets.xcassets */; };
 		2BB69DF42710A1C800275485 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BB69DF32710A1C800275485 /* Preview Assets.xcassets */; };
-		2BB69E31271147A600275485 /* IDsearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB69E30271147A600275485 /* IDsearchView.swift */; };
+		2BB69E31271147A600275485 /* NamesearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB69E30271147A600275485 /* NamesearchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,7 +28,7 @@
 		2BB69DEE2710A1C400275485 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2BB69DF02710A1C800275485 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2BB69DF32710A1C800275485 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		2BB69E30271147A600275485 /* IDsearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDsearchView.swift; sourceTree = "<group>"; };
+		2BB69E30271147A600275485 /* NamesearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamesearchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +65,7 @@
 				2BB69DEE2710A1C400275485 /* ContentView.swift */,
 				2BA9A2A0271620AA00BECC03 /* PlaceView.swift */,
 				2BA9A2A42716211E00BECC03 /* FriendListView.swift */,
-				2BB69E30271147A600275485 /* IDsearchView.swift */,
+				2BB69E30271147A600275485 /* NamesearchView.swift */,
 				2BA9A2BD271B0A9F00BECC03 /* Api.swift */,
 				2BA9A2A2271620CC00BECC03 /* IconView.swift */,
 				2BB69DF02710A1C800275485 /* Assets.xcassets */,
@@ -153,7 +153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BA9A2A3271620CC00BECC03 /* IconView.swift in Sources */,
-				2BB69E31271147A600275485 /* IDsearchView.swift in Sources */,
+				2BB69E31271147A600275485 /* NamesearchView.swift in Sources */,
 				2BA9A2A52716211E00BECC03 /* FriendListView.swift in Sources */,
 				2BA9A2BE271B0A9F00BECC03 /* Api.swift in Sources */,
 				2BB69DEF2710A1C400275485 /* ContentView.swift in Sources */,

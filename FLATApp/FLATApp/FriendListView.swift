@@ -131,7 +131,7 @@ struct FriendListView: View { //友達一覧画面
                         .cornerRadius(72.0)
         }
         .fullScreenCover(isPresented: self.$show) {
-            IDsearchView(isActive: $show)
+            NamesearchView(isActive: $show)
                     }
         }.padding(.trailing,16)
             }

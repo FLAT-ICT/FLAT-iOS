@@ -8,7 +8,7 @@
 import SwiftUI
 import UIKit
 
-struct IDsearchView: View { //友達追加画面
+struct NamesearchView: View { //友達追加画面
     @State private var editting = false
     @Binding var isActive: Bool
     @State private var user: UserData = UserData(id: "", name: "",  icon_path: "",applied: false, requested: false)//通信用
@@ -104,7 +104,7 @@ struct IDsearchView: View { //友達追加画面
 }
 
 
-struct IDsearchView_Previews: PreviewProvider {
+struct NamesearchView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
