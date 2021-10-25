@@ -11,7 +11,7 @@ import UIKit
 struct NamesearchView: View { //友達追加画面
     @State private var editting = false
     @Binding var isActive: Bool
-    @State private var user: UserData = UserData(id: "", name: "",  icon_path: "",applied: false, requested: false)//通信用
+    @State private var user: UserData = UserData(id: 0, name: "",  icon_path: "",applied: false, requested: false)//通信用
     //    @Binding var target_id: String
     @State private var buttonText = "申請"
     @State private var buttonchange = false
@@ -41,7 +41,7 @@ struct NamesearchView: View { //友達追加画面
                     TextField("000000", text: $user.name,onCommit: {
                                           self.validateName() //バリデーションチェック
                         
-                                          searchID(target_id: user.id,
+                                          searchName(target_name: user.name,
                                                    success: {(userData) in self.user = userData}
                                           ) { (error) in
                                               print(error)
