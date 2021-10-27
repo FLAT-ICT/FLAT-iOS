@@ -66,7 +66,24 @@ struct NamesearchView: View { //友達追加画面
                         .padding()
                     if user.applied == true && user.requested == true {
                         Text("既に友だちです")
-                    } else {
+                            .frame(width: 200, height: 35)
+                            .foregroundColor(Color(red: 0.76, green: 0.76, blue: 0.76))
+                            .background(Color(red: 0.89, green: 0.98, blue: 0.97))
+                            .cornerRadius(24)
+                    } else if user.applied == true && user.requested == false {
+                        Text("承認待ち")
+                            .frame(width: 100, height: 35)
+                            .foregroundColor(Color(red: 0.76, green: 0.76, blue: 0.76))
+                            .background(Color(red: 0.89, green: 0.98, blue: 0.97))
+                            .cornerRadius(24)
+                    } else if user.applied == false && user.requested == true {
+                        Text("片想い")
+                            .frame(width: 100, height: 35)
+                            .foregroundColor(Color(red: 0.76, green: 0.76, blue: 0.76))
+                            .background(Color(red: 0.89, green: 0.98, blue: 0.97))
+                            .cornerRadius(24)
+                    }
+                    else {
                         Button(action: {
                             buttonText = "承認待ち"
                         }){
@@ -116,6 +133,7 @@ struct NamesearchView: View { //友達追加画面
     func countup(){//検索ボタンの回数を数える関数
         self.counter += 1
     }
+    
 }
 
 
