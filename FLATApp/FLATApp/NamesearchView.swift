@@ -77,11 +77,15 @@ struct NamesearchView: View { //友達追加画面
                             .background(Color(red: 0.89, green: 0.98, blue: 0.97))
                             .cornerRadius(24)
                     } else if user.applied == false && user.requested == true {
-                        Text("片想い")
-                            .frame(width: 100, height: 35)
-                            .foregroundColor(Color(red: 0.76, green: 0.76, blue: 0.76))
-                            .background(Color(red: 0.89, green: 0.98, blue: 0.97))
-                            .cornerRadius(24)
+                        Button(action: {
+                            buttonText = "既に友達です"
+                        }){
+                            Text(buttonText)
+                                .frame(width: 200, height: 35)
+                                .foregroundColor(Color(.white))
+                                .background(Color(red: 0.2, green: 0.85, blue: 0.721))
+                                .cornerRadius(24)
+                        }
                     }
                     else {
                         Button(action: {
