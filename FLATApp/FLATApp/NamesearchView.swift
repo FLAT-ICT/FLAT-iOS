@@ -40,15 +40,17 @@ struct NamesearchView: View { //友達追加画面
             VStack{
                 HStack(){
                     TextField("000000", text: $target_name, onCommit: {
-                                          self.validateName() //バリデーションチェック
+                        self.validateName() //バリデーションチェック
                         
-                                          searchName(target_name: target_name,
-                                                   success: {(userData) in self.users = userData
-                                          }
-                                          ) { (error) in
-                                              print(error)
-                                          }
-                                      })
+                        searchName(target_name: target_name,
+                                   success: {(userData) in self.users = userData
+                        }
+                        ) { (error) in
+                            print(error)
+                        }
+                        self.countup()
+                        print(counter)
+                    })
                         .padding(3.0)
                         .keyboardType(.default)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -56,10 +58,10 @@ struct NamesearchView: View { //友達追加画面
                 .padding(.leading,24.0)
                 .padding(.trailing,24.0)
                 Text(self.errorMessage)
-                .foregroundColor(Color.red)
+                    .foregroundColor(Color.red)
             }
             VStack{
-                if counter > 0 && users.isEmpty{
+                if counter > 0 && users.isEmpty{//検索した名前が無い時
                     Text("見つかりませんでした")
                     Text("もう一度検索してください")
                 }
@@ -67,40 +69,16 @@ struct NamesearchView: View { //友達追加画面
                     Text(user.name)
                     Text(user.icon_path)
                         .padding()
-                    if user.applied == true && user.requested == true {
-                        Text("既に友だちです")
-                            .frame(width: 200, height: 35)
-                            .foregroundColor(Color(red: 0.76, green: 0.76, blue: 0.76))
-                            .background(Color(red: 0.89, green: 0.98, blue: 0.97))
-                            .cornerRadius(24)
-                    } else if user.applied == true && user.requested == false {
-                        Text("承認待ち")
+                    Button(action: {
+                        buttonText = "承認待ち"
+                    }){
+                        Text(buttonText)
                             .frame(width: 100, height: 35)
-                            .foregroundColor(Color(red: 0.76, green: 0.76, blue: 0.76))
-                            .background(Color(red: 0.89, green: 0.98, blue: 0.97))
+                            .foregroundColor(Color(.white))
+                            .background(Color(red: 0.2, green: 0.85, blue: 0.721))
                             .cornerRadius(24)
-                    } else if user.applied == false && user.requested == true {
-                        Button(action: {
-                            buttonText = "既に友達です"
-                        }){
-                            Text(buttonText)
-                                .frame(width: 200, height: 35)
-                                .foregroundColor(Color(.white))
-                                .background(Color(red: 0.2, green: 0.85, blue: 0.721))
-                                .cornerRadius(24)
-                        }
                     }
-                    else {
-                        Button(action: {
-                            buttonText = "承認待ち"
-                        }){
-                            Text(buttonText)
-                                .frame(width: 100, height: 35)
-                                .foregroundColor(Color(.white))
-                                .background(Color(red: 0.2, green: 0.85, blue: 0.721))
-                                .cornerRadius(24)
-                        }
-                    }
+                    
                 }
                 
                 
