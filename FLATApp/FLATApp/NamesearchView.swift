@@ -59,7 +59,10 @@ struct NamesearchView: View { //友達追加画面
                 .foregroundColor(Color.red)
             }
             VStack{
-               
+                if counter > 0 && users.isEmpty{
+                    Text("見つかりませんでした")
+                    Text("もう一度検索してください")
+                }
                 ForEach(users){ user in
                     Text(user.name)
                     Text(user.icon_path)
@@ -99,10 +102,7 @@ struct NamesearchView: View { //友達追加画面
                         }
                     }
                 }
-                if counter > 0 && users.isEmpty{
-                    Text("見つかりませんでした")
-                    Text("もう一度検索してください")
-                }
+                
                 
             }
         }
