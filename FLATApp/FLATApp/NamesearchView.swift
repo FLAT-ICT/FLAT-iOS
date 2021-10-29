@@ -65,6 +65,7 @@ struct NamesearchView: View { //友達追加画面
                     Text("見つかりませんでした")
                     Text("もう一度検索してください")
                 }
+                
                 ForEach(users){ user in
                     Text(user.name)
                     Text(user.icon_path)
