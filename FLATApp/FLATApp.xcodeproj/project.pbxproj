@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B72206D27302C5200937AE5 /* Bluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B72206C27302C5200937AE5 /* Bluetooth.swift */; };
 		2BA9A2A1271620AA00BECC03 /* PlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA9A2A0271620AA00BECC03 /* PlaceView.swift */; };
 		2BA9A2A3271620CC00BECC03 /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA9A2A2271620CC00BECC03 /* IconView.swift */; };
 		2BA9A2A52716211E00BECC03 /* FriendListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA9A2A42716211E00BECC03 /* FriendListView.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B72206C27302C5200937AE5 /* Bluetooth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bluetooth.swift; sourceTree = "<group>"; };
 		2BA9A2A0271620AA00BECC03 /* PlaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceView.swift; sourceTree = "<group>"; };
 		2BA9A2A2271620CC00BECC03 /* IconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
 		2BA9A2A42716211E00BECC03 /* FriendListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListView.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 				2BB69E30271147A600275485 /* NamesearchView.swift */,
 				2BA9A2BD271B0A9F00BECC03 /* Api.swift */,
 				2BA9A2A2271620CC00BECC03 /* IconView.swift */,
+				2B72206C27302C5200937AE5 /* Bluetooth.swift */,
 				2BB69DF02710A1C800275485 /* Assets.xcassets */,
 				2BB69DF22710A1C800275485 /* Preview Content */,
 			);
@@ -152,6 +155,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B72206D27302C5200937AE5 /* Bluetooth.swift in Sources */,
 				2BA9A2A3271620CC00BECC03 /* IconView.swift in Sources */,
 				2BB69E31271147A600275485 /* NamesearchView.swift in Sources */,
 				2BA9A2A52716211E00BECC03 /* FriendListView.swift in Sources */,
