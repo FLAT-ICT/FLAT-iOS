@@ -14,7 +14,7 @@ class Bluetooth: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     
     
     // CentralManager status
-    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {//セントラルマネージャーを起動する
         switch central.state {
         case .poweredOn:
             print("CBManager is powered on")
@@ -46,7 +46,7 @@ class Bluetooth: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         centralManager = CBCentralManager(delegate: self, queue: nil)
     }
     
-    func scanStart() {//スキャン開始
+    func scanStart() {//ペレフィラルを検出するためにスキャン開始
         if centralManager!.isScanning == false {
             // サービスのUUIDを指定しない
             centralManager!.scanForPeripherals(withServices: nil, options: nil)
@@ -62,7 +62,7 @@ class Bluetooth: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     }
     
     
-    var peripherals: [CBPeripheral] = []//接続
+    var peripherals: [CBPeripheral] = []//ペレフィラルと接続
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         peripherals.append(peripheral)
@@ -70,7 +70,7 @@ class Bluetooth: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     
     var cbPeripheral: CBPeripheral? = nil
     
-    func connect() {
+    func connect() {//ペレフィラルと接続
         for peripheral in peripherals {
             if peripheral.name != nil && peripheral.name == "デバイス名" {
                 cbPeripheral = peripheral
@@ -92,7 +92,7 @@ class Bluetooth: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         //           // 指定のサービスを探す
         //           let services: [CBUUID] = [CBUUID(string: "サービスのUUID")]
         //           cbPeripheral!.discoverServices(services)
-         cbPeripheral!.discoverServices(nil)// すべてのサービスを探す
+        cbPeripheral!.discoverServices(nil)// すべてのサービスを探す
     }
     
     // 接続が失敗すると呼ばれるデリゲートメソッド
