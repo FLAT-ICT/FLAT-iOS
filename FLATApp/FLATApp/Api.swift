@@ -15,7 +15,7 @@ struct UserData: Decodable, Identifiable {
     var requested: Bool
 }
 
-struct Dummy: Codable{}
+struct Dummy{}
 
 enum NetworkError : Error{//失敗した時用
     case unknown
