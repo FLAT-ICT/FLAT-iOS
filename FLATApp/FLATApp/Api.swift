@@ -14,10 +14,18 @@ struct UserData: Decodable, Identifiable {
     var applied: Bool
     var requested: Bool
 }
+
+struct Dummy{}
+
 enum NetworkError : Error{//失敗した時用
     case unknown
     case invalidResponse
     case invalidURL
+}
+
+
+enum HttpMethod{
+    case GET, POST, DELETE, PUT
 }
 
 
@@ -29,9 +37,9 @@ func searchName(target_name: String,
         return
     }
     
-    let req_url = "http://34.68.157.198:8080/v1/user/search?my_id=0&target_name=\(target_name_encode)"
+    let req_url = "/v1/user/search?my_id=0&target_name=\(target_name_encode)"
    
-    Api().checkUser(urlString: req_url, success: {(dictionary) in
+    Api.util(endpoint: req_url, method: HttpMethod.GET, args: Dummy(), success: {(dictionary: [UserData]) in
         success(dictionary)
     }) {(error) in
         failure(error)
@@ -39,20 +47,41 @@ func searchName(target_name: String,
 }
 
 
-class Api{
+final class Api{
+    private init(){}
+    static var baseUrl = "http://34.68.157.198:8080"
+    static let shared = URLSession.shared
     
-    //    @Published var userData = UserData()
-    
-    func checkUser(
-        urlString: String,
-        success: @escaping ([UserData]) -> (),
+    class func util<T1: Decodable, T2>(
+        endpoint: String,
+        method: HttpMethod,
+        args: T2?,
+        success: @escaping (T1) -> (),
         failure: @escaping (Error) -> ()
     ){
-        guard let url = URL(string: urlString) else {
-            return failure(NetworkError.invalidURL)
+            
+        guard let url = URL(string: baseUrl + endpoint) else {
+                return failure(NetworkError.invalidURL)
+            }
+            var request = URLRequest(url: url)
+        switch(method){
+        case .GET:
+            request.httpMethod = "GET"
+        case .POST:
+            request.httpMethod = "POST"
+            request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+            guard let httpBody = try? JSONSerialization.data(withJSONObject: args!, options: []) else {
+                print("invalid body")
+                return
+            }
+            request.httpBody = httpBody
+            
+        case .DELETE:
+            request.httpMethod = "DELETE"
+        case .PUT:
+            request.httpMethod = "PUT"
         }
-        let request = URLRequest(url: url)
-        URLSession.shared.dataTask(with: request, completionHandler: {data, response, error in
+        shared.dataTask(with: request, completionHandler: {data, response, error in
             if let error = error {
                 print(error.localizedDescription)
                 failure(error)
@@ -60,52 +89,14 @@ class Api{
             }
             
             guard let data = data,
-                  let response = response as? HTTPURLResponse else {
-                      print("データまたはレスポンスがnil")
-                      failure(NetworkError.unknown)
-                      return
-                  }
+                    let response = response as? HTTPURLResponse else {
+                        print("データまたはレスポンスがnil")
+                        failure(NetworkError.unknown)
+                        return
+                    }
             if response.statusCode == 200 {
                 do {
-                    let object = try JSONDecoder().decode([UserData].self, from: data)
-                    // print(object["id"])
-                    success(object)
-                } catch let error {
-                    failure(error)
-                }
-            } else {
-                print("statusCode: \(response.statusCode)")
-                failure(NetworkError.unknown)
-            }
-        }).resume()
-    }
-    
-    func requestAsyncJson(
-        urlString: String,
-        success: @escaping ([Dictionary<String, Any>]) -> (),
-        failure: @escaping (Error) -> ()){
-            
-            guard let url = URL(string: urlString) else {
-                return failure(NetworkError.invalidURL)
-            }
-            let request = URLRequest(url: url)
-            URLSession.shared.dataTask(with: request, completionHandler: {data, response, error in
-                if let error = error {
-                    print(error.localizedDescription)
-                    failure(error)
-                    return
-                }
-                
-                guard let data = data,
-                      let response = response as? HTTPURLResponse else {
-                          print("データまたはレスポンスがnil")
-                          failure(NetworkError.unknown)
-                          return
-                      }
-                if response.statusCode == 200 {
-                    do {
-                        
-                        let object = try JSONSerialization.jsonObject(with: data, options: []) as! [Dictionary<String, Any>]
+                    let object = try JSONDecoder().decode(T1.self, from: data)
                         // print(object["id"])
                         success(object)
                     } catch let error {
