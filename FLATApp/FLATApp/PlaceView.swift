@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-//import Api
 
 struct PlaceView: View { //位置画面
     @State var tmp = ""
