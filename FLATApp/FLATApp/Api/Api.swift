@@ -33,11 +33,11 @@ public final class Api{
         success: @escaping (T2) -> (),
         failure: @escaping (Error) -> ()
     ){
-            
+        
         guard let url = URL(string: baseUrl + endpoint) else {
-                return failure(NetworkError.invalidURL)
-            }
-            var request = URLRequest(url: url)
+            return failure(NetworkError.invalidURL)
+        }
+        var request = URLRequest(url: url)
         switch(method){
         case .GET:
             request.httpMethod = "GET"
@@ -65,23 +65,23 @@ public final class Api{
             }
             
             guard let data = data,
-                    let response = response as? HTTPURLResponse else {
-                        print("データまたはレスポンスがnil")
-                        failure(NetworkError.unknown)
-                        return
-                    }
+                  let response = response as? HTTPURLResponse else {
+                      print("データまたはレスポンスがnil")
+                      failure(NetworkError.unknown)
+                      return
+                  }
             if response.statusCode == 200 {
                 do {
                     let object = try JSONDecoder().decode(T2.self, from: data)
-                        // print(object["id"])
-                        success(object)
-                    } catch let error {
-                        failure(error)
-                    }
-                } else {
-                    print("statusCode: \(response.statusCode)")
-                    failure(NetworkError.unknown)
+                    // print(object["id"])
+                    success(object)
+                } catch let error {
+                    failure(error)
                 }
-            }).resume()
-        }
+            } else {
+                print("statusCode: \(response.statusCode)")
+                failure(NetworkError.unknown)
+            }
+        }).resume()
+    }
 }

@@ -17,7 +17,7 @@ struct PlaceView: View { //位置画面
             Button("post test"){
                 sendBeacon(beacon: self.id_beacon, success: {
                     (msg: [String:String]) in self.tmp = msg["message"] ?? "no message"
-                    }
+                }
                 ) { (error) in print(error)}
             }
             Text(self.tmp)
