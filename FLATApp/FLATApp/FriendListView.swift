@@ -7,33 +7,35 @@
 
 import SwiftUI
 
-struct User: Identifiable {//ローカルデータ
-    var id: String //ID
-    var name: String //名前
-    var status: String //ステータス
-    var beacon: String //場所
-    var icon_path: String //アイコン
-}
+//struct User: Identifiable {//ローカルデータ
+//    var id: String //ID
+//    var name: String //名前
+//    var status: String //ステータス
+//    var beacon: String //場所
+//    var icon_path: String //アイコン
+//}
 
 struct FriendListView: View { //友達一覧画面
     @State private var show: Bool = false
     @State private var selection = 0
     @State private var isError: Bool = false
-    let Nofriends = [ //未承認友だちのデータ
-        User(id: "000001", name: "user01", status: "0", beacon: "595教室", icon_path: "Image_icon"),
-        User(id: "000002", name: "user02", status: "0", beacon: "595教室", icon_path: "Image_icon"),
-        User(id: "000003", name: "user03", status: "0", beacon: "595教室", icon_path: "Image_icon"),
-        User(id: "000004", name: "user04", status: "0", beacon: "595教室", icon_path: "Image_icon"),
-        User(id: "000005", name: "user05", status: "0", beacon: "595教室", icon_path: "Image_icon")
-        
-    ]
-    let Yesfriends = [ //承認済み友だちのデータ
-        User(id: "000006", name: "user06", status: "0", beacon: "595教室", icon_path: "Image_icon"),
-        User(id: "000007", name: "user07", status: "0", beacon: "595教室", icon_path: "Image_icon"),
-        User(id: "000008", name: "user08", status: "0", beacon: "595教室", icon_path: "Image_icon"),
-        User(id: "000009", name: "user09", status: "0", beacon: "595教室", icon_path: "Image_icon"),
-        User(id: "000010", name: "user10", status: "0", beacon: "595教室", icon_path: "Image_icon")
-    ]
+    @State private var noFriends: [User] = []
+    @State private var yesFriends: [User] = []
+    //    let Nofriends = [ //未承認友だちのデータ
+    //        User(id: "000001", name: "user01", status: "0", beacon: "595教室", icon_path: "Image_icon"),
+    //        User(id: "000002", name: "user02", status: "0", beacon: "595教室", icon_path: "Image_icon"),
+    //        User(id: "000003", name: "user03", status: "0", beacon: "595教室", icon_path: "Image_icon"),
+    //        User(id: "000004", name: "user04", status: "0", beacon: "595教室", icon_path: "Image_icon"),
+    //        User(id: "000005", name: "user05", status: "0", beacon: "595教室", icon_path: "Image_icon")
+    //
+    //    ]
+    //    let Yesfriends = [ //承認済み友だちのデータ
+    //        User(id: "000006", name: "user06", status: "0", beacon: "595教室", icon_path: "Image_icon"),
+    //        User(id: "000007", name: "user07", status: "0", beacon: "595教室", icon_path: "Image_icon"),
+    //        User(id: "000008", name: "user08", status: "0", beacon: "595教室", icon_path: "Image_icon"),
+    //        User(id: "000009", name: "user09", status: "0", beacon: "595教室", icon_path: "Image_icon"),
+    //        User(id: "000010", name: "user10", status: "0", beacon: "595教室", icon_path: "Image_icon")
+    //    ]
     var body: some View {
         //VStack{
         //VStack{
@@ -45,18 +47,15 @@ struct FriendListView: View { //友達一覧画面
         // }
         // .padding(.top,107)
         VStack{
-            
-            
             ZStack{
-                
                 List{
                     Section{
-                        ForEach(Nofriends) { nofriends in
+                        ForEach(noFriends) { noFriend in
                             HStack{
-                                Image(nofriends.icon_path)
+                                Image(noFriend.iconPath)
                                     .resizable()
                                     .frame(width: 40, height: 40)
-                                Text(nofriends.name)
+                                Text(noFriend.name)
                                 Spacer()
                                 
                                 VStack{
@@ -98,14 +97,14 @@ struct FriendListView: View { //友達一覧画面
                         
                     }
                     Section{
-                        ForEach(Yesfriends) { yesfriends in
+                        ForEach(yesFriends) { yesFriend in
                             HStack{
-                                Image(yesfriends.icon_path)
+                                Image(yesFriend.iconPath)
                                     .resizable()
                                     .frame(width: 40, height: 40)
-                                Text(yesfriends.name)
+                                Text(yesFriend.name)
                                 Spacer()
-                                Text(yesfriends.beacon)
+                                Text(yesFriend.beacon)
                                 
                             }
                         }
@@ -136,10 +135,21 @@ struct FriendListView: View { //友達一覧画面
                     }.padding(.trailing,16)
                 }
                 .padding(.bottom, 16)
-            }
+            }.onAppear(perform: {
+                getFriends(id: 101010, success: { (friendlist: FriendList) in
+                    self.noFriends = friendlist.oneSide
+                    self.yesFriends = friendlist.mutual
+                })
+                {( error )in
+                    print("failure")
+                    print(error)
+                }
+            })
         }
     }
 }
+
+
 struct FriendListView_Previews: PreviewProvider {
     static var previews: some View {
         FriendListView()

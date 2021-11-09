@@ -71,8 +71,10 @@ public final class Api{
                       return
                   }
             if response.statusCode == 200 {
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
                 do {
-                    let object = try JSONDecoder().decode(T2.self, from: data)
+                    let object = try decoder.decode(T2.self, from: data)
                     // print(object["id"])
                     success(object)
                 } catch let error {
