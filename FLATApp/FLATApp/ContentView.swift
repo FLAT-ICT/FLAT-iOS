@@ -14,6 +14,7 @@ struct ContentView: View{ //メイン画面
         UITabBar.appearance().backgroundColor = UIColor(red: 0.93, green: 0.93, blue: 0.93, alpha: 1)
     }
     @State private var selection = 0
+    @ObservedObject var timerHolder = TimerHolder()
     var body: some View {
         TabView(selection: $selection){
             PlaceView()
@@ -31,6 +32,9 @@ struct ContentView: View{ //メイン画面
                     Image(systemName: "face.smiling")
                 }
                 .tag(2)
+        }.onAppear{
+//            TimerHolder.environmentObject(TimerHolder)
+            timerHolder.start()
         }
     }
 }
