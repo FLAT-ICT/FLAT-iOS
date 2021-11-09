@@ -86,23 +86,7 @@ struct NamesearchView: View { //友達追加画面
         .padding(.top,139)
         Spacer()
     }
-   
-    
-    func getData() {
-        guard let url = URL(string: "http://34.68.157.198:8080/") else { return }
-        URLSession.shared.dataTask(with: url) {(data, response, error) in
-            do {
-                if let userdata = data {
-                    let decodedData = try JSONDecoder().decode([UserData].self, from: userdata)
-                    self.users = decodedData
-                } else {
-                    print("No data", data as Any)
-                }
-            } catch {
-                print("Error", error)
-            }
-        }.resume()
-    }
+
     private func validateName() {//バリデーションチェック
         if   self.target_name.isEmpty || self.target_name.count > 10 {
             self.errorMessage = "１０文字以内の名前を入力してください"
