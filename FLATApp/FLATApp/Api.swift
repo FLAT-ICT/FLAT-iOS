@@ -15,7 +15,7 @@ struct UserData: Decodable, Identifiable {
     var requested: Bool
 }
 
-struct Dummy{}
+struct Dummy: Codable{}
 
 enum NetworkError : Error{//失敗した時用
     case unknown
@@ -47,16 +47,38 @@ func searchName(target_name: String,
 }
 
 
+struct IdAndBeacon: Codable{
+    var user_id: Int
+    var uuid: String
+    var major: Int
+    var minor: Int
+    var rssi: Float
+    var distance: Float
+}
+
+func sendBeacon(beacon: IdAndBeacon,
+                success: @escaping ([String:String]) -> (),
+                failure: @escaping (Error) -> ()
+){
+    let req_url = "/v1/user/beacon"
+    Api.util(endpoint: req_url, method: HttpMethod.POST, args: beacon, success: {(msg:[String:String]) in
+        print(msg)
+        success(msg)
+    }) {(error) in
+        failure(error)
+    }
+}
+
 final class Api{
     private init(){}
     static var baseUrl = "http://34.68.157.198:8080"
     static let shared = URLSession.shared
     
-    class func util<T1: Decodable, T2>(
+    class func util<T1: Codable, T2: Decodable>(
         endpoint: String,
         method: HttpMethod,
-        args: T2?,
-        success: @escaping (T1) -> (),
+        args: T1,
+        success: @escaping (T2) -> (),
         failure: @escaping (Error) -> ()
     ){
             
@@ -69,11 +91,13 @@ final class Api{
             request.httpMethod = "GET"
         case .POST:
             request.httpMethod = "POST"
-            request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
-            guard let httpBody = try? JSONSerialization.data(withJSONObject: args!, options: []) else {
+            request.addValue("application/json", forHTTPHeaderField: "content-type")
+            print(args)
+            guard let httpBody = try? JSONEncoder().encode(args) else {
                 print("invalid body")
                 return
             }
+            print(httpBody)
             request.httpBody = httpBody
             
         case .DELETE:
@@ -96,7 +120,7 @@ final class Api{
                     }
             if response.statusCode == 200 {
                 do {
-                    let object = try JSONDecoder().decode(T1.self, from: data)
+                    let object = try JSONDecoder().decode(T2.self, from: data)
                         // print(object["id"])
                         success(object)
                     } catch let error {

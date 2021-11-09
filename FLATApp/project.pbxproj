@@ -16,6 +16,7 @@
 		2BB69DF12710A1C800275485 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BB69DF02710A1C800275485 /* Assets.xcassets */; };
 		2BB69DF42710A1C800275485 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BB69DF32710A1C800275485 /* Preview Assets.xcassets */; };
 		2BB69E31271147A600275485 /* NamesearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB69E30271147A600275485 /* NamesearchView.swift */; };
+ };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		2BB69DF02710A1C800275485 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2BB69DF32710A1C800275485 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2BB69E30271147A600275485 /* NamesearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamesearchView.swift; sourceTree = "<group>"; };
+		E4E9C83327389314003BD829 /* FLATApp */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FLATApp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +48,7 @@
 			isa = PBXGroup;
 			children = (
 				2BB69DEB2710A1C400275485 /* FLATApp */,
+				E4E9C83327389314003BD829 /* FLATApp */,
 				2BB69DEA2710A1C400275485 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -140,6 +143,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4E9C83427389314003BD829 /* FLATApp in Resources */,
 				2BB69DF42710A1C800275485 /* Preview Assets.xcassets in Resources */,
 				2BB69DF12710A1C800275485 /* Assets.xcassets in Resources */,
 			);
@@ -366,4 +370,3 @@
 	};
 	rootObject = 2BB69DE12710A1C400275485 /* Project object */;
 }
-

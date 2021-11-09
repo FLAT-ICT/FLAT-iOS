@@ -8,8 +8,20 @@
 import SwiftUI
 
 struct PlaceView: View { //位置画面
+    @State var tmp = ""
+    @State var id_beacon = IdAndBeacon(user_id: 1, uuid: "this-is-uuid", major: 0, minor: 1, rssi: 1.0, distance: 1.0)
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        // test用なので後で消す。裏で動かしたい。
+        VStack(){
+            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            Button("post test"){
+                sendBeacon(beacon: self.id_beacon, success: {
+                    (msg: [String:String]) in self.tmp = msg["message"] ?? "no message"
+                    }
+                ) { (error) in print(error)}
+            }
+            Text(self.tmp)
+        }
     }
 }
 
@@ -18,3 +30,4 @@ struct PlaceView_Previews: PreviewProvider {
         PlaceView()
     }
 }
+
