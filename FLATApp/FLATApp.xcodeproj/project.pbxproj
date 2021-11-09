@@ -308,6 +308,7 @@
 				DEVELOPMENT_TEAM = SSHMY3576M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "What to use bluetooth";
 				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "Application uses Bluetooth connection";
@@ -345,6 +346,7 @@
 				DEVELOPMENT_TEAM = SSHMY3576M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "What to use bluetooth";
 				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "Application uses Bluetooth connection";
