@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B72206D27302C5200937AE5 /* Bluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B72206C27302C5200937AE5 /* Bluetooth.swift */; };
+		2B7220762735191500937AE5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B7220752735191500937AE5 /* CoreLocation.framework */; };
 		2BA9A2A1271620AA00BECC03 /* PlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA9A2A0271620AA00BECC03 /* PlaceView.swift */; };
 		2BA9A2A3271620CC00BECC03 /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA9A2A2271620CC00BECC03 /* IconView.swift */; };
 		2BA9A2A52716211E00BECC03 /* FriendListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA9A2A42716211E00BECC03 /* FriendListView.swift */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B72206C27302C5200937AE5 /* Bluetooth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bluetooth.swift; sourceTree = "<group>"; };
+		2B7220752735191500937AE5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		2BA9A2A0271620AA00BECC03 /* PlaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceView.swift; sourceTree = "<group>"; };
 		2BA9A2A2271620CC00BECC03 /* IconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
 		2BA9A2A42716211E00BECC03 /* FriendListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListView.swift; sourceTree = "<group>"; };
@@ -36,17 +40,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B7220762735191500937AE5 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B7220742735191500937AE5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2B7220752735191500937AE5 /* CoreLocation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		2BB69DE02710A1C400275485 = {
 			isa = PBXGroup;
 			children = (
 				2BB69DEB2710A1C400275485 /* FLATApp */,
 				2BB69DEA2710A1C400275485 /* Products */,
+				2B7220742735191500937AE5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,6 +82,7 @@
 				2BB69E30271147A600275485 /* NamesearchView.swift */,
 				2BA9A2BD271B0A9F00BECC03 /* Api.swift */,
 				2BA9A2A2271620CC00BECC03 /* IconView.swift */,
+				2B72206C27302C5200937AE5 /* Bluetooth.swift */,
 				2BB69DF02710A1C800275485 /* Assets.xcassets */,
 				2BB69DF22710A1C800275485 /* Preview Content */,
 			);
@@ -152,6 +167,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B72206D27302C5200937AE5 /* Bluetooth.swift in Sources */,
 				2BA9A2A3271620CC00BECC03 /* IconView.swift in Sources */,
 				2BB69E31271147A600275485 /* NamesearchView.swift in Sources */,
 				2BA9A2A52716211E00BECC03 /* FriendListView.swift in Sources */,
@@ -292,6 +308,14 @@
 				DEVELOPMENT_TEAM = SSHMY3576M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "What to use bluetooth";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "Application uses Bluetooth connection";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "ビーコンを検知するために使います";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Beaconを検知するために使います";
+				INFOPLIST_KEY_NSLocationUsageDescription = "ビーコンを検知するために使います";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Beaconを検知するために使います";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -322,6 +346,14 @@
 				DEVELOPMENT_TEAM = SSHMY3576M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "What to use bluetooth";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "Application uses Bluetooth connection";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "ビーコンを検知するために使います";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Beaconを検知するために使います";
+				INFOPLIST_KEY_NSLocationUsageDescription = "ビーコンを検知するために使います";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Beaconを検知するために使います";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
