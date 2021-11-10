@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B9DB790273B45AD003A5DDD /* TimerHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9DB78F273B45AD003A5DDD /* TimerHolder.swift */; };
 		2BA9A2A1271620AA00BECC03 /* PlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA9A2A0271620AA00BECC03 /* PlaceView.swift */; };
 		2BA9A2A3271620CC00BECC03 /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA9A2A2271620CC00BECC03 /* IconView.swift */; };
 		2BA9A2A52716211E00BECC03 /* FriendListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA9A2A42716211E00BECC03 /* FriendListView.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B9DB78F273B45AD003A5DDD /* TimerHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerHolder.swift; sourceTree = "<group>"; };
 		2BA9A2A0271620AA00BECC03 /* PlaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceView.swift; sourceTree = "<group>"; };
 		2BA9A2A2271620CC00BECC03 /* IconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
 		2BA9A2A42716211E00BECC03 /* FriendListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListView.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 			children = (
 				2BB69DEC2710A1C400275485 /* FLATAppApp.swift */,
 				2BB69DEE2710A1C400275485 /* ContentView.swift */,
+				2B9DB78F273B45AD003A5DDD /* TimerHolder.swift */,
 				2BA9A2A0271620AA00BECC03 /* PlaceView.swift */,
 				2BA9A2A42716211E00BECC03 /* FriendListView.swift */,
 				2BB69E30271147A600275485 /* NamesearchView.swift */,
@@ -155,6 +158,7 @@
 				2BA9A2A3271620CC00BECC03 /* IconView.swift in Sources */,
 				2BB69E31271147A600275485 /* NamesearchView.swift in Sources */,
 				2BA9A2A52716211E00BECC03 /* FriendListView.swift in Sources */,
+				2B9DB790273B45AD003A5DDD /* TimerHolder.swift in Sources */,
 				2BA9A2BE271B0A9F00BECC03 /* Api.swift in Sources */,
 				2BB69DEF2710A1C400275485 /* ContentView.swift in Sources */,
 				2BA9A2A1271620AA00BECC03 /* PlaceView.swift in Sources */,
@@ -366,4 +370,3 @@
 	};
 	rootObject = 2BB69DE12710A1C400275485 /* Project object */;
 }
-
