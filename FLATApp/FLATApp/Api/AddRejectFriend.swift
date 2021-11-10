@@ -21,3 +21,13 @@ func addFriend(id_pair: IdPair,
     }
 }
 
+func rejectFriend(id_pair: IdPair,
+               success: @escaping (String) -> (),
+               failure: @escaping (Error) -> ()) {
+    let req_url="/v1/friends/reject"
+    Api.util(endpoint: req_url, method: HttpMethod.GET, args: id_pair, success: { msg in
+        success(msg)
+    }){(error) in
+        failure(error)
+    }
+}

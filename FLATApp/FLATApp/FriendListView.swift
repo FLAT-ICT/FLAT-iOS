@@ -69,7 +69,13 @@ struct FriendListView: View { //友達一覧画面
                                 }
                                 .alert(isPresented: $isError, content: {
                                     Alert(title: Text("本当に拒否しますか？"), message: Text("この操作は戻せません。"),
-                                          primaryButton: .destructive(Text("拒否"), action: {}),
+                                        primaryButton: .destructive(Text("拒否"), action: {
+                                        rejectFriend(id_pair: IdPair(myId: 0, targetId: noFriend.id) ,success: {(msg) in
+                                            print(msg)
+                                        }) { (error) in
+                                            print(error)
+                                        }
+                                    }),
                                           secondaryButton: .cancel(Text("キャンセル"), action: {}))
                                 })
                                 .buttonStyle(PlainButtonStyle())
@@ -107,7 +113,6 @@ struct FriendListView: View { //友達一覧画面
                                 Text(yesFriend.name)
                                 Spacer()
                                 Text(yesFriend.beacon)
-                                
                             }
                         }
                     } header: {
