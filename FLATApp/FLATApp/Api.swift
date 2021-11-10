@@ -62,7 +62,7 @@ func sendBeacon(beacon: IdAndBeacon,
 ){
     let req_url = "/v1/user/beacon"
     Api.util(endpoint: req_url, method: HttpMethod.POST, args: beacon, success: {(msg:[String:String]) in
-        print(msg)
+//        print(msg)
         success(msg)
     }) {(error) in
         failure(error)
