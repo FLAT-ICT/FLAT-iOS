@@ -57,33 +57,33 @@ struct FriendListView: View { //友達一覧画面
                                     .frame(width: 40, height: 40)
                                 Text(noFriend.name)
                                 Spacer()
-                                
-                                VStack{
-                                    Button(action:{
-                                        self.isError = true
-                                    }){
-                                        Image(systemName: "multiply")
-                                            .foregroundColor(.white)
-                                            .font(.system(size: 20))
-                                            .frame(width: 40, height: 40)
-                                            .background(Color(red: 0.913, green: 0.286, blue: 0.286))
-                                            .clipShape(Circle())
-                                    }.alert(isPresented: $isError, content: {
-                                        Alert(title: Text("本当に拒否しますか？"), message: Text("この操作は戻せません。"),
-                                              primaryButton: .destructive(Text("拒否"), action: {}),
-                                              secondaryButton: .cancel(Text("キャンセル"), action: {}))
-                                    })
-                                }
-                                
-                                VStack{
-                                    Button(action:{}){ //承認ボタン
-                                        Image(systemName: "checkmark")
-                                            .foregroundColor(.white)
-                                            .font(.system(size: 20))
-                                            .frame(width: 40, height: 40)
-                                            .background(Color(red: 0.29, green: 0.91, blue: 0.27))
-                                            .clipShape(Circle())
+                                Button(action:{
+                                    self.isError = true
+                                }){
+                                    Image(systemName: "multiply")
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 20))
+                                        .frame(width: 40, height: 40)
+                                        .background(Color(red: 0.913, green: 0.286, blue: 0.286))
+                                        .clipShape(Circle())
+                                }.alert(isPresented: $isError, content: {
+                                    Alert(title: Text("本当に拒否しますか？"), message: Text("この操作は戻せません。"),
+                                          primaryButton: .destructive(Text("拒否"), action: {}),
+                                          secondaryButton: .cancel(Text("キャンセル"), action: {}))
+                                })
+                                Button(action:{
+                                    addFriend(id_pair: IdPair(myId: 0, targetId: noFriend.id) ,success: {(msg) in
+                                        print(msg)
+                                    }) { (error) in
+                                        print(error)
                                     }
+                                }){ //承認ボタン
+                                    Image(systemName: "checkmark")
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 20))
+                                        .frame(width: 40, height: 40)
+                                        .background(Color(red: 0.29, green: 0.91, blue: 0.27))
+                                        .clipShape(Circle())
                                 }
                             }
                         }
