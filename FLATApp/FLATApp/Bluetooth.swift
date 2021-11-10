@@ -61,11 +61,11 @@ class Bluetooth: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
             print("peripheral.identifier.uuidString: \(peripheral.identifier.uuidString)\n")
         }
     
-    // 接続時に呼ばれる
-        func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-            self.peripheral.delegate = self
-            self.peripheral.discoverServices(nil)
-        }
+//    // 接続時に呼ばれる
+//        func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+//            self.peripheral.delegate = self
+//            self.peripheral.discoverServices(nil)
+//        }
     // サービスの取得時に呼ばれる
         func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
             self.peripheral.discoverCharacteristics(nil, for: (peripheral.services?.first)!)
@@ -76,7 +76,16 @@ class Bluetooth: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         }
    
 }
-    
+
+//let BLE = Bluetooth()//ビーコンの検知を呼びたす処理
+//BLE.centralManager(_ central: CBCentralManager,
+//                   didDiscover peripheral: CBPeripheral,
+//                   advertisementData: [String: Any],
+//                   rssi RSSI: NSNumber)
+
+
+
+
 //    var centralManager: CBCentralManager?
 //
 //    override init () {
