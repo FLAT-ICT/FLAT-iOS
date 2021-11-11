@@ -77,6 +77,7 @@ class Bluetooth: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
    
 }
 
+
 //let BLE = Bluetooth()//ビーコンの検知を呼びたす処理
 //BLE.centralManager(_ central: CBCentralManager,
 //                   didDiscover peripheral: CBPeripheral,
