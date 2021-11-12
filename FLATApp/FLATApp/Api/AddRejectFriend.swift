@@ -13,7 +13,7 @@ struct IdPair: Codable {
 func addFriend(idPair: IdPair,
                success: @escaping (String) -> (),
                failure: @escaping (Error) -> ()) {
-    let req_url="/v1/friends/add"
+    let reqUrl="/v1/friends/add"
     Api.util(endpoint: req_url, method: HttpMethod.GET, args: idPair, success: { msg in
         success(msg)
     }){(error) in
