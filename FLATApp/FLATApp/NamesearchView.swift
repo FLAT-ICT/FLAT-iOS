@@ -12,7 +12,7 @@ struct NamesearchView: View { //友達追加画面
     @State private var editting = false
     @Binding var isActive: Bool
     @State private var users: [UserData] = []//通信用 UserData型の空配列
-    @State var target_name: String = ""
+    @State var targetName: String = ""
     @State private var buttonText = "申請"
     @State private var buttonchange = false
     @State private var showError = false//バリデーションチェック
@@ -39,10 +39,10 @@ struct NamesearchView: View { //友達追加画面
             }
             VStack{
                 HStack(){
-                    TextField("000000", text: $target_name, onCommit: {
+                    TextField("000000", text: $targetName, onCommit: {
                         self.validateName() //バリデーションチェック
                         
-                        searchName(target_name: target_name,
+                        searchName(targetName: targetName,
                                    success: {(userData) in self.users = userData
                         }
                         ) { (error) in
@@ -88,7 +88,7 @@ struct NamesearchView: View { //友達追加画面
     }
     
     private func validateName() {//バリデーションチェック
-        if   self.target_name.isEmpty || self.target_name.count > 10 {
+        if   self.targetName.isEmpty || self.targetName.count > 10 {
             self.errorMessage = "１０文字以内の名前を入力してください"
             self.showError = true
         }

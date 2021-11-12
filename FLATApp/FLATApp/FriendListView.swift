@@ -70,7 +70,7 @@ struct FriendListView: View { //友達一覧画面
                                 .alert(isPresented: $isError, content: {
                                     Alert(title: Text("本当に拒否しますか？"), message: Text("この操作は戻せません。"),
                                         primaryButton: .destructive(Text("拒否"), action: {
-                                        rejectFriend(id_pair: IdPair(myId: 0, targetId: noFriend.id) ,success: {(msg) in
+                                        rejectFriend(idPair: IdPair(myId: 0, targetId: noFriend.id) ,success: {(msg) in
                                             print(msg)
                                         }) { (error) in
                                             print(error)
@@ -80,7 +80,7 @@ struct FriendListView: View { //友達一覧画面
                                 })
                                 .buttonStyle(PlainButtonStyle())
                                 Button(action:{
-                                    addFriend(id_pair: IdPair(myId: 0, targetId: noFriend.id) ,success: {(msg) in
+                                    addFriend(idPair: IdPair(myId: 0, targetId: noFriend.id) ,success: {(msg) in
                                         print(msg)
                                     }) { (error) in
                                         print(error)
