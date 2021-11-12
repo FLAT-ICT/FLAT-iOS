@@ -22,8 +22,8 @@ func getFriends(id: Int,
                 success: @escaping (FriendList) -> (),
                 failure: @escaping (Error) -> ()
 ){
-    let req_url = "/v1/friends?my_id=\(id)"
-    Api.util(endpoint: req_url, method: HttpMethod.GET, args: Dummy(), success: { (friendList: FriendList) in
+    let reqUrl = "/v1/friends?my_id=\(id)"
+    Api.util(endpoint: reqUrl, method: HttpMethod.GET, args: Dummy(), success: { (friendList: FriendList) in
         success(friendList)
     }) {(error) in
         failure(error)

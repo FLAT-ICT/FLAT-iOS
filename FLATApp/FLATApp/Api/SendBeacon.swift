@@ -18,8 +18,8 @@ func sendBeacon(beacon: IdAndBeacon,
                 success: @escaping ([String:String]) -> (),
                 failure: @escaping (Error) -> ()
 ){
-    let req_url = "/v1/user/beacon"
-    Api.util(endpoint: req_url, method: HttpMethod.POST, args: beacon, success: {(msg:[String:String]) in
+    let reqUrl = "/v1/user/beacon"
+    Api.util(endpoint: reqUrl, method: HttpMethod.POST, args: beacon, success: {(msg:[String:String]) in
         print(msg)
         success(msg)
     }) {(error) in

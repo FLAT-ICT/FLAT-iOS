@@ -15,7 +15,7 @@ struct UserData: Decodable, Identifiable {
     var requested: Bool
 }
 
-func searchName(target_name: String,
+func searchName(targetName: String,
               success: @escaping ([UserData]) -> (),
               failure: @escaping (Error) -> ()
 ){ //相手の名前を検索した時にその名前をURLに入れる
