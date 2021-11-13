@@ -46,5 +46,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(newLocation.coordinate.latitude, newLocation.coordinate.longitude)
         
         print("緯度: ", location.latitude, "経度: ", location.longitude)
-        }    
+        }
     }
