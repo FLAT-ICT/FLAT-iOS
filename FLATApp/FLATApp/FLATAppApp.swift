@@ -38,13 +38,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         return true
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let newLocation = locations.last else {
-            return
-        }
-        
-        let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(newLocation.coordinate.latitude, newLocation.coordinate.longitude)
-        
-        print("緯度: ", location.latitude, "経度: ", location.longitude)
-        }
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {//前回コードコード
+//        guard let newLocation = locations.last else {
+//            return
+//        }
+//
+//        let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(newLocation.coordinate.latitude, newLocation.coordinate.longitude)
+//
+//        print("緯度: ", location.latitude, "経度: ", location.longitude)
+//        }
     }
