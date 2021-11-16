@@ -10,7 +10,7 @@ import CoreLocation
 
 @main
 struct FLATAppApp: App {
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+//    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     var body: some Scene {
         WindowGroup {
             ContentView()
@@ -18,25 +18,25 @@ struct FLATAppApp: App {
     }
 }
 
-class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
-    var locationManager : CLLocationManager?
-    
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        
-        locationManager = CLLocationManager()
-        locationManager!.delegate = self
-       locationManager!.requestAlwaysAuthorization()
-        //locationManager!.requestWhenInUseAuthorization()
-
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager!.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager!.distanceFilter = 10
-            locationManager!.activityType = .fitness
-            locationManager!.startUpdatingLocation()
-        }
-        
-        return true
-    }
+//class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
+//    var locationManager : CLLocationManager?
+//
+//    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+//
+//        locationManager = CLLocationManager()
+//        locationManager!.delegate = self
+//       locationManager!.requestAlwaysAuthorization()
+//        //locationManager!.requestWhenInUseAuthorization()
+//
+//        if CLLocationManager.locationServicesEnabled() {
+//            locationManager!.desiredAccuracy = kCLLocationAccuracyBest
+//            locationManager!.distanceFilter = 10
+//            locationManager!.activityType = .fitness
+//            locationManager!.startUpdatingLocation()
+//        }
+//
+//        return true
+//    }
     
 //    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {//前回コードコード
 //        guard let newLocation = locations.last else {
@@ -47,4 +47,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 //
 //        print("緯度: ", location.latitude, "経度: ", location.longitude)
 //        }
-    }
+

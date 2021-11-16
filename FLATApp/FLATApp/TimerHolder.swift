@@ -13,7 +13,7 @@ class TimerHolder: ObservableObject{
     @Published var timer: AnyCancellable!
     @State var id_beacon: IdAndBeacon = IdAndBeacon(user_id: 1, uuid: "this-is-uuid", major: 0, minor: 1, rssi: 1.0, distance: 1.0)
     @State var bluetooth = Bluetooth()
-    @State var searchbeacon = SearchBeacon(uuids: <#[String]#>)
+    //@State var searchbeacon = SearchBeacon(uuids: ["E8C65602-6D9C-44EF-9734-B2D3EF1CD961"])//ビーコンのUUIDのリストを入れる
 //    init(){}
     
     func start() {
@@ -26,7 +26,8 @@ class TimerHolder: ObservableObject{
             .sink(receiveValue: ({ _ in
                 print("scanning...")
                 //self.bluetooth.startScan()
-               // self.searchbeacon.locationManager()//ビーコン検知呼び出し
+               //ビーコン検知呼び出し
+                //self.searchbeacon.locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion)
                 self.id_beacon = IdAndBeacon(user_id: 1, uuid: "this-is-uuid", major: 0, minor: 1, rssi: 1.0, distance: 1.0)
                 sendBeacon(beacon: self.id_beacon, success: {
                     (msg: [String:String]) in print(msg["message"] ?? "no message")
