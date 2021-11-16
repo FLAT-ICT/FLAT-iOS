@@ -52,7 +52,7 @@ struct FriendListView: View { //友達一覧画面
                     Section{
                         ForEach(noFriends) { noFriend in
                             HStack{
-                                Image(noFriend.iconPath)
+                                Image(noFriend.icon_path)
                                     .resizable()
                                     .frame(width: 40, height: 40)
                                 Text(noFriend.name)
@@ -107,7 +107,7 @@ struct FriendListView: View { //友達一覧画面
                     Section{
                         ForEach(yesFriends) { yesFriend in
                             HStack{
-                                Image(yesFriend.iconPath)
+                                Image(yesFriend.icon_path)
                                     .resizable()
                                     .frame(width: 40, height: 40)
                                 Text(yesFriend.name)
