@@ -14,7 +14,7 @@ class BeaconDetecter: NSObject, ObservableObject, CLLocationManagerDelegate{
     var didChange = PassthroughSubject<Void, Never>()
     var locationManager: CLLocationManager?
     @Published var lastDistance = CLProximity.unknown
-    @Published var id_beacon: IdAndBeacon = IdAndBeacon(user_id: 1, major: 0, minor: 0, rssi: 1)
+    @Published var idBeacon: IdAndBeacon = IdAndBeacon(user_id: 1, major: 0, minor: 0, rssi: 1)
     override init(){
         super.init()
         
@@ -50,7 +50,7 @@ class BeaconDetecter: NSObject, ObservableObject, CLLocationManagerDelegate{
             if let beacon = beacons.first{
                 update(distance: beacon.proximity)
                // print("major:\(beacon.major), minor:\(beacon.minor), rssi:\(beacon.rssi)")
-                self.id_beacon = IdAndBeacon(user_id: 1, major: Int(beacon.major), minor: Int(beacon.minor), rssi: beacon.rssi)
+                self.idBeacon = IdAndBeacon(user_id: 1, major: Int(beacon.major), minor: Int(beacon.minor), rssi: beacon.rssi)
             }else{
                 update(distance: .unknown)
                 //print("major:\(beacon.major), minor:\(beacon.minor), rssi:\(beacon.rssi)")

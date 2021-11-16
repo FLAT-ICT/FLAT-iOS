@@ -7,11 +7,9 @@
 
 struct IdAndBeacon: Codable{
     var user_id: Int
-    var uuid: String
     var major: Int
     var minor: Int
-    var rssi: Float
-    var distance: Float
+    var rssi: Int
 }
 
 func sendBeacon(beacon: IdAndBeacon,
