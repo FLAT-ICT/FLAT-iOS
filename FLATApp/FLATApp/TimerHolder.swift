@@ -11,7 +11,7 @@ import SwiftUI
 
 class TimerHolder: ObservableObject{
     @Published var timer: AnyCancellable!
-    @State var id_beacon: IdAndBeacon = IdAndBeacon(user_id: 1, major: 0, minor: 1, rssi: 1)
+    @State var idBeacon: IdAndBeacon = IdAndBeacon(user_id: 1, major: 0, minor: 1, rssi: 1)
     @State var bluetooth = Bluetooth()
     @ObservedObject var detector = BeaconDetecter()
     //@State var searchbeacon = SearchBeacon(uuids: ["E8C65602-6D9C-44EF-9734-B2D3EF1CD961"])//ビーコンのUUIDのリストを入れる
@@ -27,8 +27,8 @@ class TimerHolder: ObservableObject{
             .sink(receiveValue: ({ _ in
                 print("scanning...")
                 // scanBeacon
-                self.idBeacon = IdAndBeacon(user_id: 1, uuid: "this-is-uuid", major: 0, minor: 1, rssi: 1.0, distance: 1.0)
-                sendBeacon(beacon: self.idBeacon, success: {
+                //self.idBeacon = IdAndBeacon(user_id: 1, major: 0, minor: 1, rssi: 1)
+                sendBeacon(beacon: self.detector.idBeacon, success: {
                     (msg: [String:String]) in print(msg["message"] ?? "no message")
                     }
                 ) { (error) in print(error)}
