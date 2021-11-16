@@ -15,6 +15,8 @@ struct ContentView: View{ //メイン画面
     }
     @State private var selection = 0
     @ObservedObject var timerHolder = TimerHolder()
+    var BluetoothScan = Bluetooth()
+    
     var body: some View {
         TabView(selection: $selection){
             PlaceView()
@@ -32,7 +34,7 @@ struct ContentView: View{ //メイン画面
                     Image(systemName: "face.smiling")
                 }
                 .tag(2)
-        }.onAppear{
+        }.onAppear{//画面が表示された時
 //            TimerHolder.environmentObject(TimerHolder)
             timerHolder.start()
         }

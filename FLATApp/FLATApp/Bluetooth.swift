@@ -9,17 +9,17 @@ import CoreBluetooth
 import UIKit
 import SwiftUI
 
-class Bluetooth: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
+class Bluetooth: NSObject, CBCentralManagerDelegate{
     
     var centralManager: CBCentralManager!
-    var peripheral: CBPeripheral!
+    //var peripheral: CBPeripheral!
     
-        override init () {
-            // CentralManager 初期化
-            super.init()
-            centralManager = CBCentralManager(delegate: self, queue: nil, options: [CBCentralManagerOptionShowPowerAlertKey: true])
+    override init () {
+        // CentralManager 初期化
+        super.init()
+        centralManager = CBCentralManager(delegate: self, queue: nil, options: [CBCentralManagerOptionShowPowerAlertKey: true])
     }
-     
+    
     
     // CentralManager status
     func centralManagerDidUpdateState(_ central: CBCentralManager) {//セントラルマネージャーを起動する
@@ -46,36 +46,41 @@ class Bluetooth: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
             return
         }
     }
+  
+    func startScan(){
+        print("begin to scan ...")
+        centralManager.scanForPeripherals(withServices: nil)
+    }
+    // Peripheral探索結果を受信
+    func centralManager(_ central: CBCentralManager,
+                        didDiscover peripheral: CBPeripheral,
+                        advertisementData: [String: Any],
+                        rssi RSSI: NSNumber) {
+        self.centralManager.connect(peripheral, options: nil)
+        //self.peripheral = peripheral
+        self.centralManager.stopScan()
+        print("pheripheral.name: \(String(describing: peripheral.name))")
+        print("advertisementData:\(advertisementData)")
+        print("RSSI: \(RSSI)")
+        print("peripheral.identifier.uuidString: \(peripheral.identifier.uuidString)\n")
+    }
     
-     // Peripheral探索結果を受信
-        func centralManager(_ central: CBCentralManager,
-                            didDiscover peripheral: CBPeripheral,
-                            advertisementData: [String: Any],
-                            rssi RSSI: NSNumber) {
-            self.centralManager.connect(peripheral, options: nil)
-                   self.peripheral = peripheral
-                   self.centralManager.stopScan()
-            print("pheripheral.name: \(String(describing: peripheral.name))")
-            print("advertisementData:\(advertisementData)")
-            print("RSSI: \(RSSI)")
-            print("peripheral.identifier.uuidString: \(peripheral.identifier.uuidString)\n")
-        }
-    
-//    // 接続時に呼ばれる
-//        func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-//            self.peripheral.delegate = self
-//            self.peripheral.discoverServices(nil)
-//        }
+    //    // 接続時に呼ばれる
+    //        func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+    //            self.peripheral.delegate = self
+    //            self.peripheral.discoverServices(nil)
+    //        }
     // サービスの取得時に呼ばれる
-        func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
-            self.peripheral.discoverCharacteristics(nil, for: (peripheral.services?.first)!)
-        }
-
-        // キャラクタリスティック取得時に呼ばれる
-        func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
-        }
-   
+//    func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
+//        self.peripheral.discoverCharacteristics(nil, for: (peripheral.services?.first)!)
+//    }
+//
+//    // キャラクタリスティック取得時に呼ばれる
+//    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
+//    }
+    
 }
+
 
 //let BLE = Bluetooth()//ビーコンの検知を呼びたす処理
 //BLE.centralManager(_ central: CBCentralManager,
