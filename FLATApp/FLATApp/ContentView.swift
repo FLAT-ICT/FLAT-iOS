@@ -28,7 +28,7 @@ struct ContentView: View{ //メイン画面
                     Image(systemName: "person")
                 }
                 .tag(1)
-            SearchBeaconView()
+            IconView()
                 .tabItem {
                     Image(systemName: "face.smiling")
                 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PlaceView: View { //位置画面
     @State var tmp = ""
-    @State var id_beacon = IdAndBeacon(user_id: 1, uuid: "this-is-uuid", major: 0, minor: 1, rssi: 1.0, distance: 1.0)
+    @State var id_beacon = IdAndBeacon(user_id: 1, major: 0, minor: 1, rssi: 1)
     var body: some View {
         // test用なので後で消す。裏で動かしたい。
         VStack(){
