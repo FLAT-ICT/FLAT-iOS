@@ -9,8 +9,8 @@ struct User: Identifiable, Codable {//ローカルデータ
     var id: Int //ID
     var name: String //名前
     var status: Int //ステータス
-    var beacon: String //場所
-    var icon_path: String //アイコン
+    var spot: String //場所
+    var iconPath: String //アイコン
 }
 
 struct FriendList: Codable{

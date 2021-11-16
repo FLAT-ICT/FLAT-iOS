@@ -63,7 +63,7 @@ struct NamesearchView: View { //友達追加画面
             VStack{
                 ForEach(users){ user in
                     Text(user.name)
-                    Text(user.icon_path)
+                    Text(user.iconPath)
                         .padding()
                     Button(action: {
                         buttonText = "承認待ち"
