@@ -12,7 +12,7 @@ struct NamesearchView: View { //友達追加画面
     @State private var editting = false
     @Binding var isActive: Bool
     @State private var users: [UserData] = []//通信用 UserData型の空配列
-    @State var target_name: String = ""
+    @State var targetName: String = ""
     @State private var buttonText = "申請"
     @State private var buttonchange = false
     @State private var showError = false//バリデーションチェック
@@ -39,12 +39,12 @@ struct NamesearchView: View { //友達追加画面
             }
             VStack{
                 HStack(){
-                    TextField("000000", text: $target_name, onCommit: {
+                    TextField("000000", text: $targetName, onCommit: {
                         self.validateName() //バリデーションチェック
                         
-                        searchName(target_name: target_name,
+                        searchName(targetName: targetName,
                                    success: {(userData) in self.users = userData
-                            }
+                        }
                         ) { (error) in
                             print(error)
                         }
@@ -65,17 +65,17 @@ struct NamesearchView: View { //友達追加画面
                     Text(user.name)
                     Text(user.icon_path)
                         .padding()
-                        Button(action: {
-                            buttonText = "承認待ち"
-                        }){
-                            Text(buttonText)
-                                .frame(width: 100, height: 35)
-                                .foregroundColor(Color(.white))
-                                .background(Color(red: 0.2, green: 0.85, blue: 0.721))
-                                .cornerRadius(24)
-                        }
-                   
+                    Button(action: {
+                        buttonText = "承認待ち"
+                    }){
+                        Text(buttonText)
+                            .frame(width: 100, height: 35)
+                            .foregroundColor(Color(.white))
+                            .background(Color(red: 0.2, green: 0.85, blue: 0.721))
+                            .cornerRadius(24)
                     }
+                    
+                }
                 if counter > 0 && users.isEmpty{
                     Text("見つかりませんでした")
                     Text("もう一度検索してください")
@@ -86,9 +86,9 @@ struct NamesearchView: View { //友達追加画面
         .padding(.top,139)
         Spacer()
     }
-
+    
     private func validateName() {//バリデーションチェック
-        if   self.target_name.isEmpty || self.target_name.count > 10 {
+        if   self.targetName.isEmpty || self.targetName.count > 10 {
             self.errorMessage = "１０文字以内の名前を入力してください"
             self.showError = true
         }

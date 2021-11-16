@@ -26,12 +26,18 @@ class TimerHolder: ObservableObject{
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: ({ _ in
                 print("scanning...")
+<<<<<<< HEAD
                 //self.bluetooth.startScan()
                //ビーコン検知呼び出し
                 //self.searchbeacon.locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion)
                 //self.id_beacon = self.detector.id_beacon
                
                 sendBeacon(beacon: self.detector.id_beacon, success: {
+=======
+                // scanBeacon
+                self.idBeacon = IdAndBeacon(user_id: 1, uuid: "this-is-uuid", major: 0, minor: 1, rssi: 1.0, distance: 1.0)
+                sendBeacon(beacon: self.idBeacon, success: {
+>>>>>>> develop
                     (msg: [String:String]) in print(msg["message"] ?? "no message")
                     }
                 ) { (error) in print(error)}
