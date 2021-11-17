@@ -48,100 +48,107 @@ struct FriendListView: View { //友達一覧画面
         // .padding(.top,107)
         VStack{
             ZStack{
-                List{
-                    Section{
-                        ForEach(noFriends) { noFriend in
-                            HStack{
-                                Image(noFriend.iconPath)
-                                    .resizable()
-                                    .frame(width: 40, height: 40)
-                                Text(noFriend.name)
-                                Spacer()
-                                Button(action:{
-                                    self.isError = true
-                                }){
-                                    Image(systemName: "multiply")
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 20))
+                if self.noFriends.count == 0 && self.yesFriends.count == 0 {
+                    Text("友達が一人もいないようです。下のボタンから追加しましょう！")
+                }else{
+                    List{
+                        Section{
+                            ForEach(noFriends) { noFriend in
+                                HStack{
+                                    Image(noFriend.iconPath)
+                                        .resizable()
                                         .frame(width: 40, height: 40)
-                                        .background(Color(red: 0.913, green: 0.286, blue: 0.286))
-                                        .clipShape(Circle())
-                                }
-                                .alert(isPresented: $isError, content: {
-                                    Alert(title: Text("本当に拒否しますか？"), message: Text("この操作は戻せません。"),
-                                        primaryButton: .destructive(Text("拒否"), action: {
-                                        rejectFriend(idPair: IdPair(myId: 0, targetId: noFriend.id) ,success: {(msg) in
+                                    Text(noFriend.name)
+                                    Spacer()
+                                    Button(action:{
+                                        self.isError = true
+                                    }){
+                                        Image(systemName: "multiply")
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 20))
+                                            .frame(width: 40, height: 40)
+                                            .background(Color(red: 0.913, green: 0.286, blue: 0.286))
+                                            .clipShape(Circle())
+                                    }
+                                    .alert(isPresented: $isError, content: {
+                                        Alert(title: Text("本当に拒否しますか？"), message: Text("この操作は戻せません。"),
+                                              primaryButton: .destructive(Text("拒否"), action: {
+                                            rejectFriend(idPair: IdPair(myId: 0, targetId: noFriend.id) ,success: {(msg) in
+                                                print(msg)
+                                            }) { (error) in
+                                                print(error)
+                                            }
+                                        }),
+                                              secondaryButton: .cancel(Text("キャンセル"), action: {}))
+                                    })
+                                    .buttonStyle(PlainButtonStyle())
+                                    Button(action:{
+                                        addFriend(idPair: IdPair(myId: 0, targetId: noFriend.id) ,success: {(msg) in
                                             print(msg)
                                         }) { (error) in
                                             print(error)
                                         }
-                                    }),
-                                          secondaryButton: .cancel(Text("キャンセル"), action: {}))
-                                })
-                                .buttonStyle(PlainButtonStyle())
-                                Button(action:{
-                                    addFriend(idPair: IdPair(myId: 0, targetId: noFriend.id) ,success: {(msg) in
-                                        print(msg)
-                                    }) { (error) in
-                                        print(error)
-                                    }
-                                }){ //承認ボタン
-                                    Image(systemName: "checkmark")
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 20))
+                                    }){ //承認ボタン
+                                        Image(systemName: "checkmark")
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 20))
+                                            .frame(width: 40, height: 40)
+                                            .background(Color(red: 0.29, green: 0.91, blue: 0.27))
+                                            .clipShape(Circle())
+                                    }.buttonStyle(PlainButtonStyle())
+                                }
+                            }
+                            
+                        }header: {
+                            if self.noFriends.count != 0{
+                                Text("未承認の友だち")
+                                    .frame(width: UIScreen.main.bounds.width,height: 28, alignment: .leading)
+                                    .background(Color(red: 0.2, green: 0.85, blue: 0.721))
+                                    .foregroundColor(Color.white)
+                                    .listRowInsets(EdgeInsets(top: 0,leading: 0,bottom: 0,trailing: 0))
+                            }
+                        }
+                        Section{
+                            ForEach(yesFriends) { yesFriend in
+                                HStack{
+                                    Image(yesFriend.iconPath)
+                                        .resizable()
                                         .frame(width: 40, height: 40)
-                                        .background(Color(red: 0.29, green: 0.91, blue: 0.27))
-                                        .clipShape(Circle())
-                                }.buttonStyle(PlainButtonStyle())
+                                    Text(yesFriend.name)
+                                    Spacer()
+                                    Text(yesFriend.spot)
+                                }
+                            }
+                        } header: {
+                            if self.yesFriends.count != 0 {
+                                Text("友だち一覧")
+                                    .frame(width: UIScreen.main.bounds.width,height: 28, alignment: .leading)
+                                    .background(Color(red: 0.2, green: 0.85, blue: 0.721))
+                                    .foregroundColor(Color.white)
+                                    .listRowInsets(EdgeInsets(top: 0,leading: 0,bottom: 0,trailing: 0))
                             }
                         }
-                        
-                    }header: {
-                        Text("未承認の友だち")
-                            .frame(width: UIScreen.main.bounds.width,height: 28, alignment: .leading)
-                            .background(Color(red: 0.2, green: 0.85, blue: 0.721))
-                            .foregroundColor(Color.white)
-                            .listRowInsets(EdgeInsets(top: 0,leading: 0,bottom: 0,trailing: 0))
-                        
-                    }
-                    Section{
-                        ForEach(yesFriends) { yesFriend in
-                            HStack{
-                                Image(yesFriend.iconPath)
-                                    .resizable()
-                                    .frame(width: 40, height: 40)
-                                Text(yesFriend.name)
-                                Spacer()
-                                Text(yesFriend.beacon)
-                            }
-                        }
-                    } header: {
-                        Text("友だち一覧")
-                            .frame(width: UIScreen.main.bounds.width,height: 28, alignment: .leading)
-                            .background(Color(red: 0.2, green: 0.85, blue: 0.721))
-                            .foregroundColor(Color.white)
-                            .listRowInsets(EdgeInsets(top: 0,leading: 0,bottom: 0,trailing: 0))
-                    }
-                }.listStyle(GroupedListStyle())
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                VStack{
-                    Spacer()
-                    HStack{
+                    }.listStyle(GroupedListStyle())
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    VStack{
                         Spacer()
-                        Button(action: { self.show = true /*またはself.show.toggle() */ }) {
-                            Image(systemName: "person.badge.plus")
-                                .foregroundColor(.white)
-                                .font(.system(size: 40))
-                                .frame(width: 72, height: 72)
-                                .background(Color(red: 0.2, green: 0.85, blue: 0.721))
-                                .cornerRadius(72.0)
-                        }
-                        .fullScreenCover(isPresented: self.$show) {
-                            NamesearchView(isActive: $show)
-                        }
-                    }.padding(.trailing,16)
+                        HStack{
+                            Spacer()
+                            Button(action: { self.show = true /*またはself.show.toggle() */ }) {
+                                Image(systemName: "person.badge.plus")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 40))
+                                    .frame(width: 72, height: 72)
+                                    .background(Color(red: 0.2, green: 0.85, blue: 0.721))
+                                    .cornerRadius(72.0)
+                            }
+                            .fullScreenCover(isPresented: self.$show) {
+                                NamesearchView(isActive: $show)
+                            }
+                        }.padding(.trailing,16)
+                    }
+                    .padding(.bottom, 16)
                 }
-                .padding(.bottom, 16)
             }.onAppear(perform: {
                 getFriends(id: 101010, success: { (friendlist: FriendList) in
                     self.noFriends = friendlist.oneSide

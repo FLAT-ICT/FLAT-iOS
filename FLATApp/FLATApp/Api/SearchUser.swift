@@ -10,7 +10,7 @@ import Foundation
 struct UserData: Decodable, Identifiable {
     var id: Int
     var name: String
-    var icon_path: String
+    var iconPath: String
     var applied: Bool
     var requested: Bool
 }
