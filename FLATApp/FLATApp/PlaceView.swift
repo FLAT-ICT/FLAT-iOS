@@ -14,13 +14,13 @@ struct PlaceView: View { //位置画面
         // test用なので後で消す。裏で動かしたい。
         VStack(){
             Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-//            Button("post test"){
-//                sendBeacon(beacon: self.idBeacon, success: {
-//                    (msg: [String:String]) in self.tmp = msg["message"] ?? "no message"
-//                }
-//                ) { (error) in print(error)}
-//            }
-//            Text(self.tmp)
+           Button("post test"){
+                sendBeacon(beacon: self.idBeacon, success: {
+                    (msg: [String:String]) in self.tmp = msg["message"] ?? "no message"
+               }
+                ) { (error) in print(error)}
+            }
+           Text(self.tmp)
         }
     }
 }
