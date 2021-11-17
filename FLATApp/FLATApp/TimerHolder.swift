@@ -28,7 +28,7 @@ class TimerHolder: ObservableObject{
                 print("scanning...")
                 // scanBeacon
                 //self.idBeacon = IdAndBeacon(user_id: 1, major: 0, minor: 1, rssi: 1)
-                sendBeacon(beacon: self.detector.idBeacon, success: {
+                sendBeacon(beacon: self.detector.idBeacon, success: {//検知したビーコンを表示
                     (msg: [String:String]) in print(msg["message"] ?? "no message")
                     }
                 ) { (error) in print(error)}
