@@ -78,25 +78,7 @@ struct FriendListView: View { //友達一覧画面
                     }
                 }.listStyle(GroupedListStyle())
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                VStack{
-                    Spacer()
-                    HStack{
-                        Spacer()
-                        Button(action: { self.show = true /*またはself.show.toggle() */ }) {
-                            Image(systemName: "person.badge.plus")
-                                .foregroundColor(.white)
-                                .font(.system(size: 40))
-                                .frame(width: 72, height: 72)
-                                .background(Color("primary"))
-                                .cornerRadius(72.0)
-                        }
-                        .fullScreenCover(isPresented: self.$show) {
-                            NamesearchView(isActive: $show)
-                        }
-                    }.padding(.trailing,16)
-                }
-                .padding(.bottom, 16)
-                //                }
+                SearchFriendButtonView(show: self.$show)
             }.onAppear(perform: {
                 getFriends(id: self.id, success: { (friendlist: FriendList) in
                     self.noFriends = friendlist.oneSide
@@ -159,6 +141,30 @@ struct CancelButtonView: View{
                 }),
                       secondaryButton: .cancel(Text("キャンセル"), action: {}))
             })
+    }
+}
+
+struct SearchFriendButtonView: View{
+    @Binding var show: Bool
+    var body: some View {
+        VStack{
+            Spacer()
+            HStack{
+                Spacer()
+                Button(action: { self.show = true /*またはself.show.toggle() */ }) {
+                    Image(systemName: "person.badge.plus")
+                        .foregroundColor(.white)
+                        .font(.system(size: 30))
+                        .frame(width: 48, height: 48)
+                        .background(Color("primary"))
+                        .cornerRadius(24)
+                }
+                .fullScreenCover(isPresented: self.$show) {
+                    NamesearchView(isActive: $show)
+                }
+            }.padding(.trailing,16)
+        }
+        .padding(.bottom, 16)
     }
 }
 
