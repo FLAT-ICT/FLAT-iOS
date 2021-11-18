@@ -154,10 +154,12 @@ struct SearchFriendButtonView: View{
                 Button(action: { self.show = true /*またはself.show.toggle() */ }) {
                     Image(systemName: "person.badge.plus")
                         .foregroundColor(.white)
-                        .font(.system(size: 30))
+                        .font(.system(size: 28))
+                    // 大きさを横幅に対する割合にする
                         .frame(width: 48, height: 48)
                         .background(Color("primary"))
                         .cornerRadius(24)
+                        .shadow(color: .gray, radius: 4, x: 0, y: 4)
                 }
                 .fullScreenCover(isPresented: self.$show) {
                     NamesearchView(isActive: $show)
