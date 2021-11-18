@@ -10,6 +10,10 @@ import CoreLocation
 
 @main
 struct FLATAppApp: App {
+    @ObservedObject var timerHolder = TimerHolder()
+    init(){
+        timerHolder.start()
+    }
 //    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     var body: some Scene {
         WindowGroup {
