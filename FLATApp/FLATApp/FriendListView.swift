@@ -102,7 +102,7 @@ struct FriendListView: View { //友達一覧画面
                                         .frame(width: 40, height: 40)
                                     Text(yesFriend.name)
                                     Spacer()
-                                    Text(yesFriend.spot)
+                                    Text(yesFriend.spot ?? "")
                                 }
                             }
                         } header: {
@@ -136,7 +136,7 @@ struct FriendListView: View { //友達一覧画面
                     .padding(.bottom, 16)
                 }
             }.onAppear(perform: {
-                getFriends(id: 101010, success: { (friendlist: FriendList) in
+                getFriends(id: self.id, success: { (friendlist: FriendList) in
                     self.noFriends = friendlist.oneSide
                     self.yesFriends = friendlist.mutual
                 })

@@ -6,7 +6,7 @@
 //
 
 struct IdAndBeacon: Codable{
-    var user_id: Int
+    var userId: Int
     var major: Int
     var minor: Int
     var rssi: Int
