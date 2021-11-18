@@ -26,6 +26,7 @@
 		E41B9D15273B42A000D3AB80 /* AddRejectFriend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41B9D14273B42A000D3AB80 /* AddRejectFriend.swift */; };
 		E42D325D27461AC50053F794 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42D325C27461AC50053F794 /* UIColor.swift */; };
 		E42D326327461BEB0053F794 /* CustomColor.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E42D326227461BEB0053F794 /* CustomColor.xcassets */; };
+		E42D326527470B0D0053F794 /* IconLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42D326427470B0D0053F794 /* IconLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		E41B9D14273B42A000D3AB80 /* AddRejectFriend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRejectFriend.swift; sourceTree = "<group>"; };
 		E42D325C27461AC50053F794 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		E42D326227461BEB0053F794 /* CustomColor.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CustomColor.xcassets; sourceTree = "<group>"; };
+		E42D326427470B0D0053F794 /* IconLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 				2B9DB791273B5057003A5DDD /* TimerHolder.swift */,
 				2BA9A2A0271620AA00BECC03 /* PlaceView.swift */,
 				2BA9A2A42716211E00BECC03 /* FriendListView.swift */,
+				E42D326427470B0D0053F794 /* IconLoader.swift */,
 				E42D325C27461AC50053F794 /* UIColor.swift */,
 				2BB69E30271147A600275485 /* NamesearchView.swift */,
 				2BA9A2A2271620CC00BECC03 /* IconView.swift */,
@@ -211,6 +214,7 @@
 				2BA9A2A52716211E00BECC03 /* FriendListView.swift in Sources */,
 				2B9DB792273B5057003A5DDD /* TimerHolder.swift in Sources */,
 				2B9DB79427417116003A5DDD /* SearchBeacon.swift in Sources */,
+				E42D326527470B0D0053F794 /* IconLoader.swift in Sources */,
 				E41B9D0C273B2A8C00D3AB80 /* Api.swift in Sources */,
 				2BB69DEF2710A1C400275485 /* ContentView.swift in Sources */,
 				2BA9A2A1271620AA00BECC03 /* PlaceView.swift in Sources */,
