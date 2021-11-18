@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PlaceView: View { //位置画面
     @State var tmp = ""
-    @State var idBeacon = IdAndBeacon(user_id: 1, major: 0, minor: 1, rssi: 1)
+    // @State var idBeacon = IdAndBeacon(user_id: 1, major: 0, minor: 1, rssi: 1)
     // = "name" とあるが、すでに初期化された値を使用するので、こちらが採用されることはない。
     @AppStorage("name") var name = "name"
     var body: some View {

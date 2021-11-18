@@ -13,7 +13,7 @@ struct FLATAppApp: App {
     // アプリが起動して初めて走る処理
     init(){
         // @AppStorage("name") var name = ~~~
-        // の形で代入する
+        // の形で代入すると代入した値が捨てられ、下の値を使えるようになる
         UserDefaults.standard.register(defaults: [
             "name": "usr1",
             "id": 1,

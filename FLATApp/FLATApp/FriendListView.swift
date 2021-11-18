@@ -21,21 +21,7 @@ struct FriendListView: View { //友達一覧画面
     @State private var isError: Bool = false
     @State private var noFriends: [User] = []
     @State private var yesFriends: [User] = []
-    //    let Nofriends = [ //未承認友だちのデータ
-    //        User(id: "000001", name: "user01", status: "0", beacon: "595教室", icon_path: "Image_icon"),
-    //        User(id: "000002", name: "user02", status: "0", beacon: "595教室", icon_path: "Image_icon"),
-    //        User(id: "000003", name: "user03", status: "0", beacon: "595教室", icon_path: "Image_icon"),
-    //        User(id: "000004", name: "user04", status: "0", beacon: "595教室", icon_path: "Image_icon"),
-    //        User(id: "000005", name: "user05", status: "0", beacon: "595教室", icon_path: "Image_icon")
-    //
-    //    ]
-    //    let Yesfriends = [ //承認済み友だちのデータ
-    //        User(id: "000006", name: "user06", status: "0", beacon: "595教室", icon_path: "Image_icon"),
-    //        User(id: "000007", name: "user07", status: "0", beacon: "595教室", icon_path: "Image_icon"),
-    //        User(id: "000008", name: "user08", status: "0", beacon: "595教室", icon_path: "Image_icon"),
-    //        User(id: "000009", name: "user09", status: "0", beacon: "595教室", icon_path: "Image_icon"),
-    //        User(id: "000010", name: "user10", status: "0", beacon: "595教室", icon_path: "Image_icon")
-    //    ]
+    @AppStorage("id") private var id = -1
     var body: some View {
         //VStack{
         //VStack{
@@ -73,7 +59,7 @@ struct FriendListView: View { //友達一覧画面
                                     .alert(isPresented: $isError, content: {
                                         Alert(title: Text("本当に拒否しますか？"), message: Text("この操作は戻せません。"),
                                               primaryButton: .destructive(Text("拒否"), action: {
-                                            rejectFriend(idPair: IdPair(myId: 0, targetId: noFriend.id) ,success: {(msg) in
+                                            rejectFriend(idPair: IdPair(myId: self.id, targetId: noFriend.id) ,success: {(msg) in
                                                 print(msg)
                                             }) { (error) in
                                                 print(error)
@@ -83,7 +69,7 @@ struct FriendListView: View { //友達一覧画面
                                     })
                                     .buttonStyle(PlainButtonStyle())
                                     Button(action:{
-                                        addFriend(idPair: IdPair(myId: 0, targetId: noFriend.id) ,success: {(msg) in
+                                        addFriend(idPair: IdPair(myId: self.id, targetId: noFriend.id) ,success: {(msg) in
                                             print(msg)
                                         }) { (error) in
                                             print(error)
