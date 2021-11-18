@@ -24,6 +24,7 @@
 		E41B9D11273B2CA800D3AB80 /* SendBeacon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41B9D10273B2CA800D3AB80 /* SendBeacon.swift */; };
 		E41B9D13273B2E6A00D3AB80 /* GetFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41B9D12273B2E6A00D3AB80 /* GetFriends.swift */; };
 		E41B9D15273B42A000D3AB80 /* AddRejectFriend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41B9D14273B42A000D3AB80 /* AddRejectFriend.swift */; };
+		E42D325B274617D70053F794 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E42D325A274617D70053F794 /* Media.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		E41B9D10273B2CA800D3AB80 /* SendBeacon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendBeacon.swift; sourceTree = "<group>"; };
 		E41B9D12273B2E6A00D3AB80 /* GetFriends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFriends.swift; sourceTree = "<group>"; };
 		E41B9D14273B42A000D3AB80 /* AddRejectFriend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRejectFriend.swift; sourceTree = "<group>"; };
+		E42D325A274617D70053F794 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 				2B9DB791273B5057003A5DDD /* TimerHolder.swift */,
 				2BA9A2A0271620AA00BECC03 /* PlaceView.swift */,
 				2BA9A2A42716211E00BECC03 /* FriendListView.swift */,
+				E42D325A274617D70053F794 /* Media.xcassets */,
 				2BB69E30271147A600275485 /* NamesearchView.swift */,
 				2BA9A2A2271620CC00BECC03 /* IconView.swift */,
 				2B72206C27302C5200937AE5 /* Bluetooth.swift */,
@@ -182,6 +185,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BB69DF42710A1C800275485 /* Preview Assets.xcassets in Resources */,
+				E42D325B274617D70053F794 /* Media.xcassets in Resources */,
 				2BB69DF12710A1C800275485 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
