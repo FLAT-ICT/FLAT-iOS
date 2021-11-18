@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct UserData: Decodable, Identifiable {
     var id: Int
@@ -15,16 +16,19 @@ struct UserData: Decodable, Identifiable {
     var requested: Bool
 }
 
-func searchName(targetName: String,
-              success: @escaping ([UserData]) -> (),
-              failure: @escaping (Error) -> ()
-){ //相手の名前を検索した時にその名前をURLに入れる
+func searchName(
+    id: Int,
+    targetName: String,
+    success: @escaping ([UserData]) -> (),
+    failure: @escaping (Error) -> ()
+){
+    // 相手の名前を検索した時にその名前をURLに入れる
     guard let targetNameEncode = targetName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
         return
     }
     
-    let reqUrl = "/v1/user/search?my_id=0&target_name=\(targetNameEncode)"
-   
+    let reqUrl = "/v1/user/search?my_id=\(id)&target_name=\(targetNameEncode)"
+    
     Api.util(endpoint: reqUrl, method: HttpMethod.GET, args: Dummy(), success: {(dictionary: [UserData]) in
         success(dictionary)
     }) {(error) in
