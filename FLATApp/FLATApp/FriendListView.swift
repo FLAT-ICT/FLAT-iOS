@@ -42,9 +42,6 @@ struct FriendListView: View { //友達一覧画面
                         ForEach(noFriends) { noFriend in
                             HStack{
                                 IconLoaderView(size: 40, withUrl: noFriend.iconPath)
-                                //                                Image(noFriend.iconPath)
-                                //                                    .resizable()
-                                //                                    .frame(width: 40, height: 40)
                                 Text(noFriend.name)
                                 Spacer()
                                 CancelButtonView(myId: self.id, targetId: noFriend.id, isOpen: $isError)
@@ -65,9 +62,6 @@ struct FriendListView: View { //友達一覧画面
                         ForEach(yesFriends) { yesFriend in
                             HStack{
                                 IconLoaderView(size: 40, withUrl: yesFriend.iconPath)
-//                                Image(yesFriend.iconPath)
-//                                    .resizable()
-//                                    .frame(width: 40, height: 40)
                                 Text(yesFriend.name)
                                 Spacer()
                                 Text(yesFriend.spot ?? "")
