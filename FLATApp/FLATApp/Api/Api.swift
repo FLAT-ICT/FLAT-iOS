@@ -23,7 +23,8 @@ enum HttpMethod{
 
 public final class Api{
     private init(){}
-    static var baseUrl = "http://34.68.157.198:8080"
+    // static var baseUrl = "http://34.68.157.198:8080"
+    static var baseUrl = "http://127.0.0.1:3000"
     static let shared = URLSession.shared
     
     class func util<T1: Codable, T2: Decodable>(
@@ -45,7 +46,9 @@ public final class Api{
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "content-type")
             print(args)
-            guard let httpBody = try? JSONEncoder().encode(args) else {
+            let encoder = JSONEncoder()
+            encoder.keyEncodingStrategy = .convertToSnakeCase
+            guard let httpBody = try? encoder.encode(args) else {
                 print("invalid body")
                 return
             }

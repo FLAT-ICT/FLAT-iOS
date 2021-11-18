@@ -10,7 +10,18 @@ import CoreLocation
 
 @main
 struct FLATAppApp: App {
-//    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    // アプリが起動して初めて走る処理
+    init(){
+        // @AppStorage("name") var name = ~~~
+        // の形で代入すると代入した値が捨てられ、下の値を使えるようになる
+        UserDefaults.standard.register(defaults: [
+            "name": "usr1",
+            "id": 1,
+            "status": 0,
+            "spot": ""
+        ])
+    }
+    //    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     var body: some Scene {
         WindowGroup {
             ContentView()
@@ -37,7 +48,7 @@ struct FLATAppApp: App {
 //
 //        return true
 //    }
-    
+
 //    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {//前回コードコード
 //        guard let newLocation = locations.last else {
 //            return

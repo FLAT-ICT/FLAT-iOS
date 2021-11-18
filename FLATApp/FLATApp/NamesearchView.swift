@@ -18,6 +18,7 @@ struct NamesearchView: View { //友達追加画面
     @State private var showError = false//バリデーションチェック
     @State private var errorMessage = "" //バリデーションチェックのためのエラーメッセージ
     @State private var counter = 0 //検索ボタンを押した回数
+    @AppStorage("id") private var id = -1
     var body: some View {
         VStack(){
             HStack(){ //上のキャンセルボタン
@@ -42,7 +43,8 @@ struct NamesearchView: View { //友達追加画面
                     TextField("000000", text: $targetName, onCommit: {
                         self.validateName() //バリデーションチェック
                         
-                        searchName(targetName: targetName,
+                        searchName(id: self.id,
+                                   targetName: targetName,
                                    success: {(userData) in self.users = userData
                         }
                         ) { (error) in

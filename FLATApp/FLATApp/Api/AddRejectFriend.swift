@@ -14,7 +14,7 @@ func addFriend(idPair: IdPair,
                success: @escaping (String) -> (),
                failure: @escaping (Error) -> ()) {
     let reqUrl="/v1/friends/add"
-    Api.util(endpoint: reqUrl, method: HttpMethod.GET, args: idPair, success: { msg in
+    Api.util(endpoint: reqUrl, method: HttpMethod.POST, args: idPair, success: { msg in
         success(msg)
     }){(error) in
         failure(error)
@@ -25,7 +25,7 @@ func rejectFriend(idPair: IdPair,
                success: @escaping (String) -> (),
                failure: @escaping (Error) -> ()) {
     let reqUrl="/v1/friends/reject"
-    Api.util(endpoint: reqUrl, method: HttpMethod.GET, args: idPair, success: { msg in
+    Api.util(endpoint: reqUrl, method: HttpMethod.POST, args: idPair, success: { msg in
         success(msg)
     }){(error) in
         failure(error)

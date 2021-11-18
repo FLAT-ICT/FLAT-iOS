@@ -8,13 +8,15 @@
 import Foundation
 import CoreLocation
 import Combine
+import SwiftUI
 
 
 class BeaconDetecter: NSObject, ObservableObject, CLLocationManagerDelegate{
     var didChange = PassthroughSubject<Void, Never>()
     var locationManager: CLLocationManager?
+    @AppStorage("id") private var id = -1
     @Published var lastDistance = CLProximity.unknown
-    @Published var idBeacon: IdAndBeacon = IdAndBeacon(user_id: 1, major: 0, minor: 0, rssi: 1)
+    @Published var idBeacon: IdAndBeacon = IdAndBeacon(userId: 1, major: 0, minor: -1, rssi: 1)
     override init(){
         super.init()
         
@@ -47,10 +49,12 @@ class BeaconDetecter: NSObject, ObservableObject, CLLocationManagerDelegate{
     
     func locationManager(_ manager: CLLocationManager, didRange beacons: [CLBeacon], satisfying beaconConstraint: CLBeaconIdentityConstraint){
         for beacon in beacons {
+            // ここのif let かなり怪しいことしてる
+            // beacons を for　で回してるけど、各イテレーションで先頭しか見ていない
             if let beacon = beacons.first{
                 update(distance: beacon.proximity)
                // print("major:\(beacon.major), minor:\(beacon.minor), rssi:\(beacon.rssi)")
-                self.idBeacon = IdAndBeacon(user_id: 1, major: Int(beacon.major), minor: Int(beacon.minor), rssi: beacon.rssi)
+                self.idBeacon = IdAndBeacon(userId: self.id, major: Int(beacon.major), minor: Int(beacon.minor), rssi: beacon.rssi)
             }else{
                 update(distance: .unknown)
                 //print("major:\(beacon.major), minor:\(beacon.minor), rssi:\(beacon.rssi)")
