@@ -7,14 +7,6 @@
 
 import SwiftUI
 
-//struct User: Identifiable {//ローカルデータ
-//    var id: String //ID
-//    var name: String //名前
-//    var status: String //ステータス
-//    var beacon: String //場所
-//    var icon_path: String //アイコン
-//}
-
 struct FriendListView: View { //友達一覧画面
     @State private var show: Bool = false
     @State private var selection = 0
@@ -25,16 +17,6 @@ struct FriendListView: View { //友達一覧画面
     let tabsName = ["友だち", "未承認", "承認待ち"]
     
     var body: some View {
-        //VStack{
-        //VStack{
-        //HStack{
-        // Text("友達が誰もいないようです。下のボタンから追加しましょう。")
-        // }
-        //  .padding(.leading,24.0)
-        // .padding(.trailing,24.0)
-        // }
-        // .padding(.top,107)
-        //        VStack(spacing: 0){
         ZStack{
             if self.noFriends.count == 0 && self.yesFriends.count == 0 {
                 Text("友達が一人もいないようです。下のボタンから追加しましょう！")
@@ -53,7 +35,6 @@ struct FriendListView: View { //友達一覧画面
                 print(error)
             }
         })
-        //        }
     }
 }
 
@@ -72,12 +53,10 @@ struct FriendTabsView: View {
                 TabView(selection: $selectedTab, content: {
                     // 友だち
                     MutualFriendsView(mutual: mutual).tag(0)
+                    // 未承認
                     AppliedFriendsView(id: id, applied: applied, isOpen: $isOpen).tag(1)
-                    //                    ScrollView{
-                    //                        ForEach(requested){ _ in
-                    //                            Text("承認待ちの友達")
-                    //                        }
-                    //                    }.tag(2)
+                    // 申請済み
+                    //
                 })
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             }
@@ -130,6 +109,7 @@ struct CheckButtonView: View {
         Button(action:{
             addFriend(idPair: IdPair(myId: myId, targetId: targetId) ,success: {(msg) in
                 print(msg)
+            // TODO: getFriendして更新する必要あり
             }) { (error) in
                 print(error)
             }
@@ -164,6 +144,7 @@ struct CancelButtonView: View{
                       primaryButton: .destructive(Text("拒否"), action: {
                     rejectFriend(idPair: IdPair(myId: myId, targetId: targetId) ,success: {(msg) in
                         print(msg)
+                    // TODO: 友だち情報を更新する必要あり
                     }) { (error) in
                         print(error)
                     }
