@@ -34,25 +34,26 @@ struct FriendListView: View { //友達一覧画面
         // .padding(.trailing,24.0)
         // }
         // .padding(.top,107)
-        VStack{
-            ZStack{
-                if self.noFriends.count == 0 && self.yesFriends.count == 0 {
-                    Text("友達が一人もいないようです。下のボタンから追加しましょう！")
-                }else{
-                    FriendTabsView(id: self.id, mutual: self.yesFriends, applied: self.noFriends, isOpen: self.$isError, requested: [])
-                }
-                SearchFriendButtonView(show: self.$show)
-            }.onAppear(perform: {
-                getFriends(id: self.id, success: { (friendlist: FriendList) in
-                    self.noFriends = friendlist.oneSide
-                    self.yesFriends = friendlist.mutual
-                })
-                {( error )in
-                    print("failure")
-                    print(error)
-                }
-            })
+        //        VStack(spacing: 0){
+        ZStack{
+            if self.noFriends.count == 0 && self.yesFriends.count == 0 {
+                Text("友達が一人もいないようです。下のボタンから追加しましょう！")
+            }else{
+                FriendTabsView(id: self.id, mutual: self.yesFriends, applied: self.noFriends, isOpen: self.$isError, requested: [])
+            }
+            SearchFriendButtonView(show: self.$show)
         }
+        .onAppear(perform: {
+            getFriends(id: self.id, success: { (friendlist: FriendList) in
+                self.noFriends = friendlist.oneSide
+                self.yesFriends = friendlist.mutual
+            })
+            {( error )in
+                print("failure")
+                print(error)
+            }
+        })
+        //        }
     }
 }
 
@@ -63,43 +64,59 @@ struct FriendTabsView: View {
     var applied: [User]
     @Binding var isOpen: Bool
     var requested: [User]
+    let tabsName = ["友だち", "未承認"]
     var body: some View {
-        NavigationView{
-            GeometryReader {geo in
-                VStack(spacing: 0){
-                    Tabs(tabsName: ["友だち", "未承認", "承認待ち"], geoWidth: geo.size.width, selectedTab: $selectedTab)
-                    TabView(selection: $selectedTab, content: {
-                        // 友だち
-                        ScrollView{
-                            ForEach(mutual) { friend in
-                                HStack{
-                                    IconLoaderView(size: 40, withUrl: friend.iconPath)
-                                    Text(friend.name)
-                                    Spacer()
-                                    Text(friend.spot ?? "")
-                                }
-                            }
-                        }.tag(0)
-                        ScrollView{
-                            ForEach(applied) { noFriend in
-                                HStack{
-                                    IconLoaderView(size: 40, withUrl: noFriend.iconPath)
-                                    Text(noFriend.name)
-                                    Spacer()
-                                    CancelButtonView(myId: self.id, targetId: noFriend.id, isOpen: $isOpen)
-                                    CheckButtonView(myId: self.id, targetId: noFriend.id)
-                                }
-                            }
-                        }.tag(1)
-                        ScrollView{
-                            ForEach(requested){ _ in
-                                Text("承認待ちの友達")
-                            }
-                        }.tag(2)
-                    })
+        GeometryReader {geo in
+            VStack(spacing: 0){
+                Tabs(tabsName: tabsName, geoWidth: geo.size.width, selectedTab: $selectedTab)
+                TabView(selection: $selectedTab, content: {
+                    // 友だち
+                    MutualFriendsView(mutual: mutual).tag(0)
+                    AppliedFriendsView(id: id, applied: applied, isOpen: $isOpen).tag(1)
+//                    ScrollView{
+//                        ForEach(requested){ _ in
+//                            Text("承認待ちの友達")
+//                        }
+//                    }.tag(2)
+                })
+            }
+            .foregroundColor(Color.white)
+        }
+    }
+}
+
+
+struct MutualFriendsView: View{
+    var mutual: [User]
+    var body: some View{
+        List{
+            ForEach(mutual) { friend in
+                HStack{
+                    IconLoaderView(size: 40, withUrl: friend.iconPath)
+                    Text(friend.name).foregroundColor(.black)
+                    Spacer()
+                    Text(friend.spot ?? "")
                 }
-                .foregroundColor(Color.white)
-                .navigationBarHidden(true)
+            }.listStyle(GroupedListStyle())
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+    }
+}
+
+struct AppliedFriendsView: View{
+    var id: Int
+    var applied: [User]
+    @Binding var isOpen: Bool
+    var body: some View{
+        List{
+            ForEach(applied) { friend in
+                HStack{
+                    IconLoaderView(size: 40, withUrl: friend.iconPath)
+                    Text(friend.name).foregroundColor(.black)
+                    Spacer()
+                    CancelButtonView(myId: self.id, targetId: friend.id, isOpen: $isOpen)
+                    CheckButtonView(myId: self.id, targetId: friend.id)
+                }
             }
         }
     }

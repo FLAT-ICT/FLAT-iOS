@@ -20,34 +20,35 @@ struct Tabs: View {
         ScrollView(.horizontal, showsIndicators: false){
             ScrollViewReader {
                 proxy in
-                VStack(spacing: 0){
-                    HStack(spacing: 0){
-                        ForEach(0..<tabsName.count, id: \.self){ row in
-                            Button(action: {
-                                withAnimation{
-                                    selectedTab = row
-                                }
-                            }, label:{
-                                VStack(spacing: 0){
-                                    Text(tabsName[row])
-                                        .font(Font.system(size: 18, weight: .semibold))
-                                        .foregroundColor(.white)
-                                        .frame(width: fixed ? (geoWidth / (CGFloat(tabsName.count))) : .none, height: 52 )
-                                    Rectangle().fill(selectedTab == row ? Color.white : Color.clear)
-                                        .frame(height:3)
-                                }
-                                .background(Color("primary"))
-                            })
-                                .accentColor(.white)
-                                .buttonStyle(PlainButtonStyle())
-                        }
-                    }
-                    .onChange(of: selectedTab){ target in
-                        withAnimation{
-                            proxy.scrollTo(target)
-                        }
+                // VStack(spacing: 0){
+                HStack(spacing: 0){
+                    ForEach(0..<tabsName.count, id: \.self){ row in
+                        Button(action: {
+                            withAnimation{
+                                selectedTab = row
+                            }
+                        }, label:{
+                            VStack(spacing: 0){
+                                Text(tabsName[row])
+                                    .font(Font.system(size: 18, weight: .semibold))
+                                    .foregroundColor(.white)
+                                    .frame(width: fixed ? (geoWidth / (CGFloat(tabsName.count))) : .none, height: 52 )
+                                Rectangle().fill(selectedTab == row ? Color.white : Color.clear)
+                                    .frame(height:3)
+                            }
+                            .background(Color("primary"))
+                            .fixedSize()
+                        })
+                            .accentColor(.white)
+                            .buttonStyle(PlainButtonStyle())
                     }
                 }
+                .onChange(of: selectedTab){ target in
+                    withAnimation{
+                        proxy.scrollTo(target)
+                    }
+                }
+                // }
             }
         }
         .frame(height: 55)
