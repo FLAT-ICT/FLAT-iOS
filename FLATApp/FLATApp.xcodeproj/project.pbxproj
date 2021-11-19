@@ -27,6 +27,7 @@
 		E42D325D27461AC50053F794 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42D325C27461AC50053F794 /* UIColor.swift */; };
 		E42D326327461BEB0053F794 /* CustomColor.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E42D326227461BEB0053F794 /* CustomColor.xcassets */; };
 		E42D326527470B0D0053F794 /* IconLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42D326427470B0D0053F794 /* IconLoader.swift */; };
+		E42D457F274728020051004D /* Tabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42D457E274728020051004D /* Tabs.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		E42D325C27461AC50053F794 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		E42D326227461BEB0053F794 /* CustomColor.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CustomColor.xcassets; sourceTree = "<group>"; };
 		E42D326427470B0D0053F794 /* IconLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconLoader.swift; sourceTree = "<group>"; };
+		E42D457E274728020051004D /* Tabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tabs.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				2B9DB791273B5057003A5DDD /* TimerHolder.swift */,
 				2BA9A2A0271620AA00BECC03 /* PlaceView.swift */,
 				2BA9A2A42716211E00BECC03 /* FriendListView.swift */,
+				E42D457E274728020051004D /* Tabs.swift */,
 				E42D326427470B0D0053F794 /* IconLoader.swift */,
 				E42D325C27461AC50053F794 /* UIColor.swift */,
 				2BB69E30271147A600275485 /* NamesearchView.swift */,
@@ -205,6 +208,7 @@
 			files = (
 				E41B9D0F273B2BEE00D3AB80 /* SearchUser.swift in Sources */,
 				2B72206D27302C5200937AE5 /* Bluetooth.swift in Sources */,
+				E42D457F274728020051004D /* Tabs.swift in Sources */,
 				2BA9A2A3271620CC00BECC03 /* IconView.swift in Sources */,
 				2BB69E31271147A600275485 /* NamesearchView.swift in Sources */,
 				E42D325D27461AC50053F794 /* UIColor.swift in Sources */,

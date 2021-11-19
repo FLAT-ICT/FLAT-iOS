@@ -22,6 +22,8 @@ struct FriendListView: View { //友達一覧画面
     @State private var noFriends: [User] = []
     @State private var yesFriends: [User] = []
     @AppStorage("id") private var id = -1
+    let tabsName = ["友だち", "未承認", "承認待ち"]
+    
     var body: some View {
         //VStack{
         //VStack{
@@ -34,50 +36,11 @@ struct FriendListView: View { //友達一覧画面
         // .padding(.top,107)
         VStack{
             ZStack{
-                //                if self.noFriends.count == 0 && self.yesFriends.count == 0 {
-                //                    Text("友達が一人もいないようです。下のボタンから追加しましょう！")
-                //                }else{
-                List{
-                    Section{
-                        ForEach(noFriends) { noFriend in
-                            HStack{
-                                IconLoaderView(size: 40, withUrl: noFriend.iconPath)
-                                Text(noFriend.name)
-                                Spacer()
-                                CancelButtonView(myId: self.id, targetId: noFriend.id, isOpen: $isError)
-                                CheckButtonView(myId: self.id, targetId: noFriend.id)
-                            }
-                        }
-                        
-                    }header: {
-                        if self.noFriends.count != 0{
-                            Text("未承認の友だち")
-                                .frame(width: UIScreen.main.bounds.width,height: 28, alignment: .leading)
-                                .background(Color("primary"))
-                                .foregroundColor(Color.white)
-                                .listRowInsets(EdgeInsets(top: 0,leading: 0,bottom: 0,trailing: 0))
-                        }
-                    }
-                    Section{
-                        ForEach(yesFriends) { yesFriend in
-                            HStack{
-                                IconLoaderView(size: 40, withUrl: yesFriend.iconPath)
-                                Text(yesFriend.name)
-                                Spacer()
-                                Text(yesFriend.spot ?? "")
-                            }
-                        }
-                    } header: {
-                        if self.yesFriends.count != 0 {
-                            Text("友だち一覧")
-                                .frame(width: UIScreen.main.bounds.width,height: 28, alignment: .leading)
-                                .background(Color(red: 0.2, green: 0.85, blue: 0.721))
-                                .foregroundColor(Color.white)
-                                .listRowInsets(EdgeInsets(top: 0,leading: 0,bottom: 0,trailing: 0))
-                        }
-                    }
-                }.listStyle(GroupedListStyle())
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                if self.noFriends.count == 0 && self.yesFriends.count == 0 {
+                    Text("友達が一人もいないようです。下のボタンから追加しましょう！")
+                }else{
+                    FriendTabsView(id: self.id, mutual: self.yesFriends, applied: self.noFriends, isOpen: self.$isError, requested: [])
+                }
                 SearchFriendButtonView(show: self.$show)
             }.onAppear(perform: {
                 getFriends(id: self.id, success: { (friendlist: FriendList) in
@@ -93,6 +56,54 @@ struct FriendListView: View { //友達一覧画面
     }
 }
 
+struct FriendTabsView: View {
+    @State private var selectedTab = 0
+    var id: Int
+    var mutual: [User]
+    var applied: [User]
+    @Binding var isOpen: Bool
+    var requested: [User]
+    var body: some View {
+        NavigationView{
+            GeometryReader {geo in
+                VStack(spacing: 0){
+                    Tabs(tabsName: ["友だち", "未承認", "承認待ち"], geoWidth: geo.size.width, selectedTab: $selectedTab)
+                    TabView(selection: $selectedTab, content: {
+                        // 友だち
+                        ScrollView{
+                            ForEach(mutual) { friend in
+                                HStack{
+                                    IconLoaderView(size: 40, withUrl: friend.iconPath)
+                                    Text(friend.name)
+                                    Spacer()
+                                    Text(friend.spot ?? "")
+                                }
+                            }
+                        }.tag(0)
+                        ScrollView{
+                            ForEach(applied) { noFriend in
+                                HStack{
+                                    IconLoaderView(size: 40, withUrl: noFriend.iconPath)
+                                    Text(noFriend.name)
+                                    Spacer()
+                                    CancelButtonView(myId: self.id, targetId: noFriend.id, isOpen: $isOpen)
+                                    CheckButtonView(myId: self.id, targetId: noFriend.id)
+                                }
+                            }
+                        }.tag(1)
+                        ScrollView{
+                            ForEach(requested){ _ in
+                                Text("承認待ちの友達")
+                            }
+                        }.tag(2)
+                    })
+                }
+                .foregroundColor(Color.white)
+                .navigationBarHidden(true)
+            }
+        }
+    }
+}
 
 struct CheckButtonView: View {
     var myId: Int
