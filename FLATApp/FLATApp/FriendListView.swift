@@ -73,12 +73,13 @@ struct FriendTabsView: View {
                     // 友だち
                     MutualFriendsView(mutual: mutual).tag(0)
                     AppliedFriendsView(id: id, applied: applied, isOpen: $isOpen).tag(1)
-//                    ScrollView{
-//                        ForEach(requested){ _ in
-//                            Text("承認待ちの友達")
-//                        }
-//                    }.tag(2)
+                    //                    ScrollView{
+                    //                        ForEach(requested){ _ in
+                    //                            Text("承認待ちの友達")
+                    //                        }
+                    //                    }.tag(2)
                 })
+                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             }
             .foregroundColor(Color.white)
         }
