@@ -24,7 +24,7 @@ class BeaconDetecter: NSObject, ObservableObject, CLLocationManagerDelegate{
         locationManager?.delegate = self
         locationManager?.requestWhenInUseAuthorization()
         locationManager?.distanceFilter = 10
-
+        
     }
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus){
         if status == .authorizedWhenInUse{
@@ -38,33 +38,34 @@ class BeaconDetecter: NSObject, ObservableObject, CLLocationManagerDelegate{
     }
     
     func startScanning(){
-        let uuid = UUID(uuidString: "E8C65602-6D9C-44EF-9734-B2D3EF1CD961")!
-//        let constraint = CLBeaconIdentityConstraint(uuid: uuid, major: 0, minor: 7954)
-        let constraint = CLBeaconIdentityConstraint(uuid: uuid)
-        let beaconRegion = CLBeaconRegion(beaconIdentityConstraint: constraint, identifier: "MyBeacon")
-        //self.id_beacon = IdAndBeacon(user_id: 1, major: 0, minor: 7954, rssi: -74)
-        locationManager?.startMonitoring(for: beaconRegion)
-        locationManager?.startRangingBeacons(satisfying: constraint)
+        for regionInfo in REGIONS{
+            let uuid = UUID(uuidString: regionInfo.uuid)!
+            let constraint = CLBeaconIdentityConstraint(uuid: uuid)
+            let beaconRegion = CLBeaconRegion(beaconIdentityConstraint: constraint, identifier: regionInfo.regionName)
+            locationManager?.startMonitoring(for: beaconRegion)
+            locationManager?.startRangingBeacons(satisfying: constraint)
+        }
+        //        let constraint = CLBeaconIdentityConstraint(uuid: uuid, major: 0, minor: 7954)
     }
     
     func locationManager(_ manager: CLLocationManager, didRange beacons: [CLBeacon], satisfying beaconConstraint: CLBeaconIdentityConstraint){
-        for beacon in beacons {
-            // ここのif let かなり怪しいことしてる
-            // beacons を for　で回してるけど、各イテレーションで先頭しか見ていない
-            if let beacon = beacons.first{
-                update(distance: beacon.proximity)
-               // print("major:\(beacon.major), minor:\(beacon.minor), rssi:\(beacon.rssi)")
-                self.idBeacon = IdAndBeacon(userId: self.id, major: Int(beacon.major), minor: Int(beacon.minor), rssi: beacon.rssi)
-            }else{
-                update(distance: .unknown)
-                //print("major:\(beacon.major), minor:\(beacon.minor), rssi:\(beacon.rssi)")
-            }
+        // for beacon in beacons { // 多分このfor文いらない。動かなかったら戻す
+        // ここのif let かなり怪しいことしてる
+        // beacons を for　で回してるけど、各イテレーションで先頭しか見ていない
+        if let beacon = beacons.first{
+            update(distance: beacon.proximity)
+            // print("major:\(beacon.major), minor:\(beacon.minor), rssi:\(beacon.rssi)")
+            self.idBeacon = IdAndBeacon(userId: self.id, major: Int(beacon.major), minor: Int(beacon.minor), rssi: beacon.rssi)
+        }else{
+            update(distance: .unknown)
+            //print("major:\(beacon.major), minor:\(beacon.minor), rssi:\(beacon.rssi)")
         }
+        // }
     }
     
     func update(distance: CLProximity){
         lastDistance = distance
         didChange.send(())
-       // print(lastDistance.rawValue)
+        // print(lastDistance.rawValue)
     }
 }

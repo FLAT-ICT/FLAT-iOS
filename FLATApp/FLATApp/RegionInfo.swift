@@ -12,6 +12,6 @@ struct Region {
     var regionName: String
 }
 
-let regions: [Region] = [
+let REGIONS: [Region] = [
     Region(uuid: "this-is-dummy-uuid-so-delete-when-use", regionName: "Dummy")
 ]
