@@ -100,7 +100,7 @@ struct RequestButtonView: View{
     var myId: Int
     var targetId: Int
     @Binding var friendList: FriendList
-    @State var buttonText = "申請"
+    @State var buttonText: String
     @State var applied: Bool
     @State var requested: Bool
     
@@ -110,27 +110,28 @@ struct RequestButtonView: View{
         self.targetId = user.id
         self.applied = user.applied
         self.requested = user.requested
-//        print(applied, requested)
         self.buttonText = user.applied ? "承認待ち" : "申請"
     }
     
     var body: some View{
         Button(action: {
-            addFriend(idPair: IdPair(myId: self.myId, targetId: self.targetId) ,success: {(msg) in
-                print(msg)
-                // TODO: getFriendして更新する必要あり
-                getFriends(id: myId, success: { (friendlist: FriendList) in
-                    self.friendList = friendlist
-                    self.applied = true
-                    self.buttonText = self.requested ? "すでに友だち" : "承認待ち"
-                })
-                {( error )in
-                    print("getFriend failure")
+            if !self.applied {
+                addFriend(idPair: IdPair(myId: self.myId, targetId: self.targetId) ,success: {(msg) in
+                    print(msg)
+                    // TODO: getFriendして更新する必要あり
+                    getFriends(id: myId, success: { (friendlist: FriendList) in
+                        self.friendList = friendlist
+                        self.applied = true
+                        self.buttonText = self.requested ? "すでに友だち" : "承認待ち"
+                    })
+                    {( error )in
+                        print("getFriend failure")
+                        print(error)
+                    }
+                }) { (error) in
+                    print("addFriend failure")
                     print(error)
                 }
-            }) { (error) in
-                print("addFriend failure")
-                print(error)
             }
         }){
             Text(buttonText)
