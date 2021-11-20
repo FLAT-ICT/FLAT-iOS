@@ -28,6 +28,7 @@
 		E42D326327461BEB0053F794 /* CustomColor.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E42D326227461BEB0053F794 /* CustomColor.xcassets */; };
 		E42D326527470B0D0053F794 /* IconLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42D326427470B0D0053F794 /* IconLoader.swift */; };
 		E42D457F274728020051004D /* Tabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42D457E274728020051004D /* Tabs.swift */; };
+		E42D458127485DF60051004D /* RegionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42D458027485DF60051004D /* RegionInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		E42D326227461BEB0053F794 /* CustomColor.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CustomColor.xcassets; sourceTree = "<group>"; };
 		E42D326427470B0D0053F794 /* IconLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconLoader.swift; sourceTree = "<group>"; };
 		E42D457E274728020051004D /* Tabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tabs.swift; sourceTree = "<group>"; };
+		E42D458027485DF60051004D /* RegionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionInfo.swift; sourceTree = "<group>"; };
 		E4E125252748F57600578325 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -101,6 +103,7 @@
 				E41B9D0D273B2B9E00D3AB80 /* Api */,
 				2BB69DEC2710A1C400275485 /* FLATAppApp.swift */,
 				2BB69DEE2710A1C400275485 /* ContentView.swift */,
+				E42D458027485DF60051004D /* RegionInfo.swift */,
 				2B9DB791273B5057003A5DDD /* TimerHolder.swift */,
 				2BA9A2A0271620AA00BECC03 /* PlaceView.swift */,
 				2BA9A2A42716211E00BECC03 /* FriendListView.swift */,
@@ -219,6 +222,7 @@
 				E41B9D15273B42A000D3AB80 /* AddRejectFriend.swift in Sources */,
 				2BA9A2A52716211E00BECC03 /* FriendListView.swift in Sources */,
 				2B9DB792273B5057003A5DDD /* TimerHolder.swift in Sources */,
+				E42D458127485DF60051004D /* RegionInfo.swift in Sources */,
 				2B9DB79427417116003A5DDD /* SearchBeacon.swift in Sources */,
 				E42D326527470B0D0053F794 /* IconLoader.swift in Sources */,
 				E41B9D0C273B2A8C00D3AB80 /* Api.swift in Sources */,

@@ -15,7 +15,6 @@ class TimerHolder: ObservableObject{
     // @State var idBeacon: IdAndBeacon = IdAndBeacon(user_id: 1, major: 0, minor: 1, rssi: 1)
     @State var bluetooth = Bluetooth()
     @ObservedObject var detector = BeaconDetecter()
-    //　@State var searchbeacon = SearchBeacon(uuids: ["E8C65602-6D9C-44EF-9734-B2D3EF1CD961"])//ビーコンのUUIDのリストを入れる
     // init(){}
     
     func start() {

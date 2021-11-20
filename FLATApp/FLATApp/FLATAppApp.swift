@@ -10,6 +10,7 @@ import CoreLocation
 
 @main
 struct FLATAppApp: App {
+    @ObservedObject var timerHolder = TimerHolder()
     // アプリが起動して初めて走る処理
     init(){
         // @AppStorage("name") var name = ~~~
@@ -20,6 +21,7 @@ struct FLATAppApp: App {
             "status": 0,
             "spot": ""
         ])
+        timerHolder.start()
     }
     //    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     var body: some Scene {
