@@ -50,7 +50,7 @@ class BeaconDetecter: NSObject, ObservableObject, CLLocationManagerDelegate{
     
     func locationManager(_ manager: CLLocationManager, didRange beacons: [CLBeacon], satisfying beaconConstraint: CLBeaconIdentityConstraint){
         // for beacon in beacons { // 多分このfor文いらない。動かなかったら戻す
-        
+        print(beacons)
         // rssiが一番大きいビーコンを取得する。直近30回分のRSSIについて平均をとり、最大のものを返すように実装し直した方がいい
         if let beacon = beacons.max(by: {a, b in a.rssi < b.rssi}){
             update(distance: beacon.proximity)
