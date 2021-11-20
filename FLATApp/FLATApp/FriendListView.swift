@@ -11,24 +11,22 @@ struct FriendListView: View { //友達一覧画面
     @State private var show: Bool = false
     @State private var selection = 0
     @State private var isError: Bool = false
-    @State private var noFriends: [User] = []
-    @State private var yesFriends: [User] = []
+    @State private var friendList: FriendList = FriendList(oneSide: [], mutual: [])
     @AppStorage("id") private var id = -1
     let tabsName = ["友だち", "未承認", "承認待ち"]
     
     var body: some View {
         ZStack{
-            if self.noFriends.count == 0 && self.yesFriends.count == 0 {
+            if self.friendList.oneSide.count == 0 && self.friendList.mutual.count == 0 {
                 Text("友達が一人もいないようです。下のボタンから追加しましょう！")
             }else{
-                FriendTabsView(id: self.id, mutual: self.yesFriends, applied: self.noFriends, isOpen: self.$isError, requested: [])
+                FriendTabsView(id: self.id, friendList: self.$friendList, isOpen: self.$isError)
             }
-            SearchFriendButtonView(show: self.$show)
+            SearchFriendButtonView(show: self.$show, friendList: self.$friendList)
         }
         .onAppear(perform: {
             getFriends(id: self.id, success: { (friendlist: FriendList) in
-                self.noFriends = friendlist.oneSide
-                self.yesFriends = friendlist.mutual
+                self.friendList = friendlist
             })
             {( error )in
                 print("failure")
@@ -41,10 +39,8 @@ struct FriendListView: View { //友達一覧画面
 struct FriendTabsView: View {
     @State private var selectedTab = 0
     var id: Int
-    var mutual: [User]
-    var applied: [User]
+    @Binding var friendList: FriendList
     @Binding var isOpen: Bool
-    var requested: [User]
     let tabsName = ["友だち", "未承認"]
     var body: some View {
         GeometryReader {geo in
@@ -52,9 +48,9 @@ struct FriendTabsView: View {
                 Tabs(tabsName: tabsName, geoWidth: geo.size.width, selectedTab: $selectedTab)
                 TabView(selection: $selectedTab, content: {
                     // 友だち
-                    MutualFriendsView(mutual: mutual).tag(0)
+                    MutualFriendsView(mutual: friendList.mutual).tag(0)
                     // 未承認
-                    AppliedFriendsView(id: id, applied: applied, isOpen: $isOpen).tag(1)
+                    AppliedFriendsView(id: id, isOpen: $isOpen, friendList: $friendList).tag(1)
                     // 申請済み
                     //
                 })
@@ -85,17 +81,19 @@ struct MutualFriendsView: View{
 
 struct AppliedFriendsView: View{
     var id: Int
-    var applied: [User]
+    //    var applied: [User]
     @Binding var isOpen: Bool
+    //    @Binding var yesFriends: [User]
+    @Binding var friendList: FriendList
     var body: some View{
         List{
-            ForEach(applied) { friend in
+            ForEach(self.friendList.oneSide) { friend in
                 HStack{
                     IconLoaderView(size: 40, withUrl: friend.iconPath)
                     Text(friend.name).foregroundColor(.black)
                     Spacer()
-                    CancelButtonView(myId: self.id, targetId: friend.id, isOpen: $isOpen)
-                    CheckButtonView(myId: self.id, targetId: friend.id)
+                    CancelButtonView(myId: self.id, targetId: friend.id, isOpen: self.$isOpen, friendList: self.$friendList)
+                    CheckButtonView(myId: self.id, targetId: friend.id, friendList: self.$friendList)
                 }
             }
         }
@@ -105,12 +103,21 @@ struct AppliedFriendsView: View{
 struct CheckButtonView: View {
     var myId: Int
     var targetId: Int
+    @Binding var friendList: FriendList
     var body: some View {
         Button(action:{
             addFriend(idPair: IdPair(myId: myId, targetId: targetId) ,success: {(msg) in
                 print(msg)
-            // TODO: getFriendして更新する必要あり
+                // TODO: getFriendして更新する必要あり
+                getFriends(id: myId, success: { (friendlist: FriendList) in
+                    self.friendList = friendlist
+                })
+                {( error )in
+                    print("getFriend failure")
+                    print(error)
+                }
             }) { (error) in
+                print("addFriend failure")
                 print(error)
             }
         }){ //承認ボタン
@@ -118,7 +125,7 @@ struct CheckButtonView: View {
                 .foregroundColor(.white)
                 .font(.system(size: 20))
                 .frame(width: 40, height: 40)
-                .background(Color(red: 0.29, green: 0.91, blue: 0.27))
+                .background(Color("green"))
                 .clipShape(Circle())
         }.buttonStyle(PlainButtonStyle())
     }
@@ -128,6 +135,7 @@ struct CancelButtonView: View{
     var myId: Int
     var targetId: Int
     @Binding var isOpen: Bool
+    @Binding var friendList: FriendList
     var body: some View {
         Button(action:{
             self.isOpen = true
@@ -136,7 +144,7 @@ struct CancelButtonView: View{
                 .foregroundColor(.white)
                 .font(.system(size: 20))
                 .frame(width: 40, height: 40)
-                .background(Color(red: 0.913, green: 0.286, blue: 0.286))
+                .background(Color("red"))
                 .clipShape(Circle())
         }.buttonStyle(PlainButtonStyle())
             .alert(isPresented: $isOpen, content: {
@@ -144,7 +152,14 @@ struct CancelButtonView: View{
                       primaryButton: .destructive(Text("拒否"), action: {
                     rejectFriend(idPair: IdPair(myId: myId, targetId: targetId) ,success: {(msg) in
                         print(msg)
-                    // TODO: 友だち情報を更新する必要あり
+                        // TODO: 友だち情報を更新する必要あり
+                        getFriends(id: myId, success: { (friendlist: FriendList) in
+                            self.friendList = friendlist
+                        })
+                        {( error )in
+                            print("getFriend failure")
+                            print(error)
+                        }
                     }) { (error) in
                         print(error)
                     }
@@ -156,6 +171,7 @@ struct CancelButtonView: View{
 
 struct SearchFriendButtonView: View{
     @Binding var show: Bool
+    @Binding var friendList: FriendList
     var body: some View {
         VStack{
             Spacer()
@@ -172,7 +188,7 @@ struct SearchFriendButtonView: View{
                         .shadow(color: .gray, radius: 4, x: 0, y: 4)
                 }
                 .fullScreenCover(isPresented: self.$show) {
-                    NamesearchView(isActive: $show)
+                    NamesearchView(friendList: self.$friendList, isActive: self.$show)
                 }
             }.padding(.trailing,16)
         }
