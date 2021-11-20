@@ -118,7 +118,7 @@ struct CheckButtonView: View {
                 .foregroundColor(.white)
                 .font(.system(size: 20))
                 .frame(width: 40, height: 40)
-                .background(Color(red: 0.29, green: 0.91, blue: 0.27))
+                .background(Color("green"))
                 .clipShape(Circle())
         }.buttonStyle(PlainButtonStyle())
     }
@@ -136,7 +136,7 @@ struct CancelButtonView: View{
                 .foregroundColor(.white)
                 .font(.system(size: 20))
                 .frame(width: 40, height: 40)
-                .background(Color(red: 0.913, green: 0.286, blue: 0.286))
+                .background(Color("red"))
                 .clipShape(Circle())
         }.buttonStyle(PlainButtonStyle())
             .alert(isPresented: $isOpen, content: {
