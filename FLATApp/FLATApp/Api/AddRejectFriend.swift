@@ -11,7 +11,7 @@ struct IdPair: Codable {
 }
 
 func addFriend(idPair: IdPair,
-               success: @escaping (String) -> (),
+               success: @escaping ([String:String]) -> (),
                failure: @escaping (Error) -> ()) {
     let reqUrl="/v1/friends/add"
     Api.util(endpoint: reqUrl, method: HttpMethod.POST, args: idPair, success: { msg in
@@ -22,8 +22,8 @@ func addFriend(idPair: IdPair,
 }
 
 func rejectFriend(idPair: IdPair,
-               success: @escaping (String) -> (),
-               failure: @escaping (Error) -> ()) {
+                  success: @escaping ([String:String]) -> (),
+                  failure: @escaping (Error) -> ()) {
     let reqUrl="/v1/friends/reject"
     Api.util(endpoint: reqUrl, method: HttpMethod.POST, args: idPair, success: { msg in
         success(msg)

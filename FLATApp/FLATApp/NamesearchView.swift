@@ -9,8 +9,9 @@ import SwiftUI
 import UIKit
 
 struct NamesearchView: View { //友達追加画面
-    @State private var editting = false
+    @Binding var friendList: FriendList
     @Binding var isActive: Bool
+    @State private var editting = false
     @State private var users: [UserData] = []//通信用 UserData型の空配列
     @State var targetName: String = ""
     @State private var buttonText = "申請"
@@ -69,16 +70,7 @@ struct NamesearchView: View { //友達追加画面
                     Text(user.name)
                     Text(user.iconPath)
                         .padding()
-                    RequestButtonView(user: user)
-//                    Button(action: {
-//                        buttonText = "承認待ち"
-//                    }){
-//                        Text(buttonText)
-//                            .frame(width: 100, height: 35)
-//                            .foregroundColor(Color(.white))
-//                            .background(Color(red: 0.2, green: 0.85, blue: 0.721))
-//                            .cornerRadius(24)
-//                    }
+                    RequestButtonView(user: user, myId: self.id,friendList: self.$friendList)
                     
                 }
                 if counter > 0 && users.isEmpty{
@@ -105,23 +97,41 @@ struct NamesearchView: View { //友達追加画面
 
 
 struct RequestButtonView: View{
-//    var user: UserData
+    var myId: Int
+    var targetId: Int
+    @Binding var friendList: FriendList
     @State var buttonText = "申請"
     @State var applied: Bool
     @State var requested: Bool
     
-    init(user: UserData){
-        applied = user.applied
-        requested = user.requested
-        print(applied, requested)
-        buttonText = applied ? "承認待ち" : "申請"
+    init(user: UserData, myId: Int, friendList: Binding<FriendList>){
+        self.myId = myId
+        self._friendList = friendList
+        self.targetId = user.id
+        self.applied = user.applied
+        self.requested = user.requested
+//        print(applied, requested)
+        self.buttonText = user.applied ? "承認待ち" : "申請"
     }
     
     var body: some View{
         Button(action: {
-            self.applied = true
-            self.buttonText = self.requested ? "すでに友だち" : "承認待ち"
-            // ここで友だち申請をする
+            addFriend(idPair: IdPair(myId: self.myId, targetId: self.targetId) ,success: {(msg) in
+                print(msg)
+                // TODO: getFriendして更新する必要あり
+                getFriends(id: myId, success: { (friendlist: FriendList) in
+                    self.friendList = friendlist
+                    self.applied = true
+                    self.buttonText = self.requested ? "すでに友だち" : "承認待ち"
+                })
+                {( error )in
+                    print("getFriend failure")
+                    print(error)
+                }
+            }) { (error) in
+                print("addFriend failure")
+                print(error)
+            }
         }){
             Text(buttonText)
                 .frame(width: 100, height: 35)
