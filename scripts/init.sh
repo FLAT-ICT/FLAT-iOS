@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 git secrets --install
 if [ $? -ne 0 ]; then
     echo 'git secretsをインストールして下さい'
