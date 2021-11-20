@@ -71,7 +71,7 @@ struct MutualFriendsView: View{
                     IconLoaderView(size: 40, withUrl: friend.iconPath)
                     Text(friend.name).foregroundColor(.black)
                     Spacer()
-                    Text(friend.spot ?? "")
+                    Text(friend.spot ?? "").foregroundColor(.black)
                 }
             }.listStyle(GroupedListStyle())
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
