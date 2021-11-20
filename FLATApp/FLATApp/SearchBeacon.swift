@@ -54,11 +54,11 @@ class BeaconDetecter: NSObject, ObservableObject, CLLocationManagerDelegate{
         // rssiが一番大きいビーコンを取得する。直近30回分のRSSIについて平均をとり、最大のものを返すように実装し直した方がいい
         if let beacon = beacons.max(by: {a, b in a.rssi < b.rssi}){
             update(distance: beacon.proximity)
-            // print("major:\(beacon.major), minor:\(beacon.minor), rssi:\(beacon.rssi)")
             self.idBeacon = IdAndBeacon(userId: self.id, major: (beacon.major as! Int), minor: (beacon.minor as! Int), rssi: beacon.rssi)
+            print("major:\(self.idBeacon.major), minor:\(self.idBeacon.minor), rssi:\(self.idBeacon.rssi)")
         }else{
             update(distance: .unknown)
-            //print("major:\(beacon.major), minor:\(beacon.minor), rssi:\(beacon.rssi)")
+            print("major:\(self.idBeacon.major), minor:\(self.idBeacon.minor), rssi:\(self.idBeacon.rssi)")
         }
         // }
     }
