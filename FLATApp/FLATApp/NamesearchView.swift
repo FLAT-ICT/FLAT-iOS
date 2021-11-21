@@ -45,18 +45,18 @@ struct NamesearchView: View { //友達追加画面
                     TextField("未来太郎", text: $targetName, onCommit: {
                         // self.validateName() //バリデーションチェック
                         self.passValidation = validationName(name: targetName)
-                        searchName(
-                            id: self.id,
-                            targetName: targetName,
-                            success: {
-                                (userData) in self.users = userData
+                        if self.passValidation {
+                            searchName(
+                                id: self.id,
+                                targetName: targetName,
+                                success: {
+                                    (userData) in self.users = userData
+                                }
+                            ) { (error) in
+                                print(error)
                             }
-                        ) { (error) in
-                            print(error)
+                            self.searchCount += 1
                         }
-                        self.searchCount += 1
-                        // self.countup()
-                        // print(counter)
                     })
                         .padding(3.0)
                         .keyboardType(.default)
@@ -92,12 +92,12 @@ struct NamesearchView: View { //友達追加画面
         Spacer()
     }
     
-//    private func validateName() {//バリデーションチェック
-//        if   self.targetName.isEmpty || self.targetName.count > 10 {
-//            self.errorMessage = "１０文字以内の名前を入力してください"
-//            self.showError = true
-//        }
-//    }
+    //    private func validateName() {//バリデーションチェック
+    //        if   self.targetName.isEmpty || self.targetName.count > 10 {
+    //            self.errorMessage = "１０文字以内の名前を入力してください"
+    //            self.showError = true
+    //        }
+    //    }
     func countup(){//検索ボタンの回数を数える関数
         self.searchCount += 1
     }
