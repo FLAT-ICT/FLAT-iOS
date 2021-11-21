@@ -29,6 +29,7 @@
 		E42D326527470B0D0053F794 /* IconLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42D326427470B0D0053F794 /* IconLoader.swift */; };
 		E42D457F274728020051004D /* Tabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42D457E274728020051004D /* Tabs.swift */; };
 		E42D458127485DF60051004D /* RegionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42D458027485DF60051004D /* RegionInfo.swift */; };
+		E4543434274A0A62001ECB14 /* LabeledButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4543433274A0A62001ECB14 /* LabeledButtonStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		E42D326427470B0D0053F794 /* IconLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconLoader.swift; sourceTree = "<group>"; };
 		E42D457E274728020051004D /* Tabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tabs.swift; sourceTree = "<group>"; };
 		E42D458027485DF60051004D /* RegionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionInfo.swift; sourceTree = "<group>"; };
+		E4543433274A0A62001ECB14 /* LabeledButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledButtonStyle.swift; sourceTree = "<group>"; };
 		E4E125252748F57600578325 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,6 +113,7 @@
 				E42D326427470B0D0053F794 /* IconLoader.swift */,
 				E42D325C27461AC50053F794 /* UIColor.swift */,
 				2BB69E30271147A600275485 /* NamesearchView.swift */,
+				E4543432274A0A37001ECB14 /* CommonComponents */,
 				2BA9A2A2271620CC00BECC03 /* IconView.swift */,
 				2B72206C27302C5200937AE5 /* Bluetooth.swift */,
 				2B9DB79327417116003A5DDD /* SearchBeacon.swift */,
@@ -138,6 +141,14 @@
 				E41B9D14273B42A000D3AB80 /* AddRejectFriend.swift */,
 			);
 			path = Api;
+			sourceTree = "<group>";
+		};
+		E4543432274A0A37001ECB14 /* CommonComponents */ = {
+			isa = PBXGroup;
+			children = (
+				E4543433274A0A62001ECB14 /* LabeledButtonStyle.swift */,
+			);
+			path = CommonComponents;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,6 +231,7 @@
 				E41B9D11273B2CA800D3AB80 /* SendBeacon.swift in Sources */,
 				E41B9D13273B2E6A00D3AB80 /* GetFriends.swift in Sources */,
 				E41B9D15273B42A000D3AB80 /* AddRejectFriend.swift in Sources */,
+				E4543434274A0A62001ECB14 /* LabeledButtonStyle.swift in Sources */,
 				2BA9A2A52716211E00BECC03 /* FriendListView.swift in Sources */,
 				2B9DB792273B5057003A5DDD /* TimerHolder.swift in Sources */,
 				E42D458127485DF60051004D /* RegionInfo.swift in Sources */,

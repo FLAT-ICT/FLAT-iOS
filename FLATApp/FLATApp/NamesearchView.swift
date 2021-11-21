@@ -65,19 +65,16 @@ struct NamesearchView: View { //友達追加画面
                 Text(self.errorMessage)
                     .foregroundColor(Color.red)
             }
-            VStack{
-                ForEach(users){ user in
-                    Text(user.name)
-                    Text(user.iconPath)
-                        .padding()
-                    RequestButtonView(user: user, myId: self.id,friendList: self.$friendList)
-                    
+            List{
+                VStack{
+                    ForEach(users){ user in
+                        SearchedUserView(id: self.id, user: user, friendList: $friendList)
+                    }
+                    if counter > 0 && users.isEmpty{
+                        Text("見つかりませんでした")
+                        Text("もう一度検索してください")
+                    }
                 }
-                if counter > 0 && users.isEmpty{
-                    Text("見つかりませんでした")
-                    Text("もう一度検索してください")
-                }
-                
             }
         }
         .padding(.top,139)
@@ -95,6 +92,19 @@ struct NamesearchView: View { //友達追加画面
     }
 }
 
+struct SearchedUserView: View{
+    var id: Int
+    var user: UserData
+    @Binding var friendList: FriendList
+    var body: some View{
+        HStack{
+            IconLoaderView(size: 40, withUrl: user.iconPath)
+            Text(user.name).foregroundColor(.black)
+            Spacer()
+            RequestButtonView(user: user, myId: self.id, friendList: self.$friendList)
+        }
+    }
+}
 
 struct RequestButtonView: View{
     var myId: Int
@@ -135,13 +145,13 @@ struct RequestButtonView: View{
             }
         }){
             Text(buttonText)
-                .frame(width: 100, height: 35)
-                .foregroundColor(Color(.white))
-                .background(self.applied ? Color("primary_pale") : Color("primary"))
-                .cornerRadius(24)
-        }
+        }.buttonStyle(LabeledButtonStyle(
+            type: (self.applied
+                   ? ButtonColor.pusshed
+                   : ButtonColor.normal)))
     }
 }
+
 
 struct NamesearchView_Previews: PreviewProvider {
     static var previews: some View {
