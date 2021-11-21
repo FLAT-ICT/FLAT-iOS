@@ -16,9 +16,10 @@ struct NamesearchView: View { //友達追加画面
     @State var targetName: String = ""
     @State private var buttonText = "申請"
     @State private var buttonchange = false
-    @State private var showError = false//バリデーションチェック
-    @State private var errorMessage = "" //バリデーションチェックのためのエラーメッセージ
-    @State private var counter = 0 //検索ボタンを押した回数
+    // @State private var showError = false//バリデーションチェック
+    @State private var passValidation = true // バリデーション結果
+    // @State private var errorMessage = "" //バリデーションチェックのためのエラーメッセージ
+    @State private var searchCount = 0 //検索ボタンを押した回数
     @AppStorage("id") private var id = -1
     var body: some View {
         VStack(){
@@ -42,8 +43,8 @@ struct NamesearchView: View { //友達追加画面
             VStack{
                 HStack(){
                     TextField("未来太郎", text: $targetName, onCommit: {
-                        self.validateName() //バリデーションチェック
-                        
+                        // self.validateName() //バリデーションチェック
+                        self.passValidation = validationName(name: targetName)
                         searchName(
                             id: self.id,
                             targetName: targetName,
@@ -53,8 +54,9 @@ struct NamesearchView: View { //友達追加画面
                         ) { (error) in
                             print(error)
                         }
-                        self.countup()
-                        print(counter)
+                        self.searchCount += 1
+                        // self.countup()
+                        // print(counter)
                     })
                         .padding(3.0)
                         .keyboardType(.default)
@@ -62,8 +64,10 @@ struct NamesearchView: View { //友達追加画面
                 }
                 .padding(.leading,24.0)
                 .padding(.trailing,24.0)
-                Text(self.errorMessage)
-                    .foregroundColor(Color.red)
+                if !passValidation {
+                    Text("10文字以内の名前を入力してください")
+                        .foregroundColor(Color.red)
+                }
             }
             VStack{
                 ForEach(users){ user in
@@ -73,28 +77,39 @@ struct NamesearchView: View { //友達追加画面
                     RequestButtonView(user: user, myId: self.id,friendList: self.$friendList)
                     
                 }
-                if counter > 0 && users.isEmpty{
+                if searchCount > 0 && users.isEmpty{
                     Text("見つかりませんでした")
                     Text("もう一度検索してください")
                 }
                 
             }
         }
+        .onDisappear{
+            // 画面非表示時に検索回数をリセットしなければいけないとおもいます
+            self.searchCount = 0
+        }
         .padding(.top,139)
         Spacer()
     }
     
-    private func validateName() {//バリデーションチェック
-        if   self.targetName.isEmpty || self.targetName.count > 10 {
-            self.errorMessage = "１０文字以内の名前を入力してください"
-            self.showError = true
-        }
-    }
+//    private func validateName() {//バリデーションチェック
+//        if   self.targetName.isEmpty || self.targetName.count > 10 {
+//            self.errorMessage = "１０文字以内の名前を入力してください"
+//            self.showError = true
+//        }
+//    }
     func countup(){//検索ボタンの回数を数える関数
-        self.counter += 1
+        self.searchCount += 1
     }
 }
 
+func validationName(name: String) -> Bool {
+    // validation が成功したらTrueを返すのが関数名と合ってると思う
+    // - 0文字はだめ
+    // - 10文字より多いのもだめ
+    // エラーメッセージをStateとして持つのは後処理が面倒そう
+    return !(name.isEmpty || name.count > 10)
+}
 
 struct RequestButtonView: View{
     var myId: Int
