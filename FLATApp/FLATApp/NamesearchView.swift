@@ -45,6 +45,7 @@ struct NamesearchView: View { //友達追加画面
                     TextField("未来太郎", text: $targetName, onCommit: {
                         // self.validateName() //バリデーションチェック
                         self.passValidation = validationName(name: targetName)
+                        self.users = [] // ボタン押下時に一度空にしないと前回の検索結果が残ることがある
                         if self.passValidation {
                             searchName(
                                 id: self.id,
@@ -64,9 +65,13 @@ struct NamesearchView: View { //友達追加画面
                 }
                 .padding(.leading,24.0)
                 .padding(.trailing,24.0)
+                // 検索ボックス下のメッセージはここにまとめる
                 if !passValidation {
                     Text("10文字以内の名前を入力してください")
                         .foregroundColor(Color.red)
+                }else if self.searchCount > 0 && users.isEmpty{
+                    Text("見つかりませんでした")
+                    Text("もう一度検索してください")
                 }
             }
             VStack{
@@ -76,10 +81,6 @@ struct NamesearchView: View { //友達追加画面
                         .padding()
                     RequestButtonView(user: user, myId: self.id,friendList: self.$friendList)
                     
-                }
-                if searchCount > 0 && users.isEmpty{
-                    Text("見つかりませんでした")
-                    Text("もう一度検索してください")
                 }
                 
             }
