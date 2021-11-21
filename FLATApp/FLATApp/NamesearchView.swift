@@ -135,11 +135,10 @@ struct RequestButtonView: View{
             }
         }){
             Text(buttonText)
-                .frame(width: 100, height: 35)
-                .foregroundColor(Color(.white))
-                .background(self.applied ? Color("primary_pale") : Color("primary"))
-                .cornerRadius(24)
-        }
+        }.buttonStyle(LabeledButtonStyle(
+            type: (self.applied
+                   ? ButtonColor.pusshed
+                   : ButtonColor.normal)))
     }
 }
 
