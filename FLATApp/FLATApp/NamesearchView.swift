@@ -108,7 +108,8 @@ func validationName(name: String) -> Bool {
     // - 10文字より多いのもだめ
     // エラーメッセージをStateとして持つのは後処理が面倒そう
     return !(name.isEmpty || name.count > 10)
-
+}
+    
 struct SearchedUserView: View{
     var id: Int
     var user: UserData
