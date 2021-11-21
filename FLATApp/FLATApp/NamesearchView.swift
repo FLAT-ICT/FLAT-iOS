@@ -16,9 +16,10 @@ struct NamesearchView: View { //友達追加画面
     @State var targetName: String = ""
     @State private var buttonText = "申請"
     @State private var buttonchange = false
-    @State private var showError = false//バリデーションチェック
-    @State private var errorMessage = "" //バリデーションチェックのためのエラーメッセージ
-    @State private var counter = 0 //検索ボタンを押した回数
+    // @State private var showError = false//バリデーションチェック
+    @State private var passValidation = true // バリデーション結果
+    // @State private var errorMessage = "" //バリデーションチェックのためのエラーメッセージ
+    @State private var searchCount = 0 //検索ボタンを押した回数
     @AppStorage("id") private var id = -1
     var body: some View {
         VStack(){
@@ -42,19 +43,21 @@ struct NamesearchView: View { //友達追加画面
             VStack{
                 HStack(){
                     TextField("未来太郎", text: $targetName, onCommit: {
-                        self.validateName() //バリデーションチェック
-                        
-                        searchName(
-                            id: self.id,
-                            targetName: targetName,
-                            success: {
-                                (userData) in self.users = userData
+                        // self.validateName() //バリデーションチェック
+                        self.passValidation = validationName(name: targetName)
+                        self.users = [] // ボタン押下時に一度空にしないと前回の検索結果が残ることがある
+                        if self.passValidation {
+                            searchName(
+                                id: self.id,
+                                targetName: targetName,
+                                success: {
+                                    (userData) in self.users = userData
+                                }
+                            ) { (error) in
+                                print(error)
                             }
-                        ) { (error) in
-                            print(error)
+                            self.searchCount += 1
                         }
-                        self.countup()
-                        print(counter)
                     })
                         .padding(3.0)
                         .keyboardType(.default)
@@ -62,35 +65,49 @@ struct NamesearchView: View { //友達追加画面
                 }
                 .padding(.leading,24.0)
                 .padding(.trailing,24.0)
-                Text(self.errorMessage)
-                    .foregroundColor(Color.red)
+                // 検索ボックス下のメッセージはここにまとめる
+                if !passValidation {
+                    Text("10文字以内の名前を入力してください")
+                        .foregroundColor(Color.red)
+                }else if self.searchCount > 0 && users.isEmpty{
+                    Text("見つかりませんでした")
+                    Text("もう一度検索してください")
+                }
             }
             List{
                 VStack{
                     ForEach(users){ user in
                         SearchedUserView(id: self.id, user: user, friendList: $friendList)
                     }
-                    if counter > 0 && users.isEmpty{
-                        Text("見つかりませんでした")
-                        Text("もう一度検索してください")
-                    }
                 }
             }
+        }
+        .onDisappear{
+            // 画面非表示時に検索回数をリセットしなければいけないとおもいます
+            self.searchCount = 0
         }
         .padding(.top,139)
         Spacer()
     }
     
-    private func validateName() {//バリデーションチェック
-        if   self.targetName.isEmpty || self.targetName.count > 10 {
-            self.errorMessage = "１０文字以内の名前を入力してください"
-            self.showError = true
-        }
-    }
+    //    private func validateName() {//バリデーションチェック
+    //        if   self.targetName.isEmpty || self.targetName.count > 10 {
+    //            self.errorMessage = "１０文字以内の名前を入力してください"
+    //            self.showError = true
+    //        }
+    //    }
     func countup(){//検索ボタンの回数を数える関数
-        self.counter += 1
+        self.searchCount += 1
     }
 }
+
+
+func validationName(name: String) -> Bool {
+    // validation が成功したらTrueを返すのが関数名と合ってると思う
+    // - 0文字はだめ
+    // - 10文字より多いのもだめ
+    // エラーメッセージをStateとして持つのは後処理が面倒そう
+    return !(name.isEmpty || name.count > 10)
 
 struct SearchedUserView: View{
     var id: Int
