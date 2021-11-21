@@ -74,15 +74,12 @@ struct NamesearchView: View { //友達追加画面
                     Text("もう一度検索してください")
                 }
             }
-            VStack{
-                ForEach(users){ user in
-                    Text(user.name)
-                    Text(user.iconPath)
-                        .padding()
-                    RequestButtonView(user: user, myId: self.id,friendList: self.$friendList)
-                    
+            List{
+                VStack{
+                    ForEach(users){ user in
+                        SearchedUserView(id: self.id, user: user, friendList: $friendList)
+                    }
                 }
-                
             }
         }
         .onDisappear{
@@ -104,12 +101,26 @@ struct NamesearchView: View { //友達追加画面
     }
 }
 
+
 func validationName(name: String) -> Bool {
     // validation が成功したらTrueを返すのが関数名と合ってると思う
     // - 0文字はだめ
     // - 10文字より多いのもだめ
     // エラーメッセージをStateとして持つのは後処理が面倒そう
     return !(name.isEmpty || name.count > 10)
+
+struct SearchedUserView: View{
+    var id: Int
+    var user: UserData
+    @Binding var friendList: FriendList
+    var body: some View{
+        HStack{
+            IconLoaderView(size: 40, withUrl: user.iconPath)
+            Text(user.name).foregroundColor(.black)
+            Spacer()
+            RequestButtonView(user: user, myId: self.id, friendList: self.$friendList)
+        }
+    }
 }
 
 struct RequestButtonView: View{
@@ -151,13 +162,13 @@ struct RequestButtonView: View{
             }
         }){
             Text(buttonText)
-                .frame(width: 100, height: 35)
-                .foregroundColor(Color(.white))
-                .background(self.applied ? Color("primary_pale") : Color("primary"))
-                .cornerRadius(24)
-        }
+        }.buttonStyle(LabeledButtonStyle(
+            type: (self.applied
+                   ? ButtonColor.pusshed
+                   : ButtonColor.normal)))
     }
 }
+
 
 struct NamesearchView_Previews: PreviewProvider {
     static var previews: some View {
