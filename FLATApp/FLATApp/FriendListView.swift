@@ -67,15 +67,26 @@ struct MutualFriendsView: View{
     var body: some View{
         List{
             ForEach(mutual) { friend in
-                HStack{
-                    IconLoaderView(size: 40, withUrl: friend.iconPath)
-                    Text(friend.name).foregroundColor(.black)
-                    Spacer()
-                    Text(friend.spot ?? "").foregroundColor(.black)
+                if #available(iOS 15.0, *){
+                    MutualFrinedView(friend: friend)
+                        .listRowSeparator(.hidden)
+                }else{
+                    MutualFrinedView(friend: friend)
                 }
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }.listStyle(InsetListStyle())
+    }
+}
+
+struct MutualFrinedView: View {
+    var friend: User
+    var body: some View {
+        HStack{
+            IconLoaderView(size: 40, withUrl: friend.iconPath)
+            Text(friend.name).foregroundColor(.black)
+            Spacer()
+            Text(friend.spot ?? "").foregroundColor(.black)
+        }
     }
 }
 
