@@ -56,7 +56,7 @@ struct FriendTabsView: View {
                 })
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             }
-            .foregroundColor(Color.white)
+            //.foregroundColor(Color.white)
         }
     }
 }
@@ -67,14 +67,25 @@ struct MutualFriendsView: View{
     var body: some View{
         List{
             ForEach(mutual) { friend in
-                HStack{
-                    IconLoaderView(size: 40, withUrl: friend.iconPath)
-                    Text(friend.name).foregroundColor(.black)
-                    Spacer()
-                    Text(friend.spot ?? "").foregroundColor(.black)
+                if #available(iOS 15.0, *){
+                    MutualFrinedView(friend: friend)
+                        .listRowSeparator(.hidden)
+                }else{
+                    MutualFrinedView(friend: friend)
                 }
-            }.listStyle(GroupedListStyle())
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
+        }.listStyle(InsetListStyle())
+    }
+}
+
+struct MutualFrinedView: View {
+    var friend: User
+    var body: some View {
+        HStack{
+            IconLoaderView(size: 40, withUrl: friend.iconPath)
+            Text(friend.name).foregroundColor(.black)
+            Spacer()
+            Text(friend.spot ?? "").foregroundColor(.black)
         }
     }
 }
@@ -88,14 +99,30 @@ struct AppliedFriendsView: View{
     var body: some View{
         List{
             ForEach(self.friendList.oneSide) { friend in
-                HStack{
-                    IconLoaderView(size: 40, withUrl: friend.iconPath)
-                    Text(friend.name).foregroundColor(.black)
-                    Spacer()
-                    CancelButtonView(myId: self.id, targetId: friend.id, isOpen: self.$isOpen, friendList: self.$friendList)
-                    CheckButtonView(myId: self.id, targetId: friend.id, friendList: self.$friendList)
+                if #available(iOS 15.0, *) {
+                    AppliedFrinedView(friend: friend, id: self.id, friendList: self.$friendList, isOpen: self.$isOpen)
+                        .listRowSeparator(.hidden)
+                } else {
+                    // Fallback on earlier versions
+                    AppliedFrinedView(friend: friend, id: self.id, friendList: self.$friendList, isOpen: self.$isOpen)
                 }
             }
+        }.listStyle(InsetListStyle())
+    }
+}
+
+struct AppliedFrinedView: View {
+    var friend: User
+    var id: Int
+    @Binding var friendList: FriendList
+    @Binding var isOpen: Bool
+    var body: some View {
+        HStack{
+            IconLoaderView(size: 40, withUrl: friend.iconPath)
+            Text(friend.name).foregroundColor(.black)
+            Spacer()
+            CancelButtonView(myId: self.id, targetId: friend.id, isOpen: self.$isOpen, friendList: self.$friendList)
+            CheckButtonView(myId: self.id, targetId: friend.id, friendList: self.$friendList)
         }
     }
 }

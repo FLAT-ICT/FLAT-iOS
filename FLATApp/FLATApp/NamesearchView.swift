@@ -75,12 +75,16 @@ struct NamesearchView: View { //友達追加画面
                 }
             }
             List{
-                VStack{
-                    ForEach(users){ user in
+                ForEach(users){ user in
+                    if #available(iOS 15.0, *) {
+                        SearchedUserView(id: self.id, user: user, friendList: $friendList)
+                            .listRowSeparator(.hidden)
+                    } else {
+                        // Fallback on earlier versions
                         SearchedUserView(id: self.id, user: user, friendList: $friendList)
                     }
                 }
-            }
+            }.listStyle(InsetListStyle())
         }
         .onDisappear{
             // 画面非表示時に検索回数をリセットしなければいけないとおもいます

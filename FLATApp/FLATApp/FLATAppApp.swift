@@ -16,8 +16,8 @@ struct FLATAppApp: App {
         // @AppStorage("name") var name = ~~~
         // の形で代入すると代入した値が捨てられ、下の値を使えるようになる
         UserDefaults.standard.register(defaults: [
-            "name": "usr1",
-            "id": 1,
+            "name": "test1",
+            "id": 2,
             "status": 0,
             "spot": ""
         ])
