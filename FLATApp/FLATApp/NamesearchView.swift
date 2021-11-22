@@ -75,12 +75,10 @@ struct NamesearchView: View { //友達追加画面
                 }
             }
             List{
-                VStack{
-                    ForEach(users){ user in
-                        SearchedUserView(id: self.id, user: user, friendList: $friendList)
-                    }
+                ForEach(users){ user in
+                    SearchedUserView(id: self.id, user: user, friendList: $friendList)
                 }
-            }
+            }.listStyle(InsetListStyle())
         }
         .onDisappear{
             // 画面非表示時に検索回数をリセットしなければいけないとおもいます

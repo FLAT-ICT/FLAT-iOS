@@ -56,7 +56,7 @@ struct FriendTabsView: View {
                 })
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             }
-            .foregroundColor(Color.white)
+            //.foregroundColor(Color.white)
         }
     }
 }
@@ -73,9 +73,9 @@ struct MutualFriendsView: View{
                     Spacer()
                     Text(friend.spot ?? "").foregroundColor(.black)
                 }
-            }.listStyle(GroupedListStyle())
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-        }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }.listStyle(InsetListStyle())
     }
 }
 
@@ -96,7 +96,7 @@ struct AppliedFriendsView: View{
                     CheckButtonView(myId: self.id, targetId: friend.id, friendList: self.$friendList)
                 }
             }
-        }
+        }.listStyle(InsetListStyle())
     }
 }
 
