@@ -76,7 +76,13 @@ struct NamesearchView: View { //友達追加画面
             }
             List{
                 ForEach(users){ user in
-                    SearchedUserView(id: self.id, user: user, friendList: $friendList)
+                    if #available(iOS 15.0, *) {
+                        SearchedUserView(id: self.id, user: user, friendList: $friendList)
+                            .listRowSeparator(.hidden)
+                    } else {
+                        // Fallback on earlier versions
+                        SearchedUserView(id: self.id, user: user, friendList: $friendList)
+                    }
                 }
             }.listStyle(InsetListStyle())
         }
