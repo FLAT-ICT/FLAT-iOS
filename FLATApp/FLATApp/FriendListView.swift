@@ -153,13 +153,14 @@ struct CheckButtonView: View {
             addFriend(idPair: IdPair(myId: myId, targetId: targetId) ,success: {(msg) in
                 print(msg)
                 // TODO: getFriendして更新する必要あり
-                getFriends(id: myId, success: { (friendlist: FriendList) in
-                    self.friendList = friendlist
+                getFriends(id: myId, success: { (friendList: FriendList) in
+                    self.friendList = friendList
                 })
                 {( error )in
                     print("getFriend failure")
                     print(error)
                 }
+                print(msg)
             }) { (error) in
                 print("addFriend failure")
                 print(error)
