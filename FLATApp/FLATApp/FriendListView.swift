@@ -48,7 +48,7 @@ struct FriendTabsView: View {
                 Tabs(tabsName: tabsName, geoWidth: geo.size.width, selectedTab: $selectedTab)
                 TabView(selection: $selectedTab, content: {
                     // 友だち
-                    MutualFriendsView(mutual: friendList.mutual).tag(0)
+                    MutualFriendsView(friendList: friendList).tag(0)
                     // 未承認
                     AppliedFriendsView(id: id, isOpen: $isOpen, friendList: $friendList).tag(1)
                     // 申請済み
@@ -64,17 +64,30 @@ struct FriendTabsView: View {
 
 struct MutualFriendsView: View{
     var mutual: [User]
+    var oneSide: [User]
+    init(friendList: FriendList){
+        self.mutual = friendList.mutual
+        self.oneSide = friendList.oneSide
+    }
     var body: some View{
-        List{
-            ForEach(mutual) { friend in
-                if #available(iOS 15.0, *){
-                    MutualFrinedView(friend: friend)
-                        .listRowSeparator(.hidden)
-                }else{
-                    MutualFrinedView(friend: friend)
-                }
+        if mutual.count == 0 {
+            VStack(){
+                Text("友だち申請が\(self.oneSide.count)件届いています")
+                Text("確認してみましょう")
             }
-        }.listStyle(InsetListStyle())
+            .position(x: UIScreen.main.bounds.width / 2, y:72)
+        }else{
+            List{
+                ForEach(mutual) { friend in
+                    if #available(iOS 15.0, *){
+                        MutualFrinedView(friend: friend)
+                            .listRowSeparator(.hidden)
+                    }else{
+                        MutualFrinedView(friend: friend)
+                    }
+                }
+            }.listStyle(InsetListStyle())
+        }
     }
 }
 
@@ -92,22 +105,26 @@ struct MutualFrinedView: View {
 
 struct AppliedFriendsView: View{
     var id: Int
-    //    var applied: [User]
     @Binding var isOpen: Bool
-    //    @Binding var yesFriends: [User]
     @Binding var friendList: FriendList
     var body: some View{
-        List{
-            ForEach(self.friendList.oneSide) { friend in
-                if #available(iOS 15.0, *) {
-                    AppliedFrinedView(friend: friend, id: self.id, friendList: self.$friendList, isOpen: self.$isOpen)
-                        .listRowSeparator(.hidden)
-                } else {
-                    // Fallback on earlier versions
-                    AppliedFrinedView(friend: friend, id: self.id, friendList: self.$friendList, isOpen: self.$isOpen)
+        if self.friendList.oneSide.count == 0 {
+            Text("友だち申請は届いてないようです")
+                .frame(maxWidth:.infinity, alignment: .top)
+                .position(x: UIScreen.main.bounds.width / 2,y:72)
+        }else{
+            List{
+                ForEach(self.friendList.oneSide) { friend in
+                    if #available(iOS 15.0, *) {
+                        AppliedFrinedView(friend: friend, id: self.id, friendList: self.$friendList, isOpen: self.$isOpen)
+                            .listRowSeparator(.hidden)
+                    } else {
+                        // Fallback on earlier versions
+                        AppliedFrinedView(friend: friend, id: self.id, friendList: self.$friendList, isOpen: self.$isOpen)
+                    }
                 }
-            }
-        }.listStyle(InsetListStyle())
+            }.listStyle(InsetListStyle())
+        }
     }
 }
 
