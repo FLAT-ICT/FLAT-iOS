@@ -48,7 +48,7 @@ struct FriendTabsView: View {
                 Tabs(tabsName: tabsName, geoWidth: geo.size.width, selectedTab: $selectedTab)
                 TabView(selection: $selectedTab, content: {
                     // 友だち
-                    MutualFriendsView(friendList: friendList).tag(0)
+                    MutualFriendsView(friendList: $friendList).tag(0)
                     // 未承認
                     AppliedFriendsView(id: id, isOpen: $isOpen, friendList: $friendList).tag(1)
                     // 申請済み
@@ -65,29 +65,55 @@ struct FriendTabsView: View {
 struct MutualFriendsView: View{
     var mutual: [User]
     var oneSide: [User]
-    init(friendList: FriendList){
-        self.mutual = friendList.mutual
-        self.oneSide = friendList.oneSide
+    @Binding var friendList: FriendList
+    @AppStorage("id") private var myId = -1
+    init(friendList: Binding<FriendList>){
+        self._friendList = friendList
+        self.mutual = friendList.wrappedValue.mutual
+        self.oneSide = friendList.wrappedValue.oneSide
     }
+    
     var body: some View{
-        if mutual.count == 0 {
-            VStack(){
-                Text("友だち申請が\(self.oneSide.count)件届いています")
-                Text("確認してみましょう")
-            }
-            .position(x: UIScreen.main.bounds.width / 2, y:72)
+        listView
+    }
+    
+    @ViewBuilder
+    var listView: some View {
+        if self.friendList.mutual.isEmpty{
+            emptyStateView
         }else{
-            List{
-                ForEach(mutual) { friend in
-                    if #available(iOS 15.0, *){
-                        MutualFrinedView(friend: friend)
-                            .listRowSeparator(.hidden)
-                    }else{
-                        MutualFrinedView(friend: friend)
-                    }
-                }
-            }.listStyle(InsetListStyle())
+            defaultView
         }
+    }
+    
+    var emptyStateView: some View {
+        VStack(){
+            Text("友だち申請が\(self.oneSide.count)件届いています")
+            Text("確認してみましょう")
+        }
+        .position(x: UIScreen.main.bounds.width / 2, y:72)
+        .onAppear(perform:{
+            getFriends(id: myId, success: { (friendList: FriendList) in
+                self.friendList = friendList
+            })
+            {( error )in
+                print("getFriend failure")
+                print(error)
+            }
+        })
+    }
+    
+    var defaultView: some View{
+        List{
+            ForEach(mutual) { friend in
+                if #available(iOS 15.0, *){
+                    MutualFrinedView(friend: friend)
+                        .listRowSeparator(.hidden)
+                }else{
+                    MutualFrinedView(friend: friend)
+                }
+            }
+        }.listStyle(InsetListStyle())
     }
 }
 
@@ -107,25 +133,41 @@ struct AppliedFriendsView: View{
     var id: Int
     @Binding var isOpen: Bool
     @Binding var friendList: FriendList
+    @AppStorage("id") private var myId = -1
+    
     var body: some View{
-        if self.friendList.oneSide.count == 0 {
-            Text("友だち申請は届いてないようです")
-                .frame(maxWidth:.infinity, alignment: .top)
-                .position(x: UIScreen.main.bounds.width / 2,y:72)
+        listView
+    }
+    
+    @ViewBuilder
+    var listView: some View {
+        if self.friendList.oneSide.isEmpty{
+            emptyStateView
         }else{
-            List{
-                ForEach(self.friendList.oneSide) { friend in
-                    if #available(iOS 15.0, *) {
-                        AppliedFrinedView(friend: friend, id: self.id, friendList: self.$friendList, isOpen: self.$isOpen)
-                            .listRowSeparator(.hidden)
-                    } else {
-                        // Fallback on earlier versions
-                        AppliedFrinedView(friend: friend, id: self.id, friendList: self.$friendList, isOpen: self.$isOpen)
-                    }
-                }
-            }.listStyle(InsetListStyle())
+            defaultView
         }
     }
+    
+    var emptyStateView: some View {
+        Text("友だち申請は届いてないようです")
+            .frame(maxWidth:.infinity, alignment: .top)
+            .position(x: UIScreen.main.bounds.width / 2,y:72)
+    }
+    
+    var defaultView: some View {
+        List{
+            ForEach(self.friendList.oneSide) { friend in
+                if #available(iOS 15.0, *) {
+                    AppliedFrinedView(friend: friend, id: self.id, friendList: self.$friendList, isOpen: self.$isOpen)
+                        .listRowSeparator(.hidden)
+                } else {
+                    // Fallback on earlier versions
+                    AppliedFrinedView(friend: friend, id: self.id, friendList: self.$friendList, isOpen: self.$isOpen)
+                }
+            }
+        }.listStyle(InsetListStyle())
+    }
+    
 }
 
 struct AppliedFrinedView: View {
@@ -155,6 +197,7 @@ struct CheckButtonView: View {
                 // TODO: getFriendして更新する必要あり
                 getFriends(id: myId, success: { (friendList: FriendList) in
                     self.friendList = friendList
+                    print(self.friendList)
                 })
                 {( error )in
                     print("getFriend failure")
