@@ -14,6 +14,7 @@ import SwiftUI
 class BeaconDetecter: NSObject, ObservableObject, CLLocationManagerDelegate{
     var didChange = PassthroughSubject<Void, Never>()
     var locationManager: CLLocationManager?
+    var tmp_beacons: [CLBeacon] = []
     @AppStorage("id") private var id = -1
     @Published var lastDistance = CLProximity.unknown
     @Published var idBeacon: IdAndBeacon = IdAndBeacon(userId: 1, major: 0, minor: -1, rssi: 1)
@@ -50,9 +51,15 @@ class BeaconDetecter: NSObject, ObservableObject, CLLocationManagerDelegate{
     
     func locationManager(_ manager: CLLocationManager, didRange beacons: [CLBeacon], satisfying beaconConstraint: CLBeaconIdentityConstraint){
         // for beacon in beacons { // 多分このfor文いらない。動かなかったら戻す
-        print(beacons)
+        var _beacons = beacons.filter{$0.rssi != 0}
+        if _beacons.isEmpty{
+            _beacons = tmp_beacons
+        }else{
+            tmp_beacons = _beacons
+        }
+        print(_beacons)
         // rssiが一番大きいビーコンを取得する。直近30回分のRSSIについて平均をとり、最大のものを返すように実装し直した方がいい
-        if let beacon = beacons.max(by: {a, b in a.rssi < b.rssi}){
+        if let beacon = _beacons.max(by: {a, b in a.rssi < b.rssi}){
             update(distance: beacon.proximity)
             self.idBeacon = IdAndBeacon(userId: self.id, major: (beacon.major as! Int), minor: (beacon.minor as! Int), rssi: beacon.rssi)
             print("major:\(self.idBeacon.major), minor:\(self.idBeacon.minor), rssi:\(self.idBeacon.rssi)")

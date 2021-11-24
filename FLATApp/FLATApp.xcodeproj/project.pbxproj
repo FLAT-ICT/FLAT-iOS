@@ -84,7 +84,6 @@
 			isa = PBXGroup;
 			children = (
 				2BB69DEB2710A1C400275485 /* FLATApp */,
-				2BB69DEA2710A1C400275485 /* Products */,
 				2B7220742735191500937AE5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -95,6 +94,7 @@
 				2BB69DE92710A1C400275485 /* FLATApp.app */,
 			);
 			name = Products;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		2BB69DEB2710A1C400275485 /* FLATApp */ = {
@@ -118,6 +118,7 @@
 				2B72206C27302C5200937AE5 /* Bluetooth.swift */,
 				2B9DB79327417116003A5DDD /* SearchBeacon.swift */,
 				2BB69DF02710A1C800275485 /* Assets.xcassets */,
+				2BB69DEA2710A1C400275485 /* Products */,
 				2BB69DF22710A1C800275485 /* Preview Content */,
 			);
 			path = FLATApp;
@@ -393,7 +394,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = flat.FLATApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "flat.FLATApp-pr49";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -431,7 +432,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = flat.FLATApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "flat.FLATApp-pr49";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
