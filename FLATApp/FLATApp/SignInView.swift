@@ -22,6 +22,26 @@ struct SignInView: View {
                     .frame(width: 270, height: 3)
             }
             Spacer()
+            HStack(){
+                Button("ログイン"){
+                    //ログイン画面に遷移
+                }
+                .foregroundColor(.black)
+                .frame(width:140,height:40)
+                .padding()
+                Spacer()
+                Button("新規登録"){
+                    //アカウント登録画面に遷移
+                }
+                .foregroundColor(.white)
+                .background(
+                    Capsule()
+                        .foregroundColor(Color("primary"))
+                        .frame(width:140,height:40)
+                )
+                .padding()
+                Spacer()
+            }
         }
     }
 }
