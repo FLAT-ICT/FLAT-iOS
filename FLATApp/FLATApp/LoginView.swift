@@ -8,8 +8,29 @@
 import SwiftUI
 
 struct LoginView: View {
+    @State var nickname: String = ""
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(){
+            VStack(){
+                Text("ログイン画面")
+                    .font(.largeTitle)
+                    .padding(.top, 115)
+            }
+            VStack(){
+                Text("ニックネームを入力してください")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .foregroundColor(Color.gray)
+                    .padding(.leading, 25.0)
+                TextField("ニックネーム", text: $nickname)
+                    .padding(3.0)
+                    .keyboardType(.default)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+            }
+            .padding(.leading,24.0)
+            .padding(.trailing,24.0)
+            .padding(.top, 60)
+            Spacer()
+        }
     }
 }
 
