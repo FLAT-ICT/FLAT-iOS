@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2B2F791B275137960008E8B2 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F791A275137960008E8B2 /* LoginView.swift */; };
 		2B2F791927511C340008E8B2 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F791827511C340008E8B2 /* SignInView.swift */; };
+		2B2F791B275137960008E8B2 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F791A275137960008E8B2 /* LoginView.swift */; };
 		2B72206D27302C5200937AE5 /* Bluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B72206C27302C5200937AE5 /* Bluetooth.swift */; };
 		2B7220762735191500937AE5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B7220752735191500937AE5 /* CoreLocation.framework */; };
 		2B9DB792273B5057003A5DDD /* TimerHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9DB791273B5057003A5DDD /* TimerHolder.swift */; };
@@ -32,11 +32,12 @@
 		E42D457F274728020051004D /* Tabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42D457E274728020051004D /* Tabs.swift */; };
 		E42D458127485DF60051004D /* RegionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42D458027485DF60051004D /* RegionInfo.swift */; };
 		E4543434274A0A62001ECB14 /* LabeledButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4543433274A0A62001ECB14 /* LabeledButtonStyle.swift */; };
+		E4643402275257C4002F14A4 /* NewSignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4643401275257C4002F14A4 /* NewSignupView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2B2F791A275137960008E8B2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		2B2F791827511C340008E8B2 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		2B2F791A275137960008E8B2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		2B72206C27302C5200937AE5 /* Bluetooth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bluetooth.swift; sourceTree = "<group>"; };
 		2B7220752735191500937AE5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		2B9DB791273B5057003A5DDD /* TimerHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerHolder.swift; sourceTree = "<group>"; };
@@ -61,6 +62,7 @@
 		E42D457E274728020051004D /* Tabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tabs.swift; sourceTree = "<group>"; };
 		E42D458027485DF60051004D /* RegionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionInfo.swift; sourceTree = "<group>"; };
 		E4543433274A0A62001ECB14 /* LabeledButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledButtonStyle.swift; sourceTree = "<group>"; };
+		E4643401275257C4002F14A4 /* NewSignupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSignupView.swift; sourceTree = "<group>"; };
 		E4E125252748F57600578325 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,6 +110,7 @@
 				E42D326227461BEB0053F794 /* CustomColor.xcassets */,
 				E41B9D0D273B2B9E00D3AB80 /* Api */,
 				2BB69DEC2710A1C400275485 /* FLATAppApp.swift */,
+				E4643401275257C4002F14A4 /* NewSignupView.swift */,
 				2B2F791827511C340008E8B2 /* SignInView.swift */,
 				2BB69DEE2710A1C400275485 /* ContentView.swift */,
 				2B2F791A275137960008E8B2 /* LoginView.swift */,
@@ -236,6 +239,7 @@
 				2BB69E31271147A600275485 /* NamesearchView.swift in Sources */,
 				E42D325D27461AC50053F794 /* UIColor.swift in Sources */,
 				E41B9D11273B2CA800D3AB80 /* SendBeacon.swift in Sources */,
+				E4643402275257C4002F14A4 /* NewSignupView.swift in Sources */,
 				E41B9D13273B2E6A00D3AB80 /* GetFriends.swift in Sources */,
 				E41B9D15273B42A000D3AB80 /* AddRejectFriend.swift in Sources */,
 				E4543434274A0A62001ECB14 /* LabeledButtonStyle.swift in Sources */,
