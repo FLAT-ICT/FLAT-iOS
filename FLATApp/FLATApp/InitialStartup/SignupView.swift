@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NewSignupView: View {
+struct SignupView: View {
     @State var nickname: String = ""
     @State var firstPassword: String = ""
     @State var secondPassword : String = ""
@@ -74,8 +74,8 @@ struct NewSignupView: View {
     }
 }
 
-struct NewSignupView_Previews: PreviewProvider {
+struct SignupView_Previews: PreviewProvider {
     static var previews: some View {
-        NewSignupView()
+        SignupView()
     }
 }
