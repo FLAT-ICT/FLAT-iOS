@@ -9,7 +9,8 @@ import SwiftUI
 
 struct NewSignupView: View {
     @State var nickname: String = ""
-    @State var paseword: String = ""
+    @State var firstPassword: String = ""
+    @State var secondPassword : String = ""
     var body: some View {
         VStack(){
             VStack(){
@@ -31,7 +32,8 @@ struct NewSignupView: View {
                     .foregroundColor(Color.gray)
                     .padding(.leading, 25.0)
                     .padding(.top,18)
-                TextField("パスワード", text: $paseword)
+                TextField("パスワード", text: $firstPassword)
+                // 入力中の文字を隠す
                     .padding(3.0)
                     .keyboardType(.default)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -40,7 +42,8 @@ struct NewSignupView: View {
                     .foregroundColor(Color.gray)
                     .padding(.leading, 25.0)
                     .padding(.top,18)
-                TextField("パスワード", text: $paseword)
+                TextField("パスワード", text: $secondPassword)
+                // 入力中の文字を隠す
                     .padding(3.0)
                     .keyboardType(.default)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
