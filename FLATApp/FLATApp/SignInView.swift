@@ -25,6 +25,9 @@ struct SignInView: View {
             HStack(){
                 Button("ログイン"){
                     //ログイン画面に遷移
+                    //　ボタンのスタイルは、CommonComponentsの中のスタイルを使用してください
+                    // 他のViewで使用しているのでそちらを参照してください
+                    // ログインボタンの左側のスペースがないので後で修正してください
                 }
                 .foregroundColor(.black)
                 .frame(width:140,height:40)
@@ -33,6 +36,7 @@ struct SignInView: View {
                 Button("新規登録"){
                     //アカウント登録画面に遷移
                 }
+                // 白いボタンのスタイルは作っていませんが、スタイルを作るといいと思います。
                 .foregroundColor(.white)
                 .background(
                     Capsule()
