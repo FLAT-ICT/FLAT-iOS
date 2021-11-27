@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B2F791D275145CC0008E8B2 /* NewSignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F791C275145CC0008E8B2 /* NewSignupView.swift */; };
+		2B2F791B275137960008E8B2 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F791A275137960008E8B2 /* LoginView.swift */; };
+		2B2F791927511C340008E8B2 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F791827511C340008E8B2 /* SignInView.swift */; };
 		2B72206D27302C5200937AE5 /* Bluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B72206C27302C5200937AE5 /* Bluetooth.swift */; };
 		2B7220762735191500937AE5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B7220752735191500937AE5 /* CoreLocation.framework */; };
 		2B9DB792273B5057003A5DDD /* TimerHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9DB791273B5057003A5DDD /* TimerHolder.swift */; };
@@ -33,6 +36,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B2F791C275145CC0008E8B2 /* NewSignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSignupView.swift; sourceTree = "<group>"; };
+		2B2F791A275137960008E8B2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		2B2F791827511C340008E8B2 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		2B72206C27302C5200937AE5 /* Bluetooth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bluetooth.swift; sourceTree = "<group>"; };
 		2B7220752735191500937AE5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		2B9DB791273B5057003A5DDD /* TimerHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerHolder.swift; sourceTree = "<group>"; };
@@ -84,7 +90,6 @@
 			isa = PBXGroup;
 			children = (
 				2BB69DEB2710A1C400275485 /* FLATApp */,
-				2BB69DEA2710A1C400275485 /* Products */,
 				2B7220742735191500937AE5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -95,6 +100,7 @@
 				2BB69DE92710A1C400275485 /* FLATApp.app */,
 			);
 			name = Products;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		2BB69DEB2710A1C400275485 /* FLATApp */ = {
@@ -104,7 +110,10 @@
 				E42D326227461BEB0053F794 /* CustomColor.xcassets */,
 				E41B9D0D273B2B9E00D3AB80 /* Api */,
 				2BB69DEC2710A1C400275485 /* FLATAppApp.swift */,
+				2B2F791827511C340008E8B2 /* SignInView.swift */,
 				2BB69DEE2710A1C400275485 /* ContentView.swift */,
+				2B2F791C275145CC0008E8B2 /* NewSignupView.swift */,
+				2B2F791A275137960008E8B2 /* LoginView.swift */,
 				E42D458027485DF60051004D /* RegionInfo.swift */,
 				2B9DB791273B5057003A5DDD /* TimerHolder.swift */,
 				2BA9A2A0271620AA00BECC03 /* PlaceView.swift */,
@@ -118,6 +127,7 @@
 				2B72206C27302C5200937AE5 /* Bluetooth.swift */,
 				2B9DB79327417116003A5DDD /* SearchBeacon.swift */,
 				2BB69DF02710A1C800275485 /* Assets.xcassets */,
+				2BB69DEA2710A1C400275485 /* Products */,
 				2BB69DF22710A1C800275485 /* Preview Content */,
 			);
 			path = FLATApp;
@@ -231,15 +241,18 @@
 				E41B9D11273B2CA800D3AB80 /* SendBeacon.swift in Sources */,
 				E41B9D13273B2E6A00D3AB80 /* GetFriends.swift in Sources */,
 				E41B9D15273B42A000D3AB80 /* AddRejectFriend.swift in Sources */,
+				2B2F791D275145CC0008E8B2 /* NewSignupView.swift in Sources */,
 				E4543434274A0A62001ECB14 /* LabeledButtonStyle.swift in Sources */,
 				2BA9A2A52716211E00BECC03 /* FriendListView.swift in Sources */,
 				2B9DB792273B5057003A5DDD /* TimerHolder.swift in Sources */,
 				E42D458127485DF60051004D /* RegionInfo.swift in Sources */,
 				2B9DB79427417116003A5DDD /* SearchBeacon.swift in Sources */,
+				2B2F791927511C340008E8B2 /* SignInView.swift in Sources */,
 				E42D326527470B0D0053F794 /* IconLoader.swift in Sources */,
 				E41B9D0C273B2A8C00D3AB80 /* Api.swift in Sources */,
 				2BB69DEF2710A1C400275485 /* ContentView.swift in Sources */,
 				2BA9A2A1271620AA00BECC03 /* PlaceView.swift in Sources */,
+				2B2F791B275137960008E8B2 /* LoginView.swift in Sources */,
 				2BB69DED2710A1C400275485 /* FLATAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -393,7 +406,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = flat.FLATApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "flat.FLATApp-pr49";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -431,7 +444,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = flat.FLATApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "flat.FLATApp-pr49";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

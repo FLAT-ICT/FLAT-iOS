@@ -12,12 +12,18 @@ struct FriendListView: View { //友達一覧画面
     @State private var selection = 0
     @State private var isError: Bool = false
     @State private var friendList: FriendList = FriendList(oneSide: [], mutual: [])
+    @State private var didLoaded = false
     @AppStorage("id") private var id = -1
     let tabsName = ["友だち", "未承認", "承認待ち"]
     
     var body: some View {
         ZStack{
-            if self.friendList.oneSide.count == 0 && self.friendList.mutual.count == 0 {
+            if !didLoaded{
+                ProgressView()
+                    .scaleEffect(x: 2, y: 2, anchor: .center)
+                    .progressViewStyle(CircularProgressViewStyle(tint: Color("primary")))
+            }
+            else if self.friendList.oneSide.count == 0 && self.friendList.mutual.count == 0 {
                 Text("友達が一人もいないようです。下のボタンから追加しましょう！")
             }else{
                 FriendTabsView(id: self.id, friendList: self.$friendList, isOpen: self.$isError)
@@ -27,11 +33,15 @@ struct FriendListView: View { //友達一覧画面
         .onAppear(perform: {
             getFriends(id: self.id, success: { (friendlist: FriendList) in
                 self.friendList = friendlist
+                self.didLoaded = true
             })
             {( error )in
                 print("failure")
                 print(error)
             }
+        })
+        .onDisappear(perform: {
+            self.didLoaded = false
         })
     }
 }
