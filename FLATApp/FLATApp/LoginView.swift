@@ -13,6 +13,7 @@ struct LoginView: View {
     var body: some View {
         VStack(){
             VStack(){
+                // 不要
                 Text("ログイン画面")
                     .font(.largeTitle)
                     .padding(.top, 115)
@@ -22,6 +23,7 @@ struct LoginView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundColor(Color.gray)
                     .padding(.leading, 25.0)
+                // 幅をログインボタンと揃えてください
                 TextField("ニックネーム", text: $nickname)
                     .padding(3.0)
                     .keyboardType(.default)
