@@ -11,6 +11,7 @@ import CoreLocation
 @main
 struct FLATAppApp: App {
     @ObservedObject var timerHolder = TimerHolder()
+    @State var Signup = false
     // アプリが起動して初めて走る処理
     init(){
         // @AppStorage("name") var name = ~~~
@@ -23,10 +24,16 @@ struct FLATAppApp: App {
         ])
         timerHolder.start()
     }
+    
+    
     //@UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if Signup == false{
+                StartupView()
+            } else {
+                ContentView()
+            }
         }
     }
 }
