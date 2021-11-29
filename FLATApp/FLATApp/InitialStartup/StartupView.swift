@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct StartupView: View {
+struct StartupView: View {    
     var body: some View {
         VStack(){
             HStack(){
@@ -57,6 +57,8 @@ struct StartupView: View {
         }
     }
 }
+
+
 
 struct StartupView_Previews: PreviewProvider {
     static var previews: some View {
