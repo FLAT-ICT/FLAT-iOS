@@ -2,7 +2,7 @@
 //  AddFriend.swift
 //  FLATApp
 //
-//  Created by Ryuki Yamamoto on 2021/11/10.
+//  Created by t4t5u0 on 2021/11/10.
 //
 
 struct IdPair: Codable {

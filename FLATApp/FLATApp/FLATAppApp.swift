@@ -20,6 +20,8 @@ struct FLATAppApp: App {
             "id": 1,
             "status": 0,
             "spot": "",
+            "iconPath": "",
+            "loggedinAt": "",
             "isFirstVisit": true
         ])
         timerHolder.start()
