@@ -14,36 +14,35 @@ struct StatusView: View { // アイコン画面 ??? ステータス画面
     @AppStorage("loggedinAt") var loggedinAt = "name"
     @AppStorage("ifFirstVisit") var isFirstVisit = false
     @AppStorage("iconPath") var iconPath = ""
-    @State var visible: Bool = false
+    @State var toHome: Bool = false
     var body: some View {
-        if visible {
-            StartupView()
-        }else{
-            
-            VStack{
-                IconLoaderView(size: 160, withUrl: iconPath)
-                Text("your name is \(self.name)")
-                Text("your id is \(self.id)")
-                Text("your spot is \(self.spot)")
-                Text("your loggedinAt is \(self.loggedinAt)")
-                Text("your isFirstVisit is \(self.isFirstVisit ? "True" : "False")")
-                Button(action: {
-                    // TODO: logout
-                    logout(userId: UserId(id: self.id), success: {msg in
-                        print(msg)
-                        UserDefaults.standard.set(-1, forKey: "id")
-                        UserDefaults.standard.set("", forKey: "name")
-                        UserDefaults.standard.set("", forKey: "spot")
-                        UserDefaults.standard.set(0, forKey: "status")
-                        UserDefaults.standard.set("", forKey: "loggedinAt")
-                        UserDefaults.standard.set(true, forKey: "isFirstVisit")
-                        visible = true
-                    }){(error) in
-                        print(error)
-                    }
-                }){
-                    Text("logout")
-                }.buttonStyle(LabeledButtonStyle(type: .cancel))
+        VStack{
+            IconLoaderView(size: 160, withUrl: iconPath)
+            Text("your name is \(self.name)")
+            Text("your id is \(self.id)")
+            Text("your spot is \(self.spot)")
+            Text("your loggedinAt is \(self.loggedinAt)")
+            Text("your isFirstVisit is \(self.isFirstVisit ? "True" : "False")")
+            Button(action: {
+                // TODO: logout
+                logout(userId: UserId(id: self.id), success: {msg in
+                    print(msg)
+                    UserDefaults.standard.set(-1, forKey: "id")
+                    UserDefaults.standard.set("", forKey: "name")
+                    UserDefaults.standard.set("", forKey: "spot")
+                    UserDefaults.standard.set(0, forKey: "status")
+                    UserDefaults.standard.set("", forKey: "loggedinAt")
+                    UserDefaults.standard.set(true, forKey: "isFirstVisit")
+                    toHome = true
+                }){(error) in
+                    print(error)
+                }
+            }){
+                Text("logout")
+            }
+            .buttonStyle(LabeledButtonStyle(type: .cancel))
+            .fullScreenCover(isPresented: $toHome){
+                StartupView()
             }
         }
     }
