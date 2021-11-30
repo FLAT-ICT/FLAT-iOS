@@ -15,6 +15,7 @@ struct LabledBigButtonStyle: ButtonStyle {
             .foregroundColor(self.type.fgColor)
             .background(self.type.bgColor)
             .cornerRadius(24)
+            // .scaleEffect(configuration.isPressed ? 0.9 : 1)
     }
 }
 
