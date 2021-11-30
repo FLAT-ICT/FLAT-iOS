@@ -40,6 +40,7 @@ struct LoginView: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 Button(action: {
                     UserDefaults.standard.set(false, forKey: "isFirstVisit")
+                    self.screenStatus = .home
                 }){
                     Text("ログインする")
                         .frame(width:327, height: 40)

@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum SwitchStartUp{
-    case startup, signup, login
+    case startup, signup, login, home
 }
 
 struct StartupView: View {
@@ -24,6 +24,8 @@ struct StartupView: View {
             SignupView(screenStatus: $screenStatus)
         case .login:
             LoginView(screenStatus: $screenStatus)
+        case .home :
+            ContentView()
         }
     }
 }

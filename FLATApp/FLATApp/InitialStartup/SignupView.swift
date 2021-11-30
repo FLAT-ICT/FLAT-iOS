@@ -24,7 +24,7 @@ struct SignupView: View {
                     .padding(.top, 18)
                 SecondPaswordView()
                     .padding(.top, 18)
-                AccountButtonView()
+                AccountButtonView(screenStatus: $screenStatus)
                     .padding(.top, 32)
             }
             .padding(.leading,24.0)
@@ -88,9 +88,11 @@ struct SecondPaswordView: View{
 }
 
 struct AccountButtonView: View{
+    @Binding var screenStatus: SwitchStartUp
     var body: some View{
         Button(action: {
             UserDefaults.standard.set(false, forKey: "isFirstVisit")
+            self.screenStatus = .home
         }){//ホーム画面に画面遷移
             Text("登録する")
                 .frame(maxWidth:.infinity, maxHeight: 40)
