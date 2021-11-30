@@ -117,7 +117,7 @@ struct AccountButtonView: View{
                 UserDefaults.standard.set(user.spot, forKey: "spot")
                 UserDefaults.standard.set(user.status, forKey: "status")
                 UserDefaults.standard.set(user.iconPath, forKey: "iconPath")
-                UserDefaults.standard.set(user.loggedinAt, forKey: "loggedinAt")
+                UserDefaults.standard.set(user.loggedInAt, forKey: "loggedinAt")
                 UserDefaults.standard.set(false, forKey: "isFirstVisit")
                 self.screenStatus = .home
                 

@@ -11,7 +11,7 @@ struct User: Identifiable, Codable {//ローカルデータ
     var status: Int //ステータス
     var spot: String? //場所
     var iconPath: String //アイコン
-    var loggedinAt: String?
+    var loggedInAt: String?
 }
 
 struct FriendList: Codable{
