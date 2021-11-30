@@ -10,6 +10,7 @@ import SwiftUI
 struct LoginView: View {
     @State var nickname: String = ""
     @State var paseword: String = ""
+    @Binding var screenStatus: SwitchStartUp
     var body: some View {
         VStack(){
             // 不要
@@ -37,7 +38,9 @@ struct LoginView: View {
                     .frame(width:327, height: 40)
                     .keyboardType(.default)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                Button(action: {}){
+                Button(action: {
+                    UserDefaults.standard.set(false, forKey: "isFirstVisit")
+                }){
                     Text("ログインする")
                         .frame(width:327, height: 40)
                         .foregroundColor(Color.white)
@@ -49,7 +52,9 @@ struct LoginView: View {
                 .padding(.top, 32)
                 HStack(){
                     Text("新規登録は")
-                    Button(action: {}){
+                    Button(action: {
+                        self.screenStatus = .signup
+                    }){
                         Text("こちら")
                             .foregroundColor(Color("primary"))
                     }
@@ -65,7 +70,8 @@ struct LoginView: View {
 }
 
 struct LoginView_Previews: PreviewProvider {
+    @State static var screenStatus: SwitchStartUp = .signup
     static var previews: some View {
-        LoginView()
+        LoginView(screenStatus: $screenStatus)
     }
 }

@@ -7,42 +7,23 @@
 
 import SwiftUI
 
+enum SwitchStartUp{
+    case startup, signup, login
+}
+
 struct StartupView: View {
-    @State var login = false
-    @State var signup = false
+    @State var screenStatus: SwitchStartUp = .startup
     var body: some View {
-        if login && signup{
+        switch self.screenStatus{
+        case .startup:
             VStack(){
                 TitleView()
-                HStack(){
-                    Button(action: {
-                        self.login = true
-                    }) {
-                        Text("ログイン")
-                    }
-                    .buttonStyle(LabledBigButtonStyle(type: ButtonColor.login))
-                    .padding()
-                    Spacer()
-                    
-                    Button(action: {
-                        self.signup = true
-                    }) {
-                        Text("新規登録")
-                    }
-                    .buttonStyle(LabledBigButtonStyle(type: ButtonColor.normal))
-                    .padding()
-                    Spacer()
-                }
+                ButtomView(screenStatus: $screenStatus)
             }
-        }else if login == true && signup == false{
-            LoginView()
-        } else if signup == true && login == false{
-            SignupView()
-        } else {
-            VStack(){
-                TitleView()
-                ButtomView()
-            }
+        case .signup:
+            SignupView(screenStatus: $screenStatus)
+        case .login:
+            LoginView(screenStatus: $screenStatus)
         }
     }
 }
@@ -66,9 +47,11 @@ struct TitleView: View{
 
 
 struct ButtomView : View{
+    @Binding var screenStatus: SwitchStartUp
     var body: some View{
         HStack(){
             Button(action: {
+                self.screenStatus = .login
             }) {
                 Text("ログイン")
             }
@@ -76,13 +59,16 @@ struct ButtomView : View{
             .padding()
             Spacer()
             
-            Button(action: {}) {
+            Button(action: {
+                self.screenStatus = .signup
+            }) {
                 Text("新規登録")
             }
             .buttonStyle(LabledBigButtonStyle(type: ButtonColor.normal))
             .padding()
             Spacer()
         }
+
     }
 }
 
