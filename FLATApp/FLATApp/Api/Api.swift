@@ -65,6 +65,7 @@ public final class Api{
         shared.dataTask(with: request, completionHandler: {data, response, error in
             if let error = error {
                 print(error.localizedDescription)
+                print("dataTask error")
                 failure(error)
                 return
             }

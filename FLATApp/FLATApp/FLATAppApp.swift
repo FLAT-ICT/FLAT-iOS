@@ -19,14 +19,23 @@ struct FLATAppApp: App {
             "name": "test0",
             "id": 1,
             "status": 0,
-            "spot": ""
+            "spot": "",
+            "iconPath": "",
+            "loggedinAt": "",
+            "isFirstVisit": true
         ])
         timerHolder.start()
     }
-    //    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
+    
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if UserDefaults.standard.bool(forKey: "isFirstVisit"){
+                StartupView()
+            }else{
+                ContentView()
+            }
         }
     }
 }

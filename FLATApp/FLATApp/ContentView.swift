@@ -29,7 +29,7 @@ struct ContentView: View{ //メイン画面
                     Image(systemName: "person")
                 }
                 .tag(1)
-            IconView()
+            StatusView()
                 .tabItem {
                     Image(systemName: "face.smiling")
                 }
