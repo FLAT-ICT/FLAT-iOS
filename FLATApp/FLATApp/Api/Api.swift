@@ -23,10 +23,11 @@ enum HttpMethod{
 
 public final class Api{
     private init(){}
-    // static var baseUrl = "http://34.68.157.198:8080"
+    //static var baseUrl = "http://34.68.157.198:8080"
 //    static var baseUrl = "http://127.0.0.1:3000"
     // static var baseUrl = "http://odajimaaminoMacBook-Pro.local:3000"
-    static var baseUrl = "http://enPiT2019MBA-02.local:3000"
+    //static var baseUrl = "http://codepro2018MBA01.local:3000"
+    static var baseUrl = "http://35.239.225.65:8080"
     static let shared = URLSession.shared
     
     class func util<T1: Codable, T2: Decodable>(

@@ -34,7 +34,8 @@ struct FLATAppApp: App {
             if UserDefaults.standard.bool(forKey: "isFirstVisit"){
                 StartupView()
             }else{
-                ContentView()
+                StartupView()
+                //ContentView()
             }
         }
     }

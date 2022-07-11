@@ -16,7 +16,7 @@ struct SignupView: View {
         VStack(){
             Text("アカウントを登録しましょう")
                 .font(.title)
-            //.padding(.top, 50)
+            .padding(.top, 10)
             VStack(){
                 NicknameView(nickname: $nickname)
                     .padding(.top, 32)
@@ -24,13 +24,19 @@ struct SignupView: View {
                     .padding(.top, 18)
                 SecondPaswordView(secondPassword: $secondPassword)
                     .padding(.top, 18)
+                if firstPassword != secondPassword{
+                    DifferentPaswordView()
+                }else{
+                    Spacer()
+                        .frame(width: 0.0, height: 41.0)
+                }
                 AccountButtonView(nickname: $nickname, firstPassword: $firstPassword, secondPassword: $secondPassword,  screenStatus: $screenStatus)
-                    .padding(.top, 32)
+                    .padding(.top, 0)
             }
             .padding(.leading,24.0)
             .padding(.trailing,24.0)
             AccountMessageView(screenStatus: $screenStatus)
-                .padding(.top, 200)
+                .padding(.top, 20)
             
             
             //.padding(.top, 60)
@@ -83,6 +89,16 @@ struct SecondPaswordView: View{
                 .cornerRadius(10, antialiased: true)
                 .keyboardType(.default)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
+        }
+    }
+}
+
+struct DifferentPaswordView: View{
+    var body: some View{
+        VStack() {
+            Text("パスワードが一致していません")
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .foregroundColor(Color.red)
         }
     }
 }

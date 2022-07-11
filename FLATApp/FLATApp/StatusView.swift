@@ -34,6 +34,7 @@ struct StatusView: View { // アイコン画面 ??? ステータス画面
                     UserDefaults.standard.set("", forKey: "loggedinAt")
                     UserDefaults.standard.set(true, forKey: "isFirstVisit")
                     toHome = true
+                    
                 }){(error) in
                     print(error)
                 }
