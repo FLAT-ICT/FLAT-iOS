@@ -28,6 +28,7 @@ struct LoginView: View {
                     .padding(3.0)
                     .keyboardType(.default)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .autocapitalization(.none)
                 Text("パスワードを入力してください")
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundColor(Color.gray)
@@ -38,6 +39,7 @@ struct LoginView: View {
                     .frame(width:327, height: 40)
                     .keyboardType(.default)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .autocapitalization(.none)
                 Button(action: {
                     if !validateName(name: nickname){
                         print("invalid name")
