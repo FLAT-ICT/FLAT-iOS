@@ -49,6 +49,7 @@ struct NicknameView: View{
             // .padding(3.0)
                 .keyboardType(.default)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
+                .autocapitalization(.none)
         }
     }
 }
@@ -66,6 +67,7 @@ struct FirstPaswordView: View{
             //.padding(3.0)
                 .keyboardType(.default)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
+                .autocapitalization(.none)
         }
     }
 }
@@ -83,6 +85,7 @@ struct SecondPaswordView: View{
                 .cornerRadius(10, antialiased: true)
                 .keyboardType(.default)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
+                .autocapitalization(.none)
         }
     }
 }
