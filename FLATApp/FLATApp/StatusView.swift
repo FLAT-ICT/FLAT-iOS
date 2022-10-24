@@ -11,16 +11,20 @@ struct StatusView: View { // アイコン画面 ??? ステータス画面
     @AppStorage("name") var name = "name"
     @Binding var isLoggedIn: Bool
     var body: some View {
-        VStack{
-            iconView()
-            Text("\(self.name)").font(.title)
-            HStack(){
-                Rectangle()
-                    .foregroundColor(Color("primary"))
-                    .frame(width: 270, height: 3)
+        NavigationView{
+            VStack{
+                iconView()
+                Text("\(self.name)").font(.title)
+                HStack(){
+                    Rectangle()
+                        .foregroundColor(Color("primary"))
+                        .frame(width: 270, height: 3)
+                }
+                Spacer()
+                settingList(isLoggedIn: $isLoggedIn)
             }
-            Spacer()
-            settingList(isLoggedIn: $isLoggedIn)
+            .navigationBarHidden(true)
+            .navigationBarTitle(Text("Home"))
         }
     }
 }
@@ -82,14 +86,12 @@ struct nameSettingRow: View {
     var body: some View {
         HStack{
             Text("名前を変更する")
-            Spacer()
-            Button (action: {
-                //TODO: 名前変更の中身
-                //これはどこに書くべき? (更新処理はApiに、変更のViewはこのファイルかまた別のファイルに?)
-                print("Here: nameSettingRow")
-            }){
-                Image(systemName: "chevron.right")
-            }
+            
+            //NavigationLink内に存在するViewは基本的に灰色に塗りつぶされて表示される。
+            //このままだと右矢印(chevron.right)も塗りつぶされて表示されるので、
+            //NavigationLinkを透明度0で置いて、chevron.rightは別に描画している
+            NavigationLink(destination: nameSettingsView()){ EmptyView() }.opacity(0)
+            Image(systemName: "chevron.right")
         }
     }
 }
@@ -151,6 +153,45 @@ struct logoutRow: View{
                 Image(systemName: "chevron.right")
             }
         }
+    }
+}
+
+struct nameSettingsView: View {
+    @State var newnickname: String = ""
+    
+    var body: some View {
+        VStack{
+            //EmptyView()
+            
+            //この状態だとHeightの値を変えてもテキストボックスのサイズが変わらないので、
+            //SecureFieldを使ってもいいかも
+            TextField("未来太郎", text: $newnickname)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .frame(width:327, height: 40)
+                .padding(10.0)
+                .keyboardType(.default)
+                .autocapitalization(.none)
+            
+            Button(action: {
+                if !validateName(name: newnickname) {
+                    print("invalid name")
+                    return
+                }
+                
+                //TODO: 名前の変更処理を書く
+            }
+            ){
+                Text("決定")
+                    .frame(width: 163, height: 40)
+                    .foregroundColor(Color.white)
+                    .background((Color("primary")))
+                    .cornerRadius(30, antialiased: true)
+            }
+            
+            Spacer()
+        }
+            .navigationBarTitle("名前を変更", displayMode: .inline)
+            .padding(.top, 50)
     }
 }
 
