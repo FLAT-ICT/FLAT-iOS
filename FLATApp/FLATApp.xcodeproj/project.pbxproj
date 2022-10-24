@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		120096C428AD3F4400C9CFEE /* StatusIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120096C328AD3F4400C9CFEE /* StatusIcon.swift */; };
 		2B2F791927511C340008E8B2 /* StartupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F791827511C340008E8B2 /* StartupView.swift */; };
 		2B2F791B275137960008E8B2 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F791A275137960008E8B2 /* LoginView.swift */; };
 		2B2F79A227526AFD0008E8B2 /* LabledBigButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F79A127526AFD0008E8B2 /* LabledBigButtonStyle.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		120096C328AD3F4400C9CFEE /* StatusIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusIcon.swift; sourceTree = "<group>"; };
 		2B2F791827511C340008E8B2 /* StartupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupView.swift; sourceTree = "<group>"; };
 		2B2F791A275137960008E8B2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		2B2F79A127526AFD0008E8B2 /* LabledBigButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabledBigButtonStyle.swift; sourceTree = "<group>"; };
@@ -84,6 +86,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		12FE993228E1A00800F807B2 /* StatusSubViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = StatusSubViews;
+			sourceTree = "<group>";
+		};
 		2B2F79A0275264DB0008E8B2 /* InitialStartup */ = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +147,7 @@
 				2BB69E30271147A600275485 /* NamesearchView.swift */,
 				E4543432274A0A37001ECB14 /* CommonComponents */,
 				2BA9A2A2271620CC00BECC03 /* StatusView.swift */,
+				12FE993228E1A00800F807B2 /* StatusSubViews */,
 				2B72206C27302C5200937AE5 /* Bluetooth.swift */,
 				2B9DB79327417116003A5DDD /* SearchBeacon.swift */,
 				2BB69DF02710A1C800275485 /* Assets.xcassets */,
@@ -174,6 +184,7 @@
 				E4543433274A0A62001ECB14 /* LabeledButtonStyle.swift */,
 				2B2F79A127526AFD0008E8B2 /* LabledBigButtonStyle.swift */,
 				2B2F79A327526DDB0008E8B2 /* ButtonColor.swift */,
+				120096C328AD3F4400C9CFEE /* StatusIcon.swift */,
 			);
 			path = CommonComponents;
 			sourceTree = "<group>";
@@ -251,6 +262,7 @@
 			files = (
 				2B2F79A227526AFD0008E8B2 /* LabledBigButtonStyle.swift in Sources */,
 				E41B9D0F273B2BEE00D3AB80 /* SearchUser.swift in Sources */,
+				120096C428AD3F4400C9CFEE /* StatusIcon.swift in Sources */,
 				2B72206D27302C5200937AE5 /* Bluetooth.swift in Sources */,
 				E42D457F274728020051004D /* Tabs.swift in Sources */,
 				2BA9A2A3271620CC00BECC03 /* StatusView.swift in Sources */,
